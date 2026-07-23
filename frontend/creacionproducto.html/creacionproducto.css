@@ -1,0 +1,134 @@
+@import "bootstrap/dist/css/bootstrap.min.css" layer(bootstrap);
+
+/* Custom Variables & Theme Colors */
+:root {
+  --bs-body-bg: #f8fafc;
+  --bs-body-color: #334155;
+  --bs-font-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+  --indigo-50: #eep2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-950: #1e1b4b;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+}
+
+body {
+  font-family: var(--bs-font-sans-serif);
+  background-color: #f8fafc;
+  color: #334155;
+}
+
+/* Custom Indigo buttons & badges */
+.btn-indigo {
+  background-color: var(--indigo-600);
+  color: #ffffff;
+  border: none;
+}
+.btn-indigo:hover, .btn-indigo:focus {
+  background-color: var(--indigo-700);
+  color: #ffffff;
+}
+
+.btn-indigo-soft {
+  background-color: #e0e7ff;
+  color: var(--indigo-700);
+  border: none;
+  font-weight: 600;
+}
+.btn-indigo-soft:hover {
+  background-color: #c7d2fe;
+  color: var(--indigo-700);
+}
+
+.text-indigo {
+  color: var(--indigo-600) !important;
+}
+
+.bg-indigo-light {
+  background-color: #f5f3ff;
+}
+
+/* Dark Navy Card for Cost Analysis */
+.bg-dark-navy {
+  background-color: var(--slate-900);
+  color: #ffffff;
+}
+
+.bg-navy-card {
+  background-color: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.bg-navy-highlight {
+  background-color: rgba(30, 27, 75, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Custom input numbers spin removal */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Subtle Table Form Inputs */
+.table-input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  padding: 0.25rem 0.2rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+.table-input:hover {
+  border-bottom-color: #cbd5e1;
+}
+.table-input:focus {
+  outline: none;
+  border-bottom-color: var(--indigo-600);
+  background-color: #ffffff;
+}
+
+/* Range sliders */
+.custom-range {
+  accent-color: var(--indigo-500);
+}
+
+/* Toast container */
+#alert-toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1080;
+}
+
+/* Card Styling */
+.card-app {
+  border: 1px solid #f1f5f9;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: #ffffff !important;
+  }
+  #app-header, #btn-add-material, #btn-add-labor, #btn-add-overhead, .extra-actions-card, #saved-garments-card, .btn-action-trash {
+    display: none !important;
+  }
+  .card-app, .bg-dark-navy {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+}

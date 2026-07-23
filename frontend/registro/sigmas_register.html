@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIGMAS – Crear Cuenta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/frontend/registro/sigmas_register.css"/>
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="bg-blob blob-tl"></div>
+  <div class="bg-blob blob-br"></div>
+
+  <!-- Dot patterns -->
+  <div class="dots dots-left">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="dots dots-right">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="sigmas_login.html" class="header-logo">
+      <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="52" height="52" rx="14" fill="white" fill-opacity=".15"/>
+        <path d="M26 10C17.163 10 10 17.163 10 26s7.163 16 16 16c4.8 0 9.102-2.125 12.04-5.5H30.5a7.5 7.5 0 0 1 0-15h4c1.933 0 3.5-1.567 3.5-3.5S36.433 14.5 34.5 14.5H22a4 4 0 0 0 0 8h8" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30.5" cy="33" r="3" fill="#a78bfa"/>
+        <circle cx="21"   cy="19" r="2" fill="#7c3aed" fill-opacity=".7"/>
+      </svg>
+      <span class="logo-wordmark">SIGMAS</span>
+    </a>
+    <p class="header-subtitle">Sistema de Gestión para Manufactura<br>y Administración Textil</p>
+  </header>
+
+  <!-- Page body -->
+  <main class="page-body">
+    <div class="register-card">
+
+      <!-- Avatar -->
+      <div class="avatar-wrap">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+        <span class="avatar-badge">+</span>
+      </div>
+
+      <h1 class="card-title">Crear cuenta</h1>
+      <p class="card-subtitle">Completa tus datos para crear tu cuenta</p>
+
+      <!-- Alerts -->
+      <div class="alert-error"   id="errorAlert"   role="alert"></div>
+      <div class="alert-success" id="successAlert" role="alert"></div>
+
+      <!-- Form -->
+      <div id="registerForm">
+
+        <!-- NIT -->
+        <div class="mb-3">
+          <label class="field-label" for="nit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/>
+            </svg>
+            NIT de la empresa
+          </label>
+          <input type="text" id="nit" class="form-control"
+            placeholder="Ingresa el NIT de tu empresa"
+            autocomplete="organization"/>
+        </div>
+
+        <!-- Nombre completo -->
+        <div class="mb-3">
+          <label class="field-label" for="nombre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+            Nombre completo
+          </label>
+          <input type="text" id="nombre" class="form-control"
+            placeholder="Ingresa tu nombre completo"
+            autocomplete="name"/>
+        </div>
+
+        <!-- Correo electrónico -->
+        <div class="mb-3">
+          <label class="field-label" for="correo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Correo electrónico
+          </label>
+          <input type="email" id="correo" class="form-control"
+            placeholder="Ingresa tu correo electrónico"
+            autocomplete="email"/>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-3">
+          <label class="field-label" for="telefono">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Teléfono de contacto
+          </label>
+          <input type="tel" id="telefono" class="form-control"
+            placeholder="Ingresa tu número de teléfono"
+            autocomplete="tel"/>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-3">
+          <label class="field-label" for="password">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 1 1 6.2 0v2z"/>
+            </svg>
+            Contraseña
+          </label>
+          <div class="pw-wrap">
+            <input type="password" id="password" class="form-control"
+              placeholder="Crea una contraseña"
+              autocomplete="new-password"/>
+            <button class="pw-toggle" type="button"
+              onclick="togglePw('password','eye1o','eye1c')"
+              aria-label="Mostrar/ocultar contraseña">
+              <svg id="eye1o" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eye1c" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="mb-3">
+          <label class="field-label" for="password2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 1 1 6.2 0v2z"/>
+            </svg>
+            Confirmar contraseña
+          </label>
+          <div class="pw-wrap">
+            <input type="password" id="password2" class="form-control"
+              placeholder="Confirma tu contraseña"
+              autocomplete="new-password"/>
+            <button class="pw-toggle" type="button"
+              onclick="togglePw('password2','eye2o','eye2c')"
+              aria-label="Mostrar/ocultar confirmación">
+              <svg id="eye2o" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eye2c" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button class="btn-sigmas" type="button" id="btnCrear">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          Crear cuenta
+        </button>
+
+        <!-- Social divider -->
+        <div class="or-divider">o regístrate con</div>
+
+        <!-- Google button (centered) -->
+        <div class="social-center">
+          <button class="btn-social" type="button" id="btnGoogle">
+            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Continuar con Google
+          </button>
+        </div>
+
+        <!-- Back to login -->
+        <p class="login-hint">
+          ¿Ya tienes una cuenta? <a href="/frontend/login/sigmas_login.html" id="goLogin">Inicia sesión</a>
+        </p>
+
+      </div><!-- /registerForm -->
+    </div><!-- /register-card -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    © 2024 <strong>SIGMAS</strong>. Todos los derechos reservados.
+  </footer>
+
+  <script src="/frontend/registro/sigmas_register.js"></script>
+</body>
+</html>

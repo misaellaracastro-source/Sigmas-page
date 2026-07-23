@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIGMAS – Iniciar Sesión</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/frontend/creacionproducto.html/creacionproducto.css">
+ 
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="bg-blob blob-tl"></div>
+  <div class="bg-blob blob-br"></div>
+
+  <!-- Dot patterns -->
+  <div class="dots dots-left">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="dots dots-right">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <a href="#" class="header-logo">
+      <!-- S logo -->
+      <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="52" height="52" rx="14" fill="white" fill-opacity=".15"/>
+        <path d="M26 10C17.163 10 10 17.163 10 26s7.163 16 16 16c4.8 0 9.102-2.125 12.04-5.5H30.5a7.5 7.5 0 0 1 0-15h4c1.933 0 3.5-1.567 3.5-3.5S36.433 14.5 34.5 14.5H22a4 4 0 0 0 0 8h8" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="30.5" cy="33" r="3" fill="#a78bfa"/>
+        <circle cx="21" cy="19" r="2" fill="#7c3aed" fill-opacity=".7"/>
+      </svg>
+      <span class="logo-wordmark">SIGMAS</span>
+    </a>
+    <p class="header-subtitle">Sistema de Gestión para Manufactura<br>y Administración Textil</p>
+  </header>
+
+  <!-- ── Page body ───────────────────────────────────────────── -->
+  <main class="page-body">
+    <div class="login-card">
+
+      <!-- Avatar -->
+      <div class="avatar-wrap">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      </div>
+
+      <h1 class="card-title">Iniciar Sesión</h1>
+      <p class="card-subtitle">Ingresa tus credenciales para acceder al sistema</p>
+
+      <!-- Error alert (hidden by default) -->
+      <div class="alert-error" id="errorAlert" role="alert">
+        Usuario o contraseña incorrectos. Por favor intenta de nuevo.
+      </div>
+
+      <!-- Form -->
+      <div id="loginForm">
+
+        <!-- NIT de la Empresa -->
+        <div class="mb-3">
+          <label class="field-label" for="nit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/>
+            </svg>
+            NIT de la Empresa
+          </label>
+          <input
+            type="text"
+            id="nit"
+            class="form-control"
+            placeholder="Ingresa el NIT de tu empresa"
+            autocomplete="organization"
+          />
+        </div>
+
+        <!-- Usuario -->
+        <div class="mb-3">
+          <label class="field-label" for="usuario">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+            Usuario
+          </label>
+          <input
+            type="text"
+            id="usuario"
+            class="form-control"
+            placeholder="Ingresa tu usuario"
+            autocomplete="username"
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-1">
+          <label class="field-label" for="contrasena">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 1 1 6.2 0v2z"/>
+            </svg>
+            Contraseña
+          </label>
+          <div class="pw-wrap">
+            <input
+              type="password"
+              id="contrasena"
+              class="form-control"
+              placeholder="Ingresa tu contraseña"
+              autocomplete="current-password"
+            />
+            <button class="pw-toggle" type="button" id="togglePw" aria-label="Mostrar/ocultar contraseña">
+              <!-- Eye open -->
+              <svg id="eyeOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <!-- Eye closed (hidden initially) -->
+              <svg id="eyeClosed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember me -->
+        <div class="remember-row">
+          <input type="checkbox" id="recuerdame"/>
+          <label for="recuerdame">Recordarme</label>
+        </div>
+
+        <!-- Submit -->
+        <button class="btn-sigmas" type="button" id="btnLogin">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Iniciar Sesión
+        </button>
+
+        <!-- Divider -->
+        <div class="or-divider">o continúa con</div>
+
+        <!-- SSO button -->
+        <div class="text-center mb-2">
+          <button class="sso-btn" type="button" title="Acceso corporativo / SSO" aria-label="Iniciar sesión corporativo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Forgot password -->
+        <a href="#" class="forgot-link" id="forgotLink">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 1 1 6.2 0v2z"/>
+          </svg>
+          ¿Olvidaste tu contraseña?
+        </a>
+
+        <!-- Divider -->
+        <div class="register-divider"></div>
+
+        <!-- Register button -->
+        <button class="btn-register" type="button" id="btnRegister" href="/frontend/registro/sigmas_register.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <line x1="19" y1="8" x2="19" y2="14"/>
+            <line x1="22" y1="11" x2="16" y2="11"/>
+          </svg>
+          Crear una cuenta
+        </button>
+        <p class="register-hint">¿Aún no tienes acceso al sistema?</p>
+
+      </div><!-- /loginForm -->
+    </div><!-- /login-card -->
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    © 2024 <strong>SIGMAS</strong>. Todos los derechos reservados.
+  </footer>
+
+  <script src="/frontend/login/login.js"></script>
+</body>
+</html>

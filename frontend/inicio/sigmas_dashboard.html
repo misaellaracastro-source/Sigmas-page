@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIGMAS – Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/frontend/inicio/inicio.css">
+  < </head>
+
+<body>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ══════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <!-- Brand -->
+    <a href="#" class="sidebar-brand">
+      <div class="brand-icon">
+        <svg width="26" height="26" viewBox="0 0 52 52" fill="none">
+          <path
+            d="M26 8C16.06 8 8 16.06 8 26s8.06 18 18 18c5.4 0 10.24-2.39 13.54-6.18H31a8.44 8.44 0 0 1 0-16.87h4.5c2.18 0 3.94-1.76 3.94-3.94S37.68 13.07 35.5 13.07H21a4.5 4.5 0 1 0 0 9h9"
+            stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="31" cy="35.5" r="3" fill="#a78bfa" />
+        </svg>
+      </div>
+      <div class="brand-text-wrap">
+        <span class="brand-name">SIGMAS</span>
+        <span class="brand-sub">Sistema de Gestión para<br>Manufactura y<br>Administración Textil</span>
+      </div>
+    </a>
+
+    <nav class="sidebar-nav">
+      <!-- Inicio -->
+      <div class="nav-item active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </svg>
+        Inicio
+      </div>
+
+      <!-- Módulos -->
+      <div class="nav-section-label">Módulos</div>
+
+      <div class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+          <line x1="12" y1="22.08" x2="12" y2="12" />
+        </svg>
+        Gestión de Inventario
+        <span class="nav-chevron">›</span>
+      </div>
+
+      <div class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+          <path d="M16 6.5a6 6 0 0 0-8.66 7.9" />
+        </svg>
+        Gestión Financiera
+        <span class="nav-chevron">›</span>
+      </div>
+
+      <div class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9" />
+          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z" />
+          <line x1="18" y1="15" x2="18" y2="21" />
+          <line x1="15" y1="18" x2="21" y2="18" />
+        </svg>
+        Creación de producto
+        <span class="nav-chevron">›</span>
+      </div>
+
+      <div class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Planificación
+        <span class="nav-chevron">›</span>
+      </div>
+
+      <div class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+        Reportes
+        <span class="nav-chevron">›</span>
+      </div>
+
+      
+
+     
+
+    
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+      <div class="nav-item logout">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+        Cerrar Sesión
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar-hamburger">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="15" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-actions">
+        <!-- Bell -->
+        <button class="notif-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+          <span class="notif-badge">3</span>
+        </button>
+        <!-- User chip -->
+        <div class="user-chip">
+          <div class="user-avatar">A</div>
+          <span class="user-name">Administrador</span>
+          <span class="user-chevron">▾</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Page header -->
+      <div class="page-header">
+        <h1 class="page-title">¡Bienvenido, Administrador!</h1>
+        <p class="page-subtitle">Este es el resumen general de tu sistema.</p>
+      </div>
+
+      <!-- KPI row -->
+      <div class="kpi-row">
+
+        <!-- Insumos -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <div class="kpi-icon blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3d35d4" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-label">Insumos Totales</div>
+              <div class="kpi-value blue">1,245</div>
+            </div>
+          </div>
+          <div class="kpi-footer"><span class="up">+8%</span> respecto al mes anterior</div>
+        </div>
+
+        <!-- Productos -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <div class="kpi-icon purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#7c3aed">
+                <path
+                  d="M12 2C9.24 2 7 4.24 7 7v1H5c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-2V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3z" />
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-label">Productos Totales</div>
+              <div class="kpi-value purple">320</div>
+            </div>
+          </div>
+          <div class="kpi-footer"><span class="up">+5%</span> respecto al mes anterior</div>
+        </div>
+
+        <!-- Presupuesto -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <div class="kpi-icon green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#16a34a">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z" />
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-label">Presupuesto Disponible</div>
+              <div class="kpi-value green">$ 45,680.00</div>
+            </div>
+          </div>
+          <div class="kpi-footer">23% del presupuesto total</div>
+        </div>
+
+        <!-- Órdenes -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <div class="kpi-icon orange">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#d97706">
+                <path
+                  d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-label">Órdenes Programadas</div>
+              <div class="kpi-value orange">18</div>
+            </div>
+          </div>
+          <div class="kpi-footer">Esta semana</div>
+        </div>
+
+      </div><!-- /kpi-row -->
+
+      <!-- Middle row -->
+      <div class="mid-row">
+
+        <!-- Panel 1: Inventario -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div class="panel-title-icon blue">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3d35d4" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                </svg>
+              </div>
+              Resumen de Inventario
+            </div>
+            <a href="#" class="panel-link">Ver detalle</a>
+          </div>
+
+          <!-- Donut -->
+          <div class="donut-wrap">
+            <svg class="donut-svg" width="130" height="130" viewBox="0 0 130 130">
+              <text x="65" y="60" text-anchor="middle" font-size="22" font-weight="800" fill="#1a1a3e"
+                font-family="Inter,sans-serif">1,245</text>
+              <text x="65" y="76" text-anchor="middle" font-size="11" fill="#8888a8"
+                font-family="Inter,sans-serif">Total</text>
+              <!-- Donut segments (stroke-dasharray trick) -->
+              <!-- Total circumference ≈ 2π×46 ≈ 289 -->
+              <!-- Telas 450/1245 = 36.1% → 104 -->
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#e8eaf0" stroke-width="18" />
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#3d35d4" stroke-width="18" stroke-dasharray="104 185"
+                stroke-dashoffset="72" stroke-linecap="butt" />
+              <!-- Botones 210/1245 = 16.9% → 49 -->
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#6c63e8" stroke-width="18" stroke-dasharray="49 240"
+                stroke-dashoffset="-32" stroke-linecap="butt" />
+              <!-- Hilos 180/1245 = 14.5% → 42 -->
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#a78bfa" stroke-width="18" stroke-dasharray="42 247"
+                stroke-dashoffset="-81" stroke-linecap="butt" />
+              <!-- Cierres 150/1245 = 12.1% → 35 -->
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#c4b5fd" stroke-width="18" stroke-dasharray="35 254"
+                stroke-dashoffset="-123" stroke-linecap="butt" />
+              <!-- Otros 255/1245 = 20.5% → 59 -->
+              <circle cx="65" cy="65" r="46" fill="none" stroke="#16a34a" stroke-width="18" stroke-dasharray="59 230"
+                stroke-dashoffset="-158" stroke-linecap="butt" />
+            </svg>
+
+            <div class="donut-legend">
+              <div class="legend-item">
+                <span class="legend-name"><span class="legend-dot" style="background:#3d35d4"></span>Telas</span>
+                <span class="legend-count">450</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-name"><span class="legend-dot" style="background:#6c63e8"></span>Botones</span>
+                <span class="legend-count">210</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-name"><span class="legend-dot" style="background:#a78bfa"></span>Hilos</span>
+                <span class="legend-count">180</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-name"><span class="legend-dot" style="background:#c4b5fd"></span>Cierres</span>
+                <span class="legend-count">150</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-name"><span class="legend-dot" style="background:#16a34a"></span>Otros</span>
+                <span class="legend-count">255</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stock alert -->
+          <div class="stock-alert">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d35d4" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            Hay 12 insumos con stock bajo.
+            <a href="#">Ver detalles</a>
+          </div>
+        </div>
+
+        <!-- Panel 2: Financiero -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div class="panel-title-icon green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#16a34a">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z" />
+                </svg>
+              </div>
+              Resumen Financiero
+            </div>
+            <a href="#" class="panel-link">Ver detalle</a>
+          </div>
+
+          <div class="fin-row">
+            <span class="fin-label">Presupuesto Total</span>
+            <span class="fin-val">$ 60,000.00</span>
+          </div>
+          <div class="fin-row">
+            <span class="fin-label">Gastos Registrados</span>
+            <span class="fin-val">$ 14,320.00</span>
+          </div>
+          <div class="fin-row fin-highlight">
+            <span class="fin-label">Presupuesto Disponible</span>
+            <span class="fin-val">$ 45,680.00</span>
+          </div>
+
+          <div class="chart-label">Gastos últimos 6 meses</div>
+          <div class="chart-wrap">
+            <svg width="100%" height="90" viewBox="0 0 340 90" preserveAspectRatio="none">
+              <!-- Grid lines -->
+              <line x1="0" y1="75" x2="340" y2="75" stroke="#f0f0f8" stroke-width="1" />
+              <line x1="0" y1="50" x2="340" y2="50" stroke="#f0f0f8" stroke-width="1" />
+              <line x1="0" y1="25" x2="340" y2="25" stroke="#f0f0f8" stroke-width="1" />
+              <!-- Area fill -->
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3d35d4" stop-opacity=".15" />
+                  <stop offset="100%" stop-color="#3d35d4" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M10,68 C60,65 80,58 110,60 C140,62 160,52 190,48 C220,44 240,50 270,38 C290,30 320,15 330,10 L330,82 L10,82 Z"
+                fill="url(#areaGrad)" />
+              <!-- Line -->
+              <path d="M10,68 C60,65 80,58 110,60 C140,62 160,52 190,48 C220,44 240,50 270,38 C290,30 320,15 330,10"
+                fill="none" stroke="#3d35d4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Dots -->
+              <circle cx="10" cy="68" r="4" fill="#3d35d4" />
+              <circle cx="76" cy="59" r="4" fill="#3d35d4" />
+              <circle cx="142" cy="57" r="4" fill="#3d35d4" />
+              <circle cx="208" cy="47" r="4" fill="#3d35d4" />
+              <circle cx="274" cy="37" r="4" fill="#3d35d4" />
+              <circle cx="330" cy="10" r="4" fill="#3d35d4" />
+              <!-- X labels -->
+              <text x="6" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">Ene</text>
+              <text x="68" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">Feb</text>
+              <text x="132" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">Mar</text>
+              <text x="198" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">Abr</text>
+              <text x="262" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">May</text>
+              <text x="320" y="88" font-size="9" fill="#9090b0" font-family="Inter,sans-serif">Jun</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Panel 3: Próximas Actividades -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <div class="panel-title-icon purple">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              Próximas Actividades
+            </div>
+            <a href="#" class="panel-link">Ver calendario</a>
+          </div>
+
+          <div class="activity-list">
+            <!-- 24 MAY -->
+            <div class="activity-item">
+              <div class="activity-date">
+                <span class="activity-day">24</span>
+                <span class="activity-mon">MAY</span>
+              </div>
+              <div class="activity-body">
+                <div class="activity-title"><strong>Producción:</strong> Camisas Clásicas</div>
+                <div class="activity-sub">Fecha de entrega: 26/05/2024</div>
+              </div>
+              <span class="activity-badge badge-proximo">Próximo</span>
+            </div>
+
+            <!-- 28 MAY -->
+            <div class="activity-item">
+              <div class="activity-date">
+                <span class="activity-day">28</span>
+                <span class="activity-mon">MAY</span>
+              </div>
+              <div class="activity-body">
+                <div class="activity-title"><strong>Entrega:</strong> Uniformes Escolares</div>
+                <div class="activity-sub">Fecha de entrega: 28/05/2024</div>
+              </div>
+              <span class="activity-badge badge-entrega">Entrega</span>
+            </div>
+
+            <!-- 02 JUN -->
+            <div class="activity-item">
+              <div class="activity-date">
+                <span class="activity-day purple">02</span>
+                <span class="activity-mon purple">JUN</span>
+              </div>
+              <div class="activity-body">
+                <div class="activity-title"><strong>Producción:</strong> Pantalones Drill</div>
+                <div class="activity-sub">Fecha de entrega: 05/06/2024</div>
+              </div>
+              <span class="activity-badge badge-proximo">Próximo</span>
+            </div>
+
+            <!-- 05 JUN -->
+            <div class="activity-item">
+              <div class="activity-date">
+                <span class="activity-day purple">05</span>
+                <span class="activity-mon purple">JUN</span>
+              </div>
+              <div class="activity-body">
+                <div class="activity-title"><strong>Evento:</strong> Mantenimiento de maquinaria</div>
+                <div class="activity-sub">Todo el día</div>
+              </div>
+              <span class="activity-badge badge-evento">Evento</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mid-row -->
+
+      <!-- Quick access -->
+     
+    </div><!-- /content -->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      © 2024 <strong>SIGMAS</strong>. Todos los derechos reservados.
+    </footer>
+
+  </div><!-- /main -->
+
+  <script>
+
+  </script>
+</body>
+
+</html>
