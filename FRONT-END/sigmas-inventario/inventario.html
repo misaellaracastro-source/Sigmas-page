@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventario — SigmaS Administration</title>
+    <meta name="description" content="Inventario de materiales de Textiles Andina S.A.S. en SigmaS." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles-inventario.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">SigmaS</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="/FRONT-END/sigmas-dashboard/dashboard.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
+            </svg>
+            Dashboard
+          </a>
+          <a class="nav-item is-active" href="inventario.html" aria-current="page">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            Inventario
+          </a>
+          <a class="nav-item" href="#referencias">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+            </svg>
+            Referencias
+          </a>
+          <a class="nav-item" href="#costos">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v18M7 7.5c1.2-1.2 2.6-1.8 5-1.8 3.5 0 5.5 1.5 5.5 3.8S15.5 13 12 13s-5.5 1.2-5.5 3.5S8.5 20 12 20c2.2 0 3.7-.6 5-1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            Costos
+          </a>
+          <a class="nav-item" href="#cotizaciones">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 7h8M8 12h8M8 17h5M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+            </svg>
+            Cotizaciones
+          </a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <p class="sidebar-tagline">SigmaS · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Inventario</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip" id="user-menu">
+              <span class="avatar" aria-hidden="true">MP</span>
+              <span class="user-meta">
+                <span class="user-name">María Pérez</span>
+                <span class="user-role">Administradora</span>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Inventario de materiales</h1>
+              <p class="page-lede">
+                Consulta y registra las telas e insumos de tu empresa. Mantén cantidades y costos al día.
+              </p>
+            </div>
+            <button type="button" class="btn-ghost" id="btn-export">Exportar listado</button>
+          </div>
+
+          <section class="panel form-panel">
+            <div class="panel-intro">
+              <h2 class="panel-title">Registro de telas e insumos</h2>
+              <p class="panel-sub">Datos de ejemplo: algodón jersey. Los campos con * son obligatorios.</p>
+            </div>
+
+            <form id="material-form" class="material-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="form-label" for="nombre">Nombre <span class="req">*</span></label>
+                  <input id="nombre" class="form-control" value="Algodón jersey" required />
+                  <p class="field-error" id="nombre-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="tipo">Tipo <span class="req">*</span></label>
+                  <div class="select-wrap">
+                    <select id="tipo" class="form-control" required>
+                      <option value="Tela" selected>Tela</option>
+                      <option value="Insumo">Insumo</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="color">Color <span class="req">*</span></label>
+                  <input id="color" class="form-control" value="Blanco" required />
+                  <p class="field-error" id="color-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="unidad">Unidad de medida <span class="req">*</span></label>
+                  <div class="select-wrap">
+                    <select id="unidad" class="form-control" required>
+                      <option value="m" selected>Metros (m)</option>
+                      <option value="und">Unidades (und)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="cantidad">Cantidad disponible <span class="req">*</span></label>
+                  <input id="cantidad" class="form-control" type="number" min="0" step="any" value="300" required />
+                  <p class="hint" id="cantidad-hint">La cantidad se registra en metros (m).</p>
+                  <p class="field-error" id="cantidad-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="costo">Costo unitario (COP / m) <span class="req">*</span></label>
+                  <input id="costo" class="form-control" type="number" min="0" step="any" value="18000" required />
+                  <p class="hint">Valor por cada metro de material.</p>
+                  <p class="field-error" id="costo-error" hidden></p>
+                </div>
+                <div class="value-card" aria-live="polite">
+                  <p class="value-label">Valor del material en inventario</p>
+                  <p class="value-amount" id="valor-total">$5.400.000</p>
+                  <p class="value-detail" id="valor-detail">300 m × $18.000 / m · COP</p>
+                </div>
+              </div>
+
+              <p class="units-note">Unidades admitidas: metros (m) y unidades (und).</p>
+
+              <div class="form-actions">
+                <button type="button" class="btn-ghost" id="btn-clear">Limpiar</button>
+                <button type="submit" class="btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  Registrar material
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel table-panel">
+            <div class="panel-head">
+              <div>
+                <h2 class="panel-title">Consulta de inventario</h2>
+                <p class="panel-sub" id="inventory-summary">6 materiales · 2 telas · 4 insumos</p>
+              </div>
+              <a class="panel-link" href="#tabla">Ver todos →</a>
+            </div>
+
+            <div class="filters">
+              <div class="field grow">
+                <label class="form-label" for="search">Buscar material</label>
+                <input id="search" class="form-control" placeholder="Buscar por nombre o código..." />
+              </div>
+              <div class="field">
+                <label class="form-label" for="filter-tipo">Tipo de material</label>
+                <div class="select-wrap">
+                  <select id="filter-tipo" class="form-control">
+                    <option value="">Todos los tipos</option>
+                    <option value="Tela">Tela</option>
+                    <option value="Insumo">Insumo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field-btn">
+                <label class="form-label ghost-label">&nbsp;</label>
+                <button type="button" class="btn-primary btn-search" id="btn-search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                  </svg>
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrap" id="tabla">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Material</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Unidad</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col" class="num">Costo unit. (COP)</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-body"></tbody>
+              </table>
+            </div>
+
+            <div class="table-foot">
+              <p id="showing-label">Mostrando 6 de 6 materiales</p>
+              <p id="total-label">Valor total: $10.890.000 COP</p>
+            </div>
+          </section>
+
+          <footer class="page-foot">
+            <p>Textiles Andina S.A.S. · Medellín</p>
+            <p>Moneda: COP · Valores de materiales</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="app-inventario.js"></script>
+  </body>
+</html>
