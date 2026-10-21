@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calendario — SigmaS Administration</title>
+    <meta name="description" content="Calendario de pendientes, entregas y vencimientos de facturas." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../sigmas-referencias/styles-referencias.css" />
+    <link rel="stylesheet" href="styles-calendario.css" />
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">SigmaS</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item is-active" href="../sigmas-calendario/calendario.html" aria-current="page">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">SigmaS · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Calendario</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
+              <span class="user-meta">
+                <span class="user-name"></span>
+                <span class="user-role"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Calendario</h1>
+              <p class="page-lede">Tus pendientes, entregas y vencimientos de facturas. Te avisamos en la campana y por correo cuando se acerque una fecha.</p>
+            </div>
+            <button type="button" class="btn-primary" id="btn-nuevo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+              Nuevo pendiente
+            </button>
+          </div>
+
+          <div class="cal-layout">
+            <section class="panel cal-panel" aria-labelledby="cal-mes">
+              <div class="cal-toolbar">
+                <div class="cal-nav">
+                  <button type="button" class="icon-btn" id="mes-anterior" aria-label="Mes anterior">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </button>
+                  <h2 class="cal-mes" id="cal-mes" aria-live="polite"></h2>
+                  <button type="button" class="icon-btn" id="mes-siguiente" aria-label="Mes siguiente">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </button>
+                  <button type="button" class="btn-ghost btn-small" id="mes-hoy">Hoy</button>
+                </div>
+                <div class="cal-filtros">
+                  <label class="sr-only" for="filtro-tipo">Filtrar por tipo</label>
+                  <div class="select-wrap">
+                    <select id="filtro-tipo" class="form-control">
+                      <option value="">Todos los tipos</option>
+                    </select>
+                  </div>
+                  <label class="sr-only" for="filtro-estado">Filtrar por estado</label>
+                  <div class="select-wrap">
+                    <select id="filtro-estado" class="form-control">
+                      <option value="">Todos los estados</option>
+                      <option value="Pendiente">Pendiente</option>
+                      <option value="En proceso">En proceso</option>
+                      <option value="Completado">Completado</option>
+                      <option value="Cancelado">Cancelado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cal-semana" aria-hidden="true">
+                <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+              </div>
+              <div class="cal-grid" id="cal-grid" role="grid" aria-labelledby="cal-mes"></div>
+              <p class="cal-ayuda">Clic en un día para ver lo que tiene · doble clic (o Enter) para agregar un pendiente · clic en un pendiente para verlo.</p>
+            </section>
+
+            <aside class="cal-aside">
+              <section class="panel" aria-labelledby="dia-titulo">
+                <h2 class="aside-title-cal" id="dia-titulo"></h2>
+                <div class="dia-lista" id="dia-lista"></div>
+                <button type="button" class="btn-ghost btn-small dia-agregar" id="dia-agregar">＋ Agregar este día</button>
+              </section>
+              <section class="panel" aria-labelledby="proximos-titulo">
+                <h2 class="aside-title-cal" id="proximos-titulo">Próximos 14 días</h2>
+                <div class="dia-lista" id="proximos"></div>
+              </section>
+              <section class="panel leyenda" aria-labelledby="leyenda-titulo">
+                <h2 class="aside-title-cal" id="leyenda-titulo">Colores</h2>
+                <ul id="leyenda"></ul>
+              </section>
+            </aside>
+          </div>
+
+          <footer class="page-foot">
+            <p></p>
+            <p>Calendario de la empresa</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- ================= DETALLE DEL PENDIENTE ================= -->
+    <dialog class="ref-dialog ev-dialog" id="ev-detalle" aria-labelledby="det-titulo">
+      <div class="det-head">
+        <div>
+          <p class="det-kicker" id="det-tipo"></p>
+          <h2 class="det-id" id="det-titulo"></h2>
+          <p class="det-tipo" id="det-fechas"></p>
+        </div>
+        <button type="button" class="icon-btn" data-cerrar aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="ev-cuerpo" id="det-cuerpo"></div>
+      <div class="det-foot">
+        <button type="button" class="btn-primary" id="det-completar">Marcar como completado</button>
+        <button type="button" class="btn-ghost btn-small" id="det-editar">Editar</button>
+        <button type="button" class="btn-ghost btn-small is-danger" id="det-eliminar">Eliminar</button>
+      </div>
+    </dialog>
+
+    <!-- ================= FORMULARIO ================= -->
+    <dialog class="ref-dialog ev-dialog" id="ev-form-dialog" aria-labelledby="form-titulo">
+      <form id="ev-form" class="ev-form" novalidate>
+        <div class="det-head">
+          <div>
+            <p class="det-kicker">Calendario</p>
+            <h2 class="det-id" id="form-titulo">Nuevo pendiente</h2>
+          </div>
+          <button type="button" class="icon-btn" data-cerrar aria-label="Cerrar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          </button>
+        </div>
+        <div class="ev-cuerpo">
+          <div class="form-grid">
+            <div class="field span-2">
+              <label class="form-label" for="ev-titulo">Título <span class="req">*</span></label>
+              <input id="ev-titulo" class="form-control" maxlength="120" placeholder="Ej: Entregar pedido COT-001 a Telas del Valle" />
+              <p class="field-error" id="ev-titulo-error" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label class="form-label" for="ev-descripcion">Descripción</label>
+              <textarea id="ev-descripcion" class="form-control" maxlength="2000" rows="2" placeholder="Detalles (opcional)"></textarea>
+              <p class="field-error" id="ev-descripcion-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ev-tipo">Tipo <span class="req">*</span></label>
+              <div class="select-wrap"><select id="ev-tipo" class="form-control"></select></div>
+              <p class="field-error" id="ev-tipo-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ev-estado">Estado <span class="req">*</span></label>
+              <div class="select-wrap">
+                <select id="ev-estado" class="form-control">
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En proceso">En proceso</option>
+                  <option value="Completado">Completado</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
+              </div>
+              <p class="field-error" id="ev-estado-error" hidden></p>
+            </div>
+            <fieldset class="field span-2 ev-prioridad">
+              <legend class="form-label">Prioridad <span class="req">*</span></legend>
+              <div class="prioridad-opciones">
+                <label class="prioridad-opcion is-baja"><input type="radio" name="prioridad" value="Baja" /><span>Baja</span></label>
+                <label class="prioridad-opcion is-media"><input type="radio" name="prioridad" value="Media" checked /><span>Media</span></label>
+                <label class="prioridad-opcion is-alta"><input type="radio" name="prioridad" value="Alta" /><span>Alta</span></label>
+              </div>
+              <p class="field-error" id="ev-prioridad-error" hidden></p>
+            </fieldset>
+            <div class="field">
+              <label class="form-label" for="ev-inicio">Fecha y hora de inicio <span class="req">*</span></label>
+              <input id="ev-inicio" class="form-control" type="datetime-local" />
+              <p class="field-error" id="ev-inicio-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ev-entrega">Fecha de entrega</label>
+              <input id="ev-entrega" class="form-control" type="datetime-local" />
+              <p class="hint">Te avisamos 2 días antes.</p>
+              <p class="field-error" id="ev-entrega-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ev-aviso">Recordatorio</label>
+              <div class="select-wrap">
+                <select id="ev-aviso" class="form-control">
+                  <option value="">1 día antes (automático)</option>
+                  <option value="15">15 minutos antes</option>
+                  <option value="60">1 hora antes</option>
+                  <option value="180">3 horas antes</option>
+                  <option value="2880">2 días antes</option>
+                  <option value="10080">1 semana antes</option>
+                  <option value="otra">Otra fecha y hora…</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" id="ev-recordatorio-campo" hidden>
+              <label class="form-label" for="ev-recordatorio">Fecha del recordatorio</label>
+              <input id="ev-recordatorio" class="form-control" type="datetime-local" />
+              <p class="field-error" id="ev-recordatorio-error" hidden></p>
+            </div>
+          </div>
+
+          <details class="ev-vinculos" id="ev-vinculos">
+            <summary>Relacionar con inventario, vinculados, referencias, cotizaciones o facturas <span class="hint">(opcional)</span></summary>
+            <div class="form-grid">
+              <div class="field">
+                <label class="form-label" for="ev-id_insumo">Insumo</label>
+                <div class="select-wrap"><select id="ev-id_insumo" class="form-control" data-vinculo="insumos"></select></div>
+                <p class="field-error" id="ev-id_insumo-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="form-label" for="ev-id_materia">Materia prima</label>
+                <div class="select-wrap"><select id="ev-id_materia" class="form-control" data-vinculo="materias"></select></div>
+                <p class="field-error" id="ev-id_materia-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="form-label" for="ev-id_vinculado">Cliente o proveedor</label>
+                <div class="select-wrap"><select id="ev-id_vinculado" class="form-control" data-vinculo="vinculados"></select></div>
+                <p class="field-error" id="ev-id_vinculado-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="form-label" for="ev-id_referencia">Referencia</label>
+                <div class="select-wrap"><select id="ev-id_referencia" class="form-control" data-vinculo="referencias"></select></div>
+                <p class="field-error" id="ev-id_referencia-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="form-label" for="ev-id_cotizacion">Cotización</label>
+                <div class="select-wrap"><select id="ev-id_cotizacion" class="form-control" data-vinculo="cotizaciones"></select></div>
+                <p class="field-error" id="ev-id_cotizacion-error" hidden></p>
+              </div>
+              <div class="field">
+                <label class="form-label" for="ev-nombre_factura">Factura</label>
+                <div class="select-wrap"><select id="ev-nombre_factura" class="form-control" data-vinculo="facturas"></select></div>
+                <p class="field-error" id="ev-nombre_factura-error" hidden></p>
+              </div>
+            </div>
+          </details>
+          <p class="field-error" id="guardar-error" hidden></p>
+        </div>
+        <div class="det-foot ev-form-foot">
+          <button type="button" class="btn-ghost" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn-primary" id="btn-guardar">Guardar pendiente</button>
+        </div>
+      </form>
+    </dialog>
+
+<dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-calendario.js"></script>
+  </body>
+</html>

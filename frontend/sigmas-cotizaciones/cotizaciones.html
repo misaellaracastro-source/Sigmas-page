@@ -4,14 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cotizaciones — SigmaS Administration</title>
-    <meta name="description" content="Cotizaciones de materiales de Textiles Andina S.A.S. en SigmaS." />
+    <meta name="description" content="Cotizaciones de pedidos: referencia, cantidad, utilidad, IVA y materiales." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../sigmas-referencias/styles-referencias.css" />
     <link rel="stylesheet" href="styles-cotizaciones.css" />
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -35,6 +38,10 @@
             </span>
           </div>
         </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
 
         <div class="company-card">
           <p class="company-name">Textiles Andina S.A.S.</p>
@@ -44,39 +51,15 @@
 
         <nav class="side-nav" aria-label="Administración">
           <p class="nav-section">Administración</p>
-          <a class="nav-item" href="dashboard.html">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-            </svg>
-            Dashboard
-          </a>
-          <a class="nav-item" href="inventario.html">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            Inventario
-          </a>
-          <a class="nav-item" href="#referencias">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-            </svg>
-            Referencias
-          </a>
-          <a class="nav-item" href="costos.html">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v18M7 7.5c1.2-1.2 2.6-1.8 5-1.8 3.5 0 5.5 1.5 5.5 3.8S15.5 13 12 13s-5.5 1.2-5.5 3.5S8.5 20 12 20c2.2 0 3.7-.6 5-1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            Costos
-          </a>
-          <a class="nav-item is-active" href="cotizaciones.html" aria-current="page">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8 7h8M8 12h8M8 17h5M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-            </svg>
-            Cotizaciones
-          </a>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item is-active" href="../sigmas-cotizaciones/cotizaciones.html" aria-current="page">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
         </nav>
 
         <div class="sidebar-foot">
@@ -88,9 +71,11 @@
             </svg>
             Centro de ayuda
           </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
           <p class="sidebar-tagline">SigmaS · Gestión textil simplificada</p>
         </div>
       </aside>
+
 
       <div class="main-area">
         <header class="topbar">
@@ -101,15 +86,12 @@
           </nav>
           <div class="topbar-right">
             <button type="button" class="chip">Espacio empresarial</button>
-            <button type="button" class="user-chip" id="user-menu">
-              <span class="avatar" aria-hidden="true">MP</span>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
               <span class="user-meta">
-                <span class="user-name">María Pérez</span>
-                <span class="user-role">Administradora</span>
+                <span class="user-name"></span>
+                <span class="user-role"></span>
               </span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
             </button>
           </div>
         </header>
@@ -117,148 +99,237 @@
         <main class="content">
           <div class="page-head">
             <div>
-              <h1 class="page-title">Cotizaciones de materiales</h1>
-              <p class="page-lede">
-                Estima los materiales de una solicitud a partir de la referencia y el número de prendas.
-              </p>
+              <h1 class="page-title">Cotizaciones</h1>
+              <p class="page-lede">Calcula cuánto cobrar por un pedido: valor de la prenda, cantidad, utilidad e IVA, y los materiales que necesitas.</p>
             </div>
-            <button type="button" class="btn-ghost" id="btn-export">Exportar cotización</button>
           </div>
 
-          <div class="quote-layout">
-            <section class="panel form-panel">
-              <div class="panel-intro">
-                <h2 class="panel-title">Nueva cotización</h2>
-                <p class="panel-sub">Los campos con * son obligatorios.</p>
+          <div class="tabs-bar" role="tablist" aria-label="Cotizaciones">
+            <button type="button" class="tab-btn is-active" role="tab" id="tab-nueva" aria-controls="panel-nueva" aria-selected="true">Nueva cotización</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-lista" aria-controls="panel-lista" aria-selected="false" tabindex="-1">
+              Cotizaciones registradas <span class="tab-count" id="tab-count">0</span>
+            </button>
+          </div>
+
+          <!-- ================= NUEVA COTIZACIÓN ================= -->
+          <section id="panel-nueva" role="tabpanel" aria-labelledby="tab-nueva">
+            <div class="borrador-aviso" id="editando-aviso" role="status" hidden>
+              <span id="editando-texto"></span>
+              <button type="button" class="link-btn" id="editando-cancelar">Cancelar edición</button>
+            </div>
+            <div class="cot-layout">
+              <div class="cot-main">
+                <section class="panel" aria-labelledby="datos-titulo">
+                  <h2 class="paso-title" id="datos-titulo">Datos de la cotización</h2>
+                  <p class="paso-sub">El número de cotización es único: letras, números y guiones.</p>
+                  <div class="form-grid cot-datos">
+                    <div class="field">
+                      <label class="form-label" for="cot-id">Número de cotización <span class="req">*</span></label>
+                      <input id="cot-id" class="form-control code-input" maxlength="30" autocomplete="off" placeholder="Ej: COT-001" />
+                      <p class="field-error" id="cot-id-error" hidden></p>
+                    </div>
+                    <div class="field">
+                      <label class="form-label" for="cot-fecha">Fecha de creación</label>
+                      <input id="cot-fecha" class="form-control" readonly />
+                      <p class="hint">Se guarda con la fecha de hoy.</p>
+                    </div>
+                    <div class="field span-2">
+                      <label class="form-label" for="cot-cliente">Cliente <span class="req">*</span></label>
+                      <div class="select-wrap"><select id="cot-cliente" class="form-control"></select></div>
+                      <p class="hint" id="cot-cliente-hint">Clientes registrados en Vinculados.</p>
+                      <p class="field-error" id="cot-cliente-error" hidden></p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel" aria-labelledby="ref-titulo">
+                  <h2 class="paso-title" id="ref-titulo">Referencia</h2>
+                  <p class="paso-sub">Filtra por tipo de prenda y elige la referencia, o búscala por su número.</p>
+                  <div class="form-grid">
+                    <div class="field">
+                      <span class="form-label" id="tipo-label">Tipo de prenda</span>
+                      <div class="pick" id="tipo-pick">
+                        <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="tipo-label" data-placeholder="Todos los tipos">
+                          <span class="pick-value"></span>
+                        </button>
+                        <ul class="pick-list" id="tipo-list" role="listbox" tabindex="-1" aria-labelledby="tipo-label" hidden></ul>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="form-label" for="ref-buscar">Buscar por número</label>
+                      <input id="ref-buscar" class="form-control search-input" type="search" autocomplete="off" placeholder="Ej: REF-001" />
+                    </div>
+                    <div class="field span-2">
+                      <span class="form-label" id="ref-label">Referencia <span class="req">*</span></span>
+                      <div class="pick" id="ref-pick">
+                        <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ref-label" data-placeholder="Elige una referencia">
+                          <span class="pick-value"></span>
+                        </button>
+                        <ul class="pick-list pick-list-wide" id="ref-list" role="listbox" tabindex="-1" aria-labelledby="ref-label" hidden></ul>
+                      </div>
+                      <p class="field-error" id="ref-error" hidden></p>
+                    </div>
+                  </div>
+
+                  <div class="ref-elegida" id="ref-elegida" hidden>
+                    <img id="ref-foto" alt="" hidden />
+                    <span class="ref-sin-foto" id="ref-sin-foto" aria-hidden="true"></span>
+                    <div>
+                      <p class="ref-id" id="ref-elegida-id"></p>
+                      <p class="ref-meta" id="ref-elegida-tipo"></p>
+                      <p class="ref-elegida-valor">Valor de hacer la prenda: <strong id="ref-elegida-valor"></strong></p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel" aria-labelledby="calc-titulo">
+                  <h2 class="paso-title" id="calc-titulo">Cantidad, utilidad e IVA</h2>
+                  <div class="calc-grid cot-entradas">
+                    <div class="field">
+                      <label class="form-label" for="cot-cantidad">Cantidad de prendas <span class="req">*</span></label>
+                      <input id="cot-cantidad" class="form-control" inputmode="numeric" placeholder="Ej: 100" />
+                      <p class="field-error" id="cot-cantidad-error" hidden></p>
+                    </div>
+                    <div class="field">
+                      <label class="form-label" for="cot-utilidad">Utilidad (%) <span class="req">*</span></label>
+                      <input id="cot-utilidad" class="form-control" inputmode="decimal" placeholder="Ej: 30" />
+                      <p class="field-error" id="cot-utilidad-error" hidden></p>
+                    </div>
+                    <div class="field">
+                      <label class="form-label" for="cot-iva">IVA (%) <span class="req">*</span></label>
+                      <input id="cot-iva" class="form-control" inputmode="decimal" placeholder="Ej: 19" />
+                      <p class="field-error" id="cot-iva-error" hidden></p>
+                    </div>
+                  </div>
+                </section>
               </div>
 
-              <form id="quote-form" class="quote-form" novalidate>
-                <div class="form-grid">
-                  <div class="field">
-                    <label class="form-label" for="numero">Número de cotización</label>
-                    <input id="numero" class="form-control" value="COT-2026-003" readonly />
-                  </div>
-                  <div class="field">
-                    <label class="form-label" for="fecha">Fecha</label>
-                    <input id="fecha" class="form-control" value="13/10/2026" readonly />
-                  </div>
-                  <div class="field">
-                    <label class="form-label" for="referencia">Referencia <span class="req">*</span></label>
-                    <div class="select-wrap">
-                      <select id="referencia" class="form-control" required></select>
-                    </div>
-                    <p class="hint" id="ref-hint">Talla M · Blanco · 3 materiales asociados</p>
-                  </div>
-                  <div class="field">
-                    <label class="form-label" for="cantidad">Cantidad solicitada <span class="req">*</span></label>
-                    <input id="cantidad" class="form-control" type="number" min="1" step="1" value="100" required />
-                    <p class="hint">Número entero de prendas.</p>
-                    <p class="field-error" id="cantidad-error" hidden></p>
-                  </div>
-                </div>
+              <aside class="panel cot-resumen" aria-labelledby="resumen-titulo">
+                <p class="aside-kicker" id="resumen-titulo">Total a cobrar</p>
+                <p class="cot-total" id="res-total">$0</p>
+                <dl class="cot-pasos">
+                  <div><dt>Valor de la prenda</dt><dd id="res-prenda">$0</dd></div>
+                  <div><dt id="res-valor-label">× 0 prendas</dt><dd id="res-valor">$0</dd></div>
+                  <div><dt id="res-utilidad-label">+ Utilidad (0 %)</dt><dd id="res-utilidad">$0</dd></div>
+                  <div class="is-sub"><dt>Valor con utilidad</dt><dd id="res-subtotal">$0</dd></div>
+                  <div><dt id="res-iva-label">+ IVA (0 %)</dt><dd id="res-iva">$0</dd></div>
+                  <div class="is-total"><dt>Total a cobrar</dt><dd id="res-total-2">$0</dd></div>
+                </dl>
+                <p class="field-error" id="guardar-error" hidden></p>
+                <button type="button" class="btn-primary cot-guardar" id="btn-guardar">Guardar cotización</button>
+                <button type="button" class="btn-ghost cot-guardar" id="btn-limpiar">Limpiar</button>
+              </aside>
+            </div>
 
-                <p class="cost-line" id="unit-cost-line">Costo de materiales / prenda: $24.050 COP</p>
-
-                <div class="form-actions">
-                  <button type="button" class="btn-ghost" id="btn-clear">Limpiar</button>
-                  <button type="submit" class="btn-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                    </svg>
-                    Calcular estimación
-                  </button>
-                </div>
-              </form>
+            <section class="panel" aria-labelledby="mat-titulo">
+              <h2 class="paso-title" id="mat-titulo">Materiales para la cantidad de prendas</h2>
+              <p class="paso-sub" id="mat-sub">Elige la referencia y la cantidad para ver cuántos botones, metros de tela y demás materiales necesitas. Al guardar la cotización, se descuentan del inventario.</p>
+              <div id="materiales"></div>
             </section>
-
-            <aside class="total-card">
-              <p class="total-kicker">Total estimado de materiales</p>
-              <p class="total-value" id="side-total">$2.405.000</p>
-              <p class="total-hint" id="side-hint">COP · 100 prendas · CT-001</p>
-              <p class="total-formula" id="side-formula">100 × $24.050</p>
-              <p class="total-base">Cantidad solicitada × materiales por prenda</p>
-              <button type="button" class="btn-primary full" id="btn-save">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Guardar cotización
-              </button>
-              <p class="total-note">No representa un precio de venta</p>
-            </aside>
-          </div>
-
-          <div class="notice-banner">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
-              <path d="M12 8v5M12 16.5v.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            <div>
-              <strong>Estimación exclusiva de materiales</strong>
-              <p>
-                Los valores se calculan con el costo unitario del inventario. No incluyen mano de obra, impuestos ni otros
-                costos.
-              </p>
-            </div>
-          </div>
-
-          <section class="panel materials-panel">
-            <div class="panel-intro">
-              <h2 class="panel-title" id="materials-title">Materiales para 100 prendas</h2>
-              <p class="panel-sub" id="materials-sub">CT-001 · Camiseta básica · Consumos calculados a partir de la referencia</p>
-            </div>
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Material</th>
-                    <th scope="col">Consumo / prenda</th>
-                    <th scope="col">Cantidad total</th>
-                    <th scope="col" class="num">Costo unit. (COP)</th>
-                    <th scope="col" class="num">Subtotal (COP)</th>
-                  </tr>
-                </thead>
-                <tbody id="materials-body"></tbody>
-              </table>
-            </div>
-            <div class="table-foot">
-              <p id="materials-count">3 materiales · unidades explícitas</p>
-              <p>
-                Total de materiales
-                <strong id="materials-total">$2.405.000 COP</strong>
-              </p>
-            </div>
           </section>
 
-          <section class="panel history-panel">
-            <div class="panel-intro">
-              <h2 class="panel-title">Cotizaciones registradas</h2>
-              <p class="panel-sub" id="history-summary">3 solicitudes · Total estimado de materiales: $5.578.700 COP</p>
-            </div>
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Cotización</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Referencia</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col" class="num">Total materiales (COP)</th>
-                  </tr>
-                </thead>
-                <tbody id="history-body"></tbody>
-              </table>
+          <!-- ================= COTIZACIONES REGISTRADAS ================= -->
+          <section id="panel-lista" role="tabpanel" aria-labelledby="tab-lista" hidden>
+            <div class="panel list-panel">
+              <div class="list-toolbar cot-filtros">
+                <div class="field grow">
+                  <label class="form-label" for="lista-buscar">Buscar</label>
+                  <input id="lista-buscar" class="form-control search-input" type="search" placeholder="Cotización, cliente, referencia o tipo…" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-cliente">Cliente</label>
+                  <div class="select-wrap"><select id="lista-cliente" class="form-control"></select></div>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-referencia">Referencia</label>
+                  <div class="select-wrap"><select id="lista-referencia" class="form-control"></select></div>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-desde">Desde</label>
+                  <input id="lista-desde" class="form-control" type="date" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-hasta">Hasta</label>
+                  <input id="lista-hasta" class="form-control" type="date" />
+                </div>
+                <button type="button" class="btn-ghost" id="lista-limpiar">Limpiar</button>
+              </div>
+              <div class="cot-tabla-wrap">
+                <table class="tabla-resumen cot-tabla">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cotización</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Cliente</th>
+                      <th scope="col">Referencia</th>
+                      <th scope="col" class="num">Cantidad</th>
+                      <th scope="col" class="num">Valor</th>
+                      <th scope="col" class="num">Utilidad</th>
+                      <th scope="col" class="num">IVA</th>
+                      <th scope="col" class="num">Total a cobrar</th>
+                      <th scope="col"><span class="sr-only">Acciones</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="lista-cuerpo"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="lista-vacia" hidden>
+                <p class="empty-title"></p>
+                <p class="empty-text"></p>
+              </div>
+              <p class="showing" id="lista-mostrando"></p>
             </div>
           </section>
 
           <footer class="page-foot">
-            <p>Textiles Andina S.A.S. · Medellín</p>
-            <p>Moneda: COP · Valores de materiales</p>
+            <p></p>
+            <p>Moneda: COP</p>
           </footer>
         </main>
       </div>
     </div>
 
+    <!-- ================= DETALLE ================= -->
+    <dialog class="ref-dialog" id="cot-dialog" aria-labelledby="det-id">
+      <div class="det-head">
+        <div>
+          <p class="det-kicker" id="det-fecha"></p>
+          <h2 class="det-id" id="det-id"></h2>
+          <p class="det-tipo" id="det-cliente"></p>
+        </div>
+        <button type="button" class="icon-btn" id="det-cerrar" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="det-body">
+        <img class="det-imagen" id="det-imagen" alt="" />
+        <div class="det-info" id="det-info"></div>
+      </div>
+      <div class="det-foot">
+        <button type="button" class="btn-primary" id="det-pdf">Cotización en PDF</button>
+        <button type="button" class="btn-ghost btn-small" id="det-editar">Editar</button>
+        <button type="button" class="btn-ghost btn-small is-danger" id="det-eliminar">Eliminar</button>
+      </div>
+    </dialog>
+
+<dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
     <div class="toast" id="toast" hidden role="status"></div>
-    <script src="app-cotizaciones.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-cotizaciones.js"></script>
   </body>
 </html>

@@ -1,0 +1,348 @@
+/*
+ * Facturas.
+ * Usa los controles de ../sigmas-referencias/styles-referencias.css (pestañas, campos, tablas)
+ * y la estructura de ../sigmas-comun/tema.css. Aquí van el formulario, el archivo y los colores de estado.
+ */
+
+:root {
+  --estado-pagada: #1b7a43;
+  --estado-pagada-fondo: #e3f5ea;
+  --estado-proceso: #8a6100;
+  --estado-proceso-fondo: #fff3cf;
+  --estado-vencida: #b42318;
+  --estado-vencida-fondo: #fde8e6;
+}
+
+.span-2 {
+  grid-column: 1 / -1;
+}
+
+.fa-form {
+  max-width: 880px;
+}
+
+.fa-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* ---------- Estado: opciones con color ---------- */
+.fa-estados {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.estado-opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.estado-opcion {
+  position: relative;
+  cursor: pointer;
+}
+
+.estado-opcion input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.estado-opcion span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--sig-line);
+  background: #fff;
+  color: var(--sig-muted-2);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.estado-opcion span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-estado);
+}
+
+.estado-opcion.is-pagada {
+  --color-estado: var(--estado-pagada);
+  --fondo-estado: var(--estado-pagada-fondo);
+}
+
+.estado-opcion.is-proceso {
+  --color-estado: #e0a100;
+  --fondo-estado: var(--estado-proceso-fondo);
+}
+
+.estado-opcion.is-vencida {
+  --color-estado: var(--estado-vencida);
+  --fondo-estado: var(--estado-vencida-fondo);
+}
+
+.estado-opcion input:checked + span {
+  border-color: var(--color-estado);
+  background: var(--fondo-estado);
+  color: var(--sig-navy);
+}
+
+.estado-opcion input:focus-visible + span {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+/* Etiqueta de estado en la lista */
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.estado-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.estado-badge.is-pagada {
+  background: var(--estado-pagada-fondo);
+  color: var(--estado-pagada);
+}
+
+.estado-badge.is-proceso {
+  background: var(--estado-proceso-fondo);
+  color: var(--estado-proceso);
+}
+
+.estado-badge.is-vencida {
+  background: var(--estado-vencida-fondo);
+  color: var(--estado-vencida);
+}
+
+/* Resumen por estado (también sirve de filtro rápido) */
+.estado-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.estado-tarjeta {
+  appearance: none;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1.5px solid var(--sig-line);
+  background: #fff;
+  cursor: pointer;
+}
+
+.estado-tarjeta strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--sig-navy);
+  font-size: 1.6rem;
+}
+
+.estado-tarjeta[aria-pressed="true"] {
+  border-color: currentColor;
+}
+
+.estado-tarjeta.is-pagada {
+  color: var(--estado-pagada);
+}
+
+.estado-tarjeta.is-proceso {
+  color: var(--estado-proceso);
+}
+
+.estado-tarjeta.is-vencida {
+  color: var(--estado-vencida);
+}
+
+.estado-tarjeta:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+/* ---------- Archivo ---------- */
+.archivo-drop {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 22px 16px;
+  border-radius: 16px;
+  border: 1.5px dashed var(--sig-line-strong);
+  background: #f8f9fd;
+  color: var(--sig-muted-2);
+  text-align: center;
+  cursor: pointer;
+}
+
+.archivo-drop:hover,
+.archivo-drop.is-over {
+  border-color: var(--sig-navy);
+  background: #f0f1fa;
+}
+
+.archivo-drop.is-bad {
+  border-color: var(--sig-danger);
+}
+
+.archivo-drop.tiene-archivo {
+  border-style: solid;
+  color: var(--sig-navy);
+}
+
+.archivo-drop span {
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.archivo-drop small {
+  color: var(--sig-muted);
+}
+
+.archivo-drop:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+/* ---------- Lista ---------- */
+.fa-filtros {
+  flex-wrap: wrap;
+}
+
+.fa-filtros .grow {
+  flex-basis: 260px;
+}
+
+.fa-tabla-wrap {
+  overflow-x: auto;
+}
+
+.fa-tabla {
+  margin-top: 0;
+  min-width: 940px;
+}
+
+.fa-archivo {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--sig-navy);
+  font: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.fa-archivo:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+.vence-pronto {
+  color: var(--estado-vencida);
+  font-weight: 700;
+}
+
+.fa-acciones-fila {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.fa-acciones-fila .btn-small + .btn-small {
+  margin-left: 6px;
+}
+
+@media (max-width: 720px) {
+  .estado-resumen {
+    grid-template-columns: 1fr;
+  }
+
+  .fa-acciones {
+    flex-direction: column-reverse;
+  }
+}
+
+/* ---------- Celular: cada fila de la tabla se ve como una tarjeta ---------- */
+@media (max-width: 720px) {
+  .fa-tabla {
+    min-width: 0;
+  }
+
+  .fa-tabla thead {
+    display: none;
+  }
+
+  .fa-tabla,
+  .fa-tabla tbody,
+  .fa-tabla tr,
+  .fa-tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .fa-tabla tr {
+    margin-bottom: 10px;
+    padding: 6px 14px;
+    border: 1px solid var(--sig-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .fa-tabla td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  .fa-tabla td::before {
+    content: attr(data-label);
+    flex: none;
+    color: var(--sig-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .fa-tabla td:last-child {
+    border-bottom: 0;
+  }
+
+  /* Los botones de la fila ocupan todo el ancho */
+  .fa-tabla td[data-label="Acciones"]::before {
+    display: none;
+  }
+
+  .fa-tabla td[data-label="Acciones"] .btn-small {
+    flex: 1;
+    justify-content: center;
+    margin: 0;
+  }
+}

@@ -88,10 +88,7 @@ async function withBusy(button, label, task) {
 }
 
 function openWorkspace() {
-  document.getElementById("ws-user").textContent = usuarioInput.value.trim();
-  document.getElementById("ws-nit").textContent = "NIT " + nitInput.value.trim();
-  auth.hidden = true;
-  workspace.hidden = false;
+  window.location.href = "../sigmas-dashboard/dashboard.html";
 }
 
 document.querySelectorAll("[data-go]").forEach((button) => {

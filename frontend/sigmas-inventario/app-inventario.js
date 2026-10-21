@@ -1,228 +1,151 @@
-const money = new Intl.NumberFormat("es-CO");
-const toast = document.getElementById("toast");
-let toastTimer;
+// Inventario: une las pestañas de Insumos y Materia prima, el botón Agregar y la exportación
+import { avisar } from "./util-inventario.js";
+import { crearInsumos } from "./insumos.js";
+import { crearMateriasPrimas } from "./materias-primas.js";
 
-const materials = [
-  { code: "TEL-001", name: "Algodón jersey", type: "Tela", color: "Blanco", unit: "m", qty: 300, cost: 18000 },
-  { code: "INS-001", name: "Hilo", type: "Insumo", color: "Blanco", unit: "m", qty: 6000, cost: 120 },
-  { code: "INS-002", name: "Etiqueta tejida", type: "Insumo", color: "Natural", unit: "und", qty: 800, cost: 650 },
-  { code: "TEL-002", name: "Lino", type: "Tela", color: "Arena", unit: "m", qty: 120, cost: 25000 },
-  { code: "INS-003", name: "Elástico 3 cm", type: "Insumo", color: "Blanco", unit: "m", qty: 500, cost: 1800 },
-  { code: "INS-004", name: "Botón 12 mm", type: "Insumo", color: "Marfil", unit: "und", qty: 1000, cost: 350 },
-];
+const $ = (id) => document.getElementById(id);
 
-let filtered = [...materials];
-let editingCode = null;
+const secciones = {
+  insumos: {
+    tab: $("tab-insumos"),
+    modulo: crearInsumos({ alCambiarConteo: (n) => ($("count-insumos").textContent = n) }),
+    agregar: "Agregar insumo",
+  },
+  materias: {
+    tab: $("tab-materias"),
+    modulo: crearMateriasPrimas({ alCambiarConteo: (n) => ($("count-materias").textContent = n) }),
+    agregar: "Agregar materia prima",
+  },
+};
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.hidden = true;
-  }, 2400);
-}
+let activa = "insumos";
 
-function formatMoney(value) {
-  return "$" + money.format(Math.round(value));
-}
+/* ---------- Pestañas ---------- */
 
-function unitLabel(unit) {
-  return unit === "und" ? "und" : "m";
-}
-
-function updateValor() {
-  const qty = Number(document.getElementById("cantidad").value) || 0;
-  const cost = Number(document.getElementById("costo").value) || 0;
-  const unit = document.getElementById("unidad").value;
-  const total = qty * cost;
-  document.getElementById("valor-total").textContent = formatMoney(total);
-  document.getElementById("valor-detail").textContent =
-    `${money.format(qty)} ${unit} × ${formatMoney(cost)} / ${unit} · COP`;
-  const hint = document.getElementById("cantidad-hint");
-  const costoLabel = document.querySelector('label[for="costo"]');
-  if (unit === "und") {
-    hint.textContent = "La cantidad se registra en unidades (und).";
-    costoLabel.innerHTML = 'Costo unitario (COP / und) <span class="req">*</span>';
-  } else {
-    hint.textContent = "La cantidad se registra en metros (m).";
-    costoLabel.innerHTML = 'Costo unitario (COP / m) <span class="req">*</span>';
-  }
-}
-
-function clearErrors() {
-  document.querySelectorAll(".is-bad").forEach((el) => el.classList.remove("is-bad"));
-  document.querySelectorAll(".field-error").forEach((el) => {
-    el.hidden = true;
-    el.textContent = "";
+function activar(nombre, { enfocar = false } = {}) {
+  activa = nombre;
+  Object.entries(secciones).forEach(([clave, { tab }]) => {
+    const esActiva = clave === nombre;
+    tab.classList.toggle("is-active", esActiva);
+    tab.setAttribute("aria-selected", String(esActiva));
+    tab.tabIndex = esActiva ? 0 : -1;
+    $(tab.getAttribute("aria-controls")).hidden = !esActiva;
   });
+  $("btn-agregar-label").textContent = secciones[nombre].agregar;
+  if (enfocar) secciones[nombre].tab.focus();
+  history.replaceState(null, "", `#${nombre}`);
 }
 
-function setError(id, message) {
-  const input = document.getElementById(id);
-  const error = document.getElementById(id + "-error");
-  if (input) input.classList.add("is-bad");
-  if (error) {
-    error.textContent = message;
-    error.hidden = false;
-  }
-}
-
-function nextCode(type) {
-  const prefix = type === "Tela" ? "TEL" : "INS";
-  const nums = materials
-    .filter((m) => m.code.startsWith(prefix))
-    .map((m) => Number(m.code.split("-")[1]))
-    .filter((n) => !Number.isNaN(n));
-  const next = (nums.length ? Math.max(...nums) : 0) + 1;
-  return `${prefix}-${String(next).padStart(3, "0")}`;
-}
-
-function summarize(list) {
-  const telas = list.filter((m) => m.type === "Tela").length;
-  const insumos = list.filter((m) => m.type === "Insumo").length;
-  document.getElementById("inventory-summary").textContent =
-    `${list.length} materiales · ${telas} telas · ${insumos} insumos`;
-  const total = list.reduce((sum, m) => sum + m.qty * m.cost, 0);
-  document.getElementById("showing-label").textContent =
-    `Mostrando ${list.length} de ${materials.length} materiales`;
-  document.getElementById("total-label").textContent =
-    `Valor total: ${formatMoney(total)} COP`;
-}
-
-function renderTable() {
-  const body = document.getElementById("inventory-body");
-  body.innerHTML = "";
-  filtered.forEach((item, index) => {
-    const tr = document.createElement("tr");
-    if (index === 0) tr.classList.add("is-highlight");
-    tr.innerHTML = `
-      <td class="material-name">${item.code} · ${item.name}</td>
-      <td>${item.type}</td>
-      <td>${item.color}</td>
-      <td>${item.unit}</td>
-      <td>${money.format(item.qty)} ${unitLabel(item.unit)}</td>
-      <td class="num">${formatMoney(item.cost)}</td>
-      <td><button type="button" class="link-btn" data-edit="${item.code}">Editar</button></td>
-    `;
-    body.appendChild(tr);
+const claves = Object.keys(secciones);
+claves.forEach((clave, i) => {
+  const { tab } = secciones[clave];
+  tab.addEventListener("click", () => activar(clave));
+  // Flechas izquierda/derecha para cambiar de pestaña
+  tab.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    const siguiente = claves[(i + (event.key === "ArrowRight" ? 1 : claves.length - 1)) % claves.length];
+    activar(siguiente, { enfocar: true });
   });
-  summarize(filtered);
-
-  body.querySelectorAll("[data-edit]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = materials.find((m) => m.code === btn.dataset.edit);
-      if (!item) return;
-      editingCode = item.code;
-      document.getElementById("nombre").value = item.name;
-      document.getElementById("tipo").value = item.type;
-      document.getElementById("color").value = item.color;
-      document.getElementById("unidad").value = item.unit;
-      document.getElementById("cantidad").value = item.qty;
-      document.getElementById("costo").value = item.cost;
-      updateValor();
-      showToast(`Editando ${item.code}`);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  });
-}
-
-function applyFilters() {
-  const q = document.getElementById("search").value.trim().toLowerCase();
-  const type = document.getElementById("filter-tipo").value;
-  filtered = materials.filter((m) => {
-    const matchType = !type || m.type === type;
-    const hay = `${m.code} ${m.name} ${m.color}`.toLowerCase();
-    const matchQ = !q || hay.includes(q);
-    return matchType && matchQ;
-  });
-  renderTable();
-}
-
-function resetForm() {
-  editingCode = null;
-  document.getElementById("material-form").reset();
-  document.getElementById("nombre").value = "";
-  document.getElementById("color").value = "";
-  document.getElementById("cantidad").value = "";
-  document.getElementById("costo").value = "";
-  document.getElementById("tipo").value = "Tela";
-  document.getElementById("unidad").value = "m";
-  clearErrors();
-  updateValor();
-}
-
-["cantidad", "costo", "unidad"].forEach((id) => {
-  document.getElementById(id).addEventListener("input", updateValor);
-  document.getElementById(id).addEventListener("change", updateValor);
 });
 
-document.getElementById("btn-clear").addEventListener("click", () => {
-  resetForm();
-  showToast("Formulario limpio");
+$("btn-agregar").addEventListener("click", () => secciones[activa].modulo.abrirNuevo());
+
+/* ---------- Exportar ---------- */
+
+const exportBtn = $("btn-exportar");
+const exportList = $("export-list");
+
+function abrirMenu(abrir) {
+  exportList.hidden = !abrir;
+  exportBtn.setAttribute("aria-expanded", String(abrir));
+  if (abrir) {
+    const { filas } = secciones[activa].modulo.exportable();
+    $("export-caption").textContent = `Se exportarán ${filas.length} registros, tal como los ves en la lista.`;
+    exportList.querySelector("button").focus();
+  }
+}
+
+exportBtn.addEventListener("click", () => abrirMenu(exportList.hidden));
+document.addEventListener("click", (event) => {
+  if (!exportList.hidden && !event.target.closest(".export-menu")) abrirMenu(false);
 });
-
-document.getElementById("material-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  clearErrors();
-
-  const name = document.getElementById("nombre").value.trim();
-  const type = document.getElementById("tipo").value;
-  const color = document.getElementById("color").value.trim();
-  const unit = document.getElementById("unidad").value;
-  const qty = Number(document.getElementById("cantidad").value);
-  const cost = Number(document.getElementById("costo").value);
-
-  let ok = true;
-  if (name.length < 2) {
-    setError("nombre", "Escribe el nombre del material.");
-    ok = false;
-  }
-  if (color.length < 2) {
-    setError("color", "Escribe el color.");
-    ok = false;
-  }
-  if (!(qty > 0)) {
-    setError("cantidad", "Indica una cantidad mayor a 0.");
-    ok = false;
-  }
-  if (!(cost >= 0) || document.getElementById("costo").value === "") {
-    setError("costo", "Indica el costo unitario.");
-    ok = false;
-  }
-  if (!ok) return;
-
-  if (editingCode) {
-    const item = materials.find((m) => m.code === editingCode);
-    Object.assign(item, { name, type, color, unit, qty, cost });
-    showToast(`Material ${editingCode} actualizado`);
-  } else {
-    const code = nextCode(type);
-    materials.unshift({ code, name, type, color, unit, qty, cost });
-    showToast(`Material ${code} registrado`);
-  }
-
-  editingCode = null;
-  applyFilters();
-  resetForm();
-});
-
-document.getElementById("btn-search").addEventListener("click", applyFilters);
-document.getElementById("search").addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+exportList.addEventListener("keydown", (event) => {
+  const opciones = [...exportList.querySelectorAll("button")];
+  const i = opciones.indexOf(document.activeElement);
+  if (event.key === "Escape") {
+    abrirMenu(false);
+    exportBtn.focus();
+  } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
     event.preventDefault();
-    applyFilters();
+    opciones[(i + (event.key === "ArrowDown" ? 1 : opciones.length - 1)) % opciones.length].focus();
   }
 });
-document.getElementById("filter-tipo").addEventListener("change", applyFilters);
 
-document.getElementById("btn-export").addEventListener("click", () => {
-  showToast("Exportación de muestra lista");
+exportList.addEventListener("click", (event) => {
+  const opcion = event.target.closest("[data-exportar]");
+  if (!opcion) return;
+  abrirMenu(false);
+  const datos = secciones[activa].modulo.exportable();
+  if (datos.filas.length === 0) return avisar("No hay registros para exportar con los filtros actuales.");
+  if (opcion.dataset.exportar === "excel") exportarExcel(datos);
+  else exportarPdf(datos);
 });
 
-document.getElementById("user-menu").addEventListener("click", () => {
-  showToast("Menú de cuenta · María Pérez");
-});
+function fechaArchivo() {
+  return new Date().toISOString().slice(0, 10);
+}
 
-updateValor();
-renderTable();
+function exportarExcel({ titulo, archivo, filas, columnas }) {
+  if (!window.XLSX) return avisar("No se pudo cargar el exportador de Excel. Revisa tu conexión a internet.");
+  const datos = filas.map((fila) => Object.fromEntries(columnas.map(([nombre, valor]) => [nombre, valor(fila)])));
+  const hoja = XLSX.utils.json_to_sheet(datos);
+  hoja["!cols"] = columnas.map(([nombre]) => ({
+    wch: Math.min(50, Math.max(nombre.length, ...datos.map((d) => String(d[nombre]).length)) + 2),
+  }));
+  const libro = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(libro, hoja, titulo.replace(/[\\/?*[\]:]/g, "").slice(0, 31));
+  XLSX.writeFile(libro, `${archivo}-${fechaArchivo()}.xlsx`);
+  avisar(`Excel descargado · ${filas.length} registros`);
+}
+
+function exportarPdf({ titulo, archivo, filas, columnas }) {
+  if (!window.jspdf?.jsPDF) return avisar("No se pudo cargar el exportador de PDF. Revisa tu conexión a internet.");
+  const numeros = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 2 });
+  const formatear = (valor) => (typeof valor === "number" ? numeros.format(valor) : String(valor));
+
+  const doc = new window.jspdf.jsPDF({ orientation: "landscape", unit: "pt", format: "letter" });
+  const ancho = doc.internal.pageSize.getWidth();
+  doc.setFillColor(10, 17, 35);
+  doc.rect(0, 0, ancho, 64, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.text(`Inventario · ${titulo}`, 40, 30);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.text(`${SigmaSesion.usuario.nombre_empresa} · Generado el ${new Date().toLocaleDateString("es-CO")} · ${filas.length} registros`, 40, 48);
+
+  const numericas = columnas.map(([, valor]) => typeof valor(filas[0]) === "number");
+  doc.autoTable({
+    startY: 84,
+    head: [columnas.map(([nombre]) => nombre)],
+    body: filas.map((fila) => columnas.map(([, valor]) => formatear(valor(fila)))),
+    styles: { font: "helvetica", fontSize: 7.5, cellPadding: 5, textColor: [10, 17, 35], lineColor: [220, 222, 234] },
+    headStyles: { fillColor: [58, 62, 108], textColor: 255, fontStyle: "bold" },
+    alternateRowStyles: { fillColor: [243, 244, 250] },
+    columnStyles: Object.fromEntries(numericas.map((esNumero, i) => [i, esNumero ? { halign: "right" } : {}])),
+    margin: { left: 40, right: 40 },
+    didDrawPage: () => {
+      doc.setFontSize(8);
+      doc.setTextColor(87, 91, 128);
+      doc.text(`SigmaS · Página ${doc.internal.getNumberOfPages()}`, ancho - 40, doc.internal.pageSize.getHeight() - 20, { align: "right" });
+    },
+  });
+  doc.save(`${archivo}-${fechaArchivo()}.pdf`);
+  avisar(`PDF descargado · ${filas.length} registros`);
+}
+
+/* ---------- Inicio ---------- */
+
+activar(window.location.hash === "#materias" ? "materias" : "insumos");
+Object.values(secciones).forEach(({ modulo }) => modulo.cargar());

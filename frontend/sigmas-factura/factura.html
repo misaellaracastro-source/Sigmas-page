@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Facturas — SigmaS Administration</title>
+    <meta name="description" content="Facturas de la empresa: archivo, fecha y estado de pago." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../sigmas-referencias/styles-referencias.css" />
+    <link rel="stylesheet" href="styles-factura.css" />
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">SigmaS</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item is-active" href="../sigmas-factura/factura.html" aria-current="page">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">SigmaS · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Factura</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
+              <span class="user-meta">
+                <span class="user-name"></span>
+                <span class="user-role"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Facturas</h1>
+              <p class="page-lede">Sube tus facturas con su empresa, fecha y estado, y consúltalas cuando las necesites.</p>
+            </div>
+          </div>
+
+          <div class="tabs-bar" role="tablist" aria-label="Facturas">
+            <button type="button" class="tab-btn is-active" role="tab" id="tab-nueva" aria-controls="panel-nueva" aria-selected="true">Nueva factura</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-lista" aria-controls="panel-lista" aria-selected="false" tabindex="-1">
+              Facturas <span class="tab-count" id="tab-count">0</span>
+            </button>
+          </div>
+
+          <!-- ================= NUEVA FACTURA ================= -->
+          <section id="panel-nueva" role="tabpanel" aria-labelledby="tab-nueva">
+            <div class="borrador-aviso" id="editando-aviso" role="status" hidden>
+              <span id="editando-texto"></span>
+              <button type="button" class="link-btn" id="editando-cancelar">Cancelar edición</button>
+            </div>
+
+            <form class="panel fa-form" id="fa-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="form-label" for="fa-nombre">Nombre de la factura <span class="req">*</span></label>
+                  <input id="fa-nombre" class="form-control" maxlength="50" autocomplete="off" placeholder="Ej: FAC-2026-001" />
+                  <p class="hint" id="fa-nombre-hint">Único: no se puede repetir.</p>
+                  <p class="field-error" id="fa-nombre-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="fa-empresa">Empresa <span class="req">*</span></label>
+                  <input id="fa-empresa" class="form-control" maxlength="100" list="lista-empresas" autocomplete="off" placeholder="Ej: Telas del Valle S.A.S." />
+                  <datalist id="lista-empresas"></datalist>
+                  <p class="hint">Puedes escribirla o elegir una de Vinculados.</p>
+                  <p class="field-error" id="fa-empresa-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="fa-fecha">Fecha de la factura <span class="req">*</span></label>
+                  <input id="fa-fecha" class="form-control" type="date" />
+                  <p class="field-error" id="fa-fecha-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="fa-vencimiento">Fecha de vencimiento</label>
+                  <input id="fa-vencimiento" class="form-control" type="date" />
+                  <p class="hint">Te avisamos 3 días antes. Si pasa sin pagarse, queda como vencida.</p>
+                  <p class="field-error" id="fa-vencimiento-error" hidden></p>
+                </div>
+                <fieldset class="field fa-estados">
+                  <legend class="form-label">Estado <span class="req">*</span></legend>
+                  <div class="estado-opciones" id="fa-estado">
+                    <label class="estado-opcion is-pagada"><input type="radio" name="estado" value="Pagada" /><span>Pagada</span></label>
+                    <label class="estado-opcion is-proceso"><input type="radio" name="estado" value="En proceso" checked /><span>En proceso</span></label>
+                    <label class="estado-opcion is-vencida"><input type="radio" name="estado" value="Vencida" /><span>Vencida</span></label>
+                  </div>
+                  <p class="field-error" id="fa-estado-error" hidden></p>
+                </fieldset>
+                <div class="field span-2">
+                  <span class="form-label" id="fa-archivo-label">Archivo de la factura <span class="req" id="fa-archivo-req">*</span></span>
+                  <div class="archivo-drop" id="fa-archivo-drop" tabindex="0" role="button" aria-labelledby="fa-archivo-label fa-archivo-texto">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                      <path d="M14 3v5h5M12 11v6M9 14l3-3 3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span id="fa-archivo-texto">Arrastra el archivo aquí o haz clic para elegirlo</span>
+                    <small>PDF, JPG, PNG o WEBP · máximo 5 MB</small>
+                  </div>
+                  <input type="file" id="fa-archivo" accept="application/pdf,image/jpeg,image/png,image/webp" hidden />
+                  <p class="field-error" id="fa-archivo-error" hidden></p>
+                </div>
+              </div>
+              <p class="field-error" id="guardar-error" hidden></p>
+              <div class="fa-acciones">
+                <button type="button" class="btn-ghost" id="btn-limpiar">Limpiar</button>
+                <button type="submit" class="btn-primary" id="btn-guardar">Guardar factura</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- ================= FACTURAS ================= -->
+          <section id="panel-lista" role="tabpanel" aria-labelledby="tab-lista" hidden>
+            <div class="estado-resumen" id="estado-resumen"></div>
+            <div class="panel list-panel">
+              <div class="list-toolbar fa-filtros">
+                <div class="field grow">
+                  <label class="form-label" for="lista-buscar">Buscar</label>
+                  <input id="lista-buscar" class="form-control search-input" type="search" placeholder="Nombre de la factura, empresa o archivo…" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-estado">Estado</label>
+                  <div class="select-wrap">
+                    <select id="lista-estado" class="form-control">
+                      <option value="">Todos</option>
+                      <option value="Pagada">Pagada</option>
+                      <option value="En proceso">En proceso</option>
+                      <option value="Vencida">Vencida</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-desde">Desde</label>
+                  <input id="lista-desde" class="form-control" type="date" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-hasta">Hasta</label>
+                  <input id="lista-hasta" class="form-control" type="date" />
+                </div>
+                <button type="button" class="btn-ghost" id="lista-limpiar">Limpiar</button>
+              </div>
+              <div class="fa-tabla-wrap">
+                <table class="tabla-resumen fa-tabla">
+                  <thead>
+                    <tr>
+                      <th scope="col">Factura</th>
+                      <th scope="col">Empresa</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Vence</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Archivo</th>
+                      <th scope="col"><span class="sr-only">Acciones</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="lista-cuerpo"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="lista-vacia" hidden>
+                <p class="empty-title"></p>
+                <p class="empty-text"></p>
+              </div>
+              <p class="showing" id="lista-mostrando"></p>
+            </div>
+          </section>
+
+          <footer class="page-foot">
+            <p></p>
+            <p>Facturas de la empresa</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+<dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-factura.js"></script>
+  </body>
+</html>

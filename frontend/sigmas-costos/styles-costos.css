@@ -8,7 +8,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  background: #f4f5f8;
+  background: #f1f2f8;
 }
 
 button,
@@ -32,14 +32,14 @@ a {
 }
 
 :root {
-  --sig-navy: #151d31;
-  --sig-ink: #192238;
-  --sig-accent: #4f46c8;
-  --sig-accent-deep: #4338b0;
-  --sig-muted: #8a8e98;
-  --sig-muted-2: #6f7482;
-  --sig-line: #e6e8ee;
-  --sig-line-strong: #d5d8e0;
+  --sig-navy: #0a1123;
+  --sig-ink: #0a1123;
+  --sig-accent: #3a3e6c;
+  --sig-accent-deep: #2a2d52;
+  --sig-muted: #575b80;
+  --sig-muted-2: #464a70;
+  --sig-line: #dcdeea;
+  --sig-line-strong: #c3c6d8;
   --sig-surface: #ffffff;
   --sig-radius: 14px;
   --sig-font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
@@ -105,7 +105,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9aa0ac;
+  color: #959bb5;
 }
 
 .company-card {
@@ -124,7 +124,7 @@ body {
 
 .company-meta {
   margin: 0;
-  color: #9aa0ac;
+  color: #959bb5;
   font-size: 0.78rem;
   line-height: 1.45;
 }
@@ -139,7 +139,7 @@ body {
 
 .nav-section {
   margin: 0 0 8px 8px;
-  color: #7d8494;
+  color: #8a8cac;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -153,7 +153,7 @@ body {
   min-height: 42px;
   padding: 0 12px;
   border-radius: 10px;
-  color: #c5c9d4;
+  color: #c9cce0;
   font-size: 0.92rem;
   font-weight: 550;
 }
@@ -179,7 +179,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #9aa0ac;
+  color: #959bb5;
   font-size: 0.84rem;
   font-weight: 550;
   margin-bottom: 10px;
@@ -191,7 +191,7 @@ body {
 
 .sidebar-tagline {
   margin: 0;
-  color: #6d7382;
+  color: #8a8cac;
   font-size: 0.72rem;
 }
 
@@ -220,7 +220,7 @@ body {
 }
 
 .breadcrumb .sep {
-  color: #c0c4ce;
+  color: #959bb5;
 }
 
 .breadcrumb strong {
@@ -237,7 +237,7 @@ body {
 .chip {
   appearance: none;
   border: 1px solid var(--sig-line);
-  background: #f8f9fb;
+  background: #f1f2f8;
   color: var(--sig-muted-2);
   border-radius: 999px;
   height: 34px;
@@ -263,7 +263,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #ece8ff;
+  background: #e4e5f3;
   color: var(--sig-accent);
   display: grid;
   place-items: center;
@@ -384,7 +384,7 @@ body {
 
 .form-control:focus {
   border-color: var(--sig-accent);
-  box-shadow: 0 0 0 4px rgba(79, 70, 200, 0.12);
+  box-shadow: 0 0 0 4px rgba(58, 62, 108, 0.16);
 }
 
 .select-wrap {
@@ -398,8 +398,8 @@ body {
   top: 50%;
   width: 8px;
   height: 8px;
-  border-right: 1.8px solid #8e96a4;
-  border-bottom: 1.8px solid #8e96a4;
+  border-right: 1.8px solid #6b6f94;
+  border-bottom: 1.8px solid #6b6f94;
   transform: translateY(-65%) rotate(45deg);
   pointer-events: none;
 }
@@ -435,7 +435,7 @@ select.form-control {
   height: 32px;
   padding: 0 12px;
   border-radius: 999px;
-  background: #f1f0ff;
+  background: #e4e5f3;
   color: var(--sig-accent);
   font-size: 0.8rem;
   font-weight: 700;
@@ -447,6 +447,11 @@ select.form-control {
   grid-template-columns: 1.35fr 0.75fr;
   gap: 16px;
   margin-bottom: 16px;
+}
+
+/* Sin esto, la tabla no deja encoger la columna y la página se sale de la pantalla en el celular */
+.cost-layout > * {
+  min-width: 0;
 }
 
 .breakdown-panel {
@@ -496,7 +501,7 @@ select.form-control {
 }
 
 .data-table tr.is-highlight {
-  background: #f5f3ff;
+  background: #eeeff8;
 }
 
 .data-table tr.is-highlight td:first-child {
@@ -546,7 +551,7 @@ select.form-control {
 
 .total-kicker {
   margin: 0;
-  color: #aeb4c2;
+  color: #c9cce0;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -562,13 +567,13 @@ select.form-control {
 
 .total-hint {
   margin: 6px 0 0;
-  color: #9aa0ac;
+  color: #959bb5;
   font-size: 0.82rem;
 }
 
 .total-base {
   margin: 14px 0 0;
-  color: #c5c9d4;
+  color: #c9cce0;
   font-size: 0.88rem;
 }
 
@@ -632,7 +637,7 @@ select.form-control {
   height: 10px;
   border-radius: 999px;
   overflow: hidden;
-  background: #eceef3;
+  background: #e4e5f0;
   margin-bottom: 14px;
 }
 
@@ -642,19 +647,19 @@ select.form-control {
 }
 
 .share-bar span:nth-child(1) {
-  background: #4f46c8;
+  background: #3a3e6c;
 }
 
 .share-bar span:nth-child(2) {
-  background: #7c74e8;
+  background: #8387c3;
 }
 
 .share-bar span:nth-child(3) {
-  background: #b5b0f2;
+  background: #b4b7dc;
 }
 
 .share-bar span:nth-child(4) {
-  background: #d4d1f7;
+  background: #c9cce6;
 }
 
 .share-list {
@@ -683,8 +688,8 @@ select.form-control {
   margin-bottom: 16px;
   padding: 12px 14px;
   border-radius: 12px;
-  background: #f4f3ff;
-  color: #4b45a0;
+  background: #e9eaf5;
+  color: #3a3e6c;
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -699,7 +704,7 @@ select.form-control {
 .notice-banner p {
   margin: 0;
   font-size: 0.8rem;
-  color: #6a65b5;
+  color: #575b80;
 }
 
 .page-foot {
@@ -721,7 +726,7 @@ select.form-control {
   border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 10px 30px rgba(10, 17, 35, 0.25);
   z-index: 50;
 }
 

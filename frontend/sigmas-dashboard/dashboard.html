@@ -12,6 +12,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles-dashboard.css" />
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -35,6 +37,10 @@
             </span>
           </div>
         </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
 
         <div class="company-card">
           <p class="company-name">Textiles Andina S.A.S.</p>
@@ -44,39 +50,15 @@
 
         <nav class="side-nav" aria-label="Administración">
           <p class="nav-section">Administración</p>
-          <a class="nav-item is-active" href="/FRONT-END/sigmas-dashboard/dashboard.html" aria-current="page">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7" />
-            </svg>
-            Dashboard
-          </a>
-          <a class="nav-item" href="/FRONT-END/sigmas-inventario/inventario.html">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            Inventario
-          </a>
-          <a class="nav-item" href="#referencias">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 4h10a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-            </svg>
-            Referencias
-          </a>
-          <a class="nav-item" href="#costos">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v18M7 7.5c1.2-1.2 2.6-1.8 5-1.8 3.5 0 5.5 1.5 5.5 3.8S15.5 13 12 13s-5.5 1.2-5.5 3.5S8.5 20 12 20c2.2 0 3.7-.6 5-1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-            </svg>
-            Costos
-          </a>
-          <a class="nav-item" href="#cotizaciones">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8 7h8M8 12h8M8 17h5M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-            </svg>
-            Cotizaciones
-          </a>
+          <a class="nav-item is-active" href="../sigmas-dashboard/dashboard.html" aria-current="page">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
         </nav>
 
         <div class="sidebar-foot">
@@ -88,6 +70,7 @@
             </svg>
             Centro de ayuda
           </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
           <p class="sidebar-tagline">SigmaS · Gestión textil simplificada</p>
         </div>
       </aside>
@@ -118,25 +101,21 @@
           <div class="page-head">
             <div>
               <h1 class="page-title">Tu operación, en perspectiva</h1>
-              <p class="page-lede">Bienvenida, María. Este es el resumen de Textiles Andina S.A.S.</p>
+              <p class="page-lede">Hola, <span data-sesion="dueno"></span>. Este es el resumen de <span data-sesion="empresa"></span>.</p>
             </div>
-            <button type="button" class="btn-primary" id="btn-cotizacion">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-              Nueva cotización
-            </button>
           </div>
 
           <div class="toolbar-row">
             <div class="tabs" role="tablist">
               <button type="button" class="tab is-active" role="tab" aria-selected="true">Resumen empresarial</button>
             </div>
-            <p class="meta-date">13 de octubre de 2026 · Medellín</p>
+            <p class="meta-date" id="meta-fecha"></p>
           </div>
 
-          <section class="kpi-grid" aria-label="Indicadores">
-            <article class="kpi-card">
+          <p class="dash-error" id="dash-error" role="alert" hidden></p>
+
+          <section class="kpi-grid" aria-label="Indicadores" aria-busy="true" id="kpis">
+            <a class="kpi-card" href="../sigmas-inventario/inventario.html">
               <div class="kpi-top">
                 <p class="kpi-label">Materiales en inventario</p>
                 <span class="kpi-icon" aria-hidden="true">
@@ -146,10 +125,10 @@
                   </svg>
                 </span>
               </div>
-              <p class="kpi-value">6</p>
-              <p class="kpi-hint">2 telas · 4 insumos disponibles</p>
-            </article>
-            <article class="kpi-card">
+              <p class="kpi-value" id="kpi-materiales">—</p>
+              <p class="kpi-hint" id="kpi-materiales-hint"></p>
+            </a>
+            <a class="kpi-card" href="../sigmas-inventario/inventario.html">
               <div class="kpi-top">
                 <p class="kpi-label">Valor del inventario</p>
                 <span class="kpi-icon" aria-hidden="true">
@@ -159,10 +138,10 @@
                   </svg>
                 </span>
               </div>
-              <p class="kpi-value">$10.890.000</p>
-              <p class="kpi-hint">Costo de materiales · COP</p>
-            </article>
-            <article class="kpi-card">
+              <p class="kpi-value" id="kpi-valor">—</p>
+              <p class="kpi-hint">Cantidad × precio de cada material · COP</p>
+            </a>
+            <a class="kpi-card" href="../sigmas-referencias/referencias.html#lista">
               <div class="kpi-top">
                 <p class="kpi-label">Referencias creadas</p>
                 <span class="kpi-icon" aria-hidden="true">
@@ -171,10 +150,10 @@
                   </svg>
                 </span>
               </div>
-              <p class="kpi-value">3</p>
-              <p class="kpi-hint">Todas con materiales asociados</p>
-            </article>
-            <article class="kpi-card">
+              <p class="kpi-value" id="kpi-referencias">—</p>
+              <p class="kpi-hint" id="kpi-referencias-hint"></p>
+            </a>
+            <a class="kpi-card" href="../sigmas-cotizaciones/cotizaciones.html#lista">
               <div class="kpi-top">
                 <p class="kpi-label">Cotizaciones registradas</p>
                 <span class="kpi-icon" aria-hidden="true">
@@ -183,109 +162,88 @@
                   </svg>
                 </span>
               </div>
-              <p class="kpi-value">3</p>
-              <p class="kpi-hint">$5.578.700 en materiales · COP</p>
-            </article>
+              <p class="kpi-value" id="kpi-cotizaciones">—</p>
+              <p class="kpi-hint" id="kpi-cotizaciones-hint"></p>
+            </a>
           </section>
 
           <section class="mid-grid">
-            <article class="panel" id="inventario">
+            <article class="panel chart-panel" aria-labelledby="grafica-titulo">
               <div class="panel-head">
                 <div>
-                  <h2 class="panel-title">Materiales disponibles</h2>
-                  <p class="panel-sub">Existencias por unidad de medida</p>
+                  <h2 class="panel-title" id="grafica-titulo">Total a cobrar por mes</h2>
+                  <p class="panel-sub" id="grafica-sub">Suma de las cotizaciones de los últimos 6 meses · COP</p>
                 </div>
-                <a class="panel-link" href="#inventario">Ver inventario →</a>
+                <a class="panel-link" href="../sigmas-historico/historico.html">Ver histórico →</a>
               </div>
-              <div class="stock-list">
-                <div class="stock-row">
-                  <div class="stock-meta">
-                    <span class="stock-name">Telas</span>
-                    <span class="stock-qty">420 m</span>
-                  </div>
-                  <div class="bar" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
-                    <span class="bar-fill" style="width: 72%"></span>
-                  </div>
-                  <p class="stock-detail">Algodón jersey: 300 m · Lino: 120 m</p>
-                </div>
-                <div class="stock-row">
-                  <div class="stock-meta">
-                    <span class="stock-name">Insumos</span>
-                    <span class="stock-qty">6.500 m · 1.800 und</span>
-                  </div>
-                  <div class="bar bar-soft" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100">
-                    <span class="bar-fill" style="width: 48%"></span>
-                  </div>
-                </div>
+              <div class="grafica" id="grafica"></div>
+              <div class="sr-only">
+              <table id="grafica-tabla">
+                <caption>Total a cobrar por mes</caption>
+                <thead><tr><th scope="col">Mes</th><th scope="col">Cotizaciones</th><th scope="col">Total a cobrar</th></tr></thead>
+                <tbody></tbody>
+              </table>
               </div>
             </article>
 
-            <article class="feature-card">
-              <div class="feature-media" aria-hidden="true">
-                <svg class="tee-svg" viewBox="0 0 120 140" width="120" height="140">
-                  <rect x="0" y="0" width="120" height="140" rx="12" fill="#e8dfd2" />
-                  <path
-                    d="M38 34c8-10 36-10 44 0l14 12-10 10-8-6v52H42V50l-8 6-10-10 14-12Z"
-                    fill="#f7f7f7"
-                    stroke="#d9d2c8"
-                    stroke-width="1.2"
-                  />
-                  <path d="M50 36c6-5 14-5 20 0" fill="none" stroke="#d0c8bc" stroke-width="1.2" />
-                </svg>
-              </div>
+            <article class="feature-card" id="destacada">
+              <div class="feature-media" id="destacada-media" aria-hidden="true"></div>
               <div class="feature-body">
-                <p class="feature-kicker">Referencia destacada · CT-001</p>
-                <h3 class="feature-title">Camiseta básica</h3>
-                <p class="feature-spec">Algodón jersey · Blanco · Talla M</p>
-                <p class="feature-price">$24.050</p>
-                <p class="feature-hint">Materiales por prenda · COP</p>
-                <a class="feature-link" href="#referencias">Consultar desglose →</a>
+                <p class="feature-kicker" id="destacada-kicker">Referencia destacada</p>
+                <h3 class="feature-title" id="destacada-titulo">Aún no tienes referencias</h3>
+                <p class="feature-spec" id="destacada-spec">Crea tu primera referencia para ver aquí su costo por prenda.</p>
+                <p class="feature-price" id="destacada-precio"></p>
+                <p class="feature-hint" id="destacada-hint"></p>
+                <a class="feature-link" id="destacada-enlace" href="../sigmas-referencias/referencias.html">Crear referencia →</a>
               </div>
             </article>
           </section>
 
-          <section class="panel table-panel" id="referencias">
+          <section class="mid-grid mid-grid-pareja">
+            <article class="panel" aria-labelledby="stock-titulo">
+              <div class="panel-head">
+                <div>
+                  <h2 class="panel-title" id="stock-titulo">Materiales disponibles</h2>
+                  <p class="panel-sub">Los más cerca de su stock mínimo primero</p>
+                </div>
+                <a class="panel-link" href="../sigmas-inventario/inventario.html">Ver inventario →</a>
+              </div>
+              <div class="stock-list" id="stock-lista"></div>
+            </article>
+
+            <article class="panel" aria-labelledby="agenda-titulo">
+              <div class="panel-head">
+                <div>
+                  <h2 class="panel-title" id="agenda-titulo">Lo que viene</h2>
+                  <p class="panel-sub">Pendientes de los próximos 7 días y facturas sin pagar</p>
+                </div>
+                <a class="panel-link" href="../sigmas-calendario/calendario.html">Ver calendario →</a>
+              </div>
+              <div class="agenda-chips" id="agenda-chips"></div>
+              <ul class="agenda-lista" id="agenda-lista"></ul>
+            </article>
+          </section>
+
+          <section class="panel table-panel" aria-labelledby="refs-titulo">
             <div class="panel-head">
               <div>
-                <h2 class="panel-title">Tus referencias</h2>
-                <p class="panel-sub">Costos estimados de materiales por prenda · COP</p>
+                <h2 class="panel-title" id="refs-titulo">Tus referencias más recientes</h2>
+                <p class="panel-sub">Costo de materiales por prenda · COP</p>
               </div>
-              <a class="panel-link" href="#referencias">Ver referencias →</a>
+              <a class="panel-link" href="../sigmas-referencias/referencias.html#lista">Ver referencias →</a>
             </div>
             <div class="table-wrap">
-              <table class="data-table">
+              <table class="data-table refs-tabla">
                 <thead>
                   <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Prenda</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Tipo de prenda</th>
+                    <th scope="col">Creada</th>
                     <th scope="col">Composición</th>
                     <th scope="col" class="num">Costo / prenda</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr class="is-highlight">
-                    <td class="code">CT-001</td>
-                    <td>Camiseta básica</td>
-                    <td>Camiseta · M · Blanco</td>
-                    <td>3 materiales</td>
-                    <td class="num">$24.050</td>
-                  </tr>
-                  <tr>
-                    <td class="code">BL-002</td>
-                    <td>Blusa de lino</td>
-                    <td>Blusa · M · Arena</td>
-                    <td>4 materiales</td>
-                    <td class="num">$41.340</td>
-                  </tr>
-                  <tr>
-                    <td class="code">PT-003</td>
-                    <td>Pantalón confort</td>
-                    <td>Pantalón · M · Blanco</td>
-                    <td>4 materiales</td>
-                    <td class="num">$36.890</td>
-                  </tr>
-                </tbody>
+                <tbody id="refs-cuerpo"></tbody>
               </table>
             </div>
             <div class="notice-banner">
@@ -294,21 +252,23 @@
                 <path d="M12 8v5M12 16.5v.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
               </svg>
               <div>
-                <strong>Estimación exclusiva de materiales</strong>
-                <p>No incluye mano de obra, impuestos ni otros costos.</p>
+                <strong>Costo de materiales</strong>
+                <p>El costo por prenda no incluye mano de obra ni impuestos. La utilidad y el IVA se suman en cada cotización.</p>
               </div>
             </div>
           </section>
 
           <footer class="page-foot">
-            <p>Textiles Andina S.A.S. · Medellín</p>
-            <p>Moneda: COP · Valores de materiales</p>
+            <p></p>
+            <p>Moneda: COP</p>
           </footer>
         </main>
       </div>
     </div>
 
     <div class="toast" id="toast" hidden role="status"></div>
-    <script src="app-dashboard.js"></script>
+    <script type="module" src="app-dashboard.js"></script>
+    <script src="../sigmas-comun/menu.js"></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
   </body>
 </html>
