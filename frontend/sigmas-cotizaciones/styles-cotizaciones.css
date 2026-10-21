@@ -27,7 +27,7 @@
   margin-top: 16px;
   padding: 12px;
   border-radius: 16px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
 }
 
@@ -39,7 +39,7 @@
   border-radius: 12px;
   object-fit: cover;
   object-position: top;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
 }
 
 .ref-elegida-valor {
@@ -61,7 +61,7 @@
   border-radius: 8px;
   object-fit: cover;
   object-position: top;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
 }
 
 .cot-entradas {
@@ -123,7 +123,7 @@
   margin-top: 6px;
   padding: 10px 12px;
   border-radius: 12px;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
 }
 
 .cot-pasos .is-total dt {
@@ -159,7 +159,7 @@
   margin-bottom: 14px;
   padding: 12px 14px;
   border-radius: 14px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
   font-size: 0.86rem;
 }
@@ -213,7 +213,7 @@
 }
 
 .cot-tabla tbody tr:hover {
-  background: #f6f7fc;
+  background: var(--sig-surface-2);
 }
 
 .cot-ref {
@@ -291,7 +291,7 @@
     padding: 6px 14px;
     border: 1px solid var(--sig-line);
     border-radius: 14px;
-    background: #fff;
+    background: var(--sig-surface);
   }
 
   .cot-tabla td {

@@ -17,16 +17,12 @@ body {
 }
 
 html {
-  background: #d6d9ea;
+  background: var(--sig-fondo-html);
 }
 
-/* Fondo: degradé suave de Ube y Cadet Grey, visible pero sin cansar la vista */
+/* Fondo: degradé suave de Ube y Cadet Grey, visible pero sin cansar la vista (en oscuro, azul noche) */
 body {
-  background:
-    radial-gradient(900px 520px at 95% -5%, rgba(131, 135, 195, 0.55), transparent 65%),
-    radial-gradient(800px 500px at 10% 105%, rgba(58, 62, 108, 0.22), transparent 65%),
-    radial-gradient(700px 420px at 55% 45%, rgba(255, 255, 255, 0.55), transparent 70%),
-    linear-gradient(135deg, #f3f4fb 0%, #dfe1f1 35%, #c4c7e5 70%, #aeb2da 100%);
+  background: var(--sig-fondo);
   background-attachment: fixed;
   font-family: var(--sig-font);
   color: var(--sig-ink);
@@ -75,6 +71,61 @@ a {
   --sig-radius: 14px;
   --sig-font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
   --sidebar-w: 260px;
+
+  /* Superficies por función (las páginas usan estas en vez de colores fijos, así cambian con el modo oscuro) */
+  --sig-surface-2: #f3f4fa;    /* recuadros suaves dentro de una tarjeta */
+  --sig-surface-3: #e9eaf5;    /* fichas, etiquetas, hover */
+  --sig-glass: rgba(255, 255, 255, 0.82); /* barras semitransparentes */
+  --sig-boton: #0a1123;        /* fondo de botones principales y pestañas activas */
+  --sig-tinta-fija: #0a1123;   /* texto sobre el dorado: siempre oscuro */
+  --sig-aviso-fondo: #fbefcb;
+  --sig-aviso-texto: #6b4e00;
+  --sig-mal-fondo: #fdecea;
+  --sig-mal-texto: #b42318;
+  --sig-ok-fondo: #e3f5ea;
+  --sig-ok-texto: #1b7a43;
+  --sig-fondo-html: #d6d9ea;
+  --sig-fondo:
+    radial-gradient(900px 520px at 95% -5%, rgba(131, 135, 195, 0.55), transparent 65%),
+    radial-gradient(800px 500px at 10% 105%, rgba(58, 62, 108, 0.22), transparent 65%),
+    radial-gradient(700px 420px at 55% 45%, rgba(255, 255, 255, 0.55), transparent 70%),
+    linear-gradient(135deg, #f3f4fb 0%, #dfe1f1 35%, #c4c7e5 70%, #aeb2da 100%);
+  color-scheme: light;
+}
+
+/* ---------- Modo oscuro (sigmas-comun/modo.js pone data-theme en <html>) ---------- */
+:root[data-theme="oscuro"] {
+  --sig-navy: #eceefb;
+  --sig-ink: #e3e5f3;
+  --sig-accent: #a7abee;
+  --sig-accent-deep: #c6c9f6;
+  --sig-accent-soft: #6f73b8;
+  --sig-highlight-soft: #3b331c;
+  --sig-danger: #f07167;
+  --sig-success: #4cc38a;
+  --sig-muted: #a4a8c8;
+  --sig-muted-2: #c3c6df;
+  --sig-line: #2c3150;
+  --sig-line-strong: #3d4369;
+  --sig-surface: #171b2f;
+  --sig-surface-2: #1d2239;
+  --sig-surface-3: #272c49;
+  --sig-bg: #0f1222;
+  --sig-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --sig-glass: rgba(20, 24, 42, 0.86);
+  --sig-boton: #4c51a6;
+  --sig-aviso-fondo: #3b331c;
+  --sig-aviso-texto: #f2d488;
+  --sig-mal-fondo: #3d1f22;
+  --sig-mal-texto: #ff9e94;
+  --sig-ok-fondo: #183527;
+  --sig-ok-texto: #7fd8a6;
+  --sig-fondo-html: #0d1020;
+  --sig-fondo:
+    radial-gradient(900px 520px at 95% -5%, rgba(91, 95, 199, 0.28), transparent 65%),
+    radial-gradient(800px 500px at 10% 105%, rgba(58, 62, 108, 0.35), transparent 65%),
+    linear-gradient(135deg, #0d1020 0%, #121630 55%, #1a1e3e 100%);
+  color-scheme: dark;
 }
 
 .app-shell {
@@ -290,7 +341,7 @@ a {
 .nav-item.is-active {
   background: var(--sig-highlight);
   box-shadow: 0 6px 16px rgba(240, 199, 94, 0.35);
-  color: var(--sig-navy);
+  color: var(--sig-tinta-fija);
   font-weight: 700;
 }
 
@@ -328,7 +379,7 @@ a {
   margin: 4px 0 14px;
   border-radius: 12px;
   background: var(--sig-highlight);
-  color: var(--sig-navy);
+  color: var(--sig-tinta-fija);
   font-size: 0.95rem;
   font-weight: 700;
   box-shadow: 0 6px 16px rgba(240, 199, 94, 0.3);
@@ -373,7 +424,7 @@ a {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--sig-glass);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--sig-line);
   /* El desenfoque crea una capa propia: sin esto, el contenido de la página (el calendario, las tarjetas)
@@ -408,7 +459,7 @@ a {
 .chip {
   appearance: none;
   border: 1px solid var(--sig-line);
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
   border-radius: 999px;
   height: 34px;
@@ -420,7 +471,7 @@ a {
 .user-chip {
   appearance: none;
   border: 1px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   border-radius: 999px;
   height: 42px;
   padding: 0 10px 0 6px;
@@ -490,7 +541,7 @@ a {
 .btn-primary {
   appearance: none;
   border: 0;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   box-shadow: 0 6px 18px rgba(10, 17, 35, 0.22);
   transition: background 0.15s ease, transform 0.15s ease;
@@ -513,7 +564,7 @@ a {
 .btn-ghost {
   border-color: var(--sig-line-strong);
   color: var(--sig-navy);
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--sig-glass);
 }
 
 .btn-ghost:hover {
@@ -571,7 +622,7 @@ a {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   padding: 12px 16px;
   border-radius: 12px;
@@ -595,7 +646,7 @@ a {
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--sig-highlight-soft);
-  color: #6b4e00;
+  color: var(--sig-aviso-texto);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -734,7 +785,7 @@ a {
   height: 42px;
   border-radius: 50%;
   border: 1px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-navy);
   display: grid;
   place-items: center;
@@ -788,7 +839,7 @@ a {
   max-height: 70vh;
   overflow-y: auto;
   border-radius: 16px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
   box-shadow: 0 18px 40px rgba(10, 17, 35, 0.18);
 }
@@ -801,7 +852,7 @@ a {
   justify-content: space-between;
   gap: 10px;
   padding: 14px 16px;
-  background: #fff;
+  background: var(--sig-surface);
   border-bottom: 1px solid var(--sig-line);
   color: var(--sig-navy);
 }
@@ -831,11 +882,11 @@ a {
 }
 
 .alert-item a:hover {
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
 }
 
 .alert-item.is-unread a {
-  background: #fdf0ef;
+  background: var(--sig-mal-fondo);
 }
 
 .alert-type {
@@ -882,9 +933,9 @@ a {
   margin-bottom: 18px;
   padding: 14px 16px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #fffaf0 0%, var(--sig-highlight-soft) 100%);
-  border: 1px solid #efd9a0;
-  color: #6b4e00;
+  background: linear-gradient(135deg, var(--sig-aviso-fondo) 0%, var(--sig-highlight-soft) 100%);
+  border: 1px solid var(--sig-line-strong);
+  color: var(--sig-aviso-texto);
 }
 
 .profile-banner strong {
@@ -972,4 +1023,36 @@ svg {
   .alerts-panel {
     width: min(360px, calc(100vw - 32px));
   }
+}
+
+/* ---------- Botón de modo claro / oscuro (sigmas-comun/modo.js) ---------- */
+.modo-btn {
+  appearance: none;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--sig-line);
+  background: var(--sig-surface);
+  color: var(--sig-navy);
+  display: grid;
+  place-items: center;
+}
+
+.modo-btn:hover {
+  border-color: var(--sig-accent);
+}
+
+.modo-btn:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+/* En el inicio de sesión no hay barra superior: el botón flota arriba a la derecha */
+.modo-btn.is-flotante {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 50;
+  box-shadow: var(--sig-shadow);
 }

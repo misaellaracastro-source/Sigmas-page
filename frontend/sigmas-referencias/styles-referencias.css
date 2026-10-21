@@ -15,7 +15,7 @@
   padding: 4px;
   margin-bottom: 18px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--sig-glass);
   border: 1px solid var(--sig-line);
   max-width: 100%;
 }
@@ -41,7 +41,7 @@
 }
 
 .tab-btn.is-active {
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   box-shadow: 0 4px 12px rgba(10, 17, 35, 0.18);
 }
@@ -53,7 +53,7 @@
   padding: 0 6px;
   border-radius: 999px;
   background: var(--sig-highlight);
-  color: var(--sig-navy);
+  color: var(--sig-tinta-fija);
   display: inline-grid;
   place-items: center;
   font-size: 0.72rem;
@@ -61,7 +61,7 @@
 }
 
 .count-pill {
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
 }
 
 /* ---------- Pasos ---------- */
@@ -87,7 +87,7 @@
   padding: 0 14px;
   border-radius: 12px;
   border: 1px solid var(--sig-line);
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--sig-glass);
   color: var(--sig-muted);
   display: flex;
   align-items: center;
@@ -115,7 +115,7 @@
 
 .stepper button.is-done {
   color: var(--sig-accent);
-  background: #fff;
+  background: var(--sig-surface);
 }
 
 .stepper button.is-done span {
@@ -125,8 +125,8 @@
 }
 
 .stepper button.is-current {
-  background: var(--sig-navy);
-  border-color: var(--sig-navy);
+  background: var(--sig-boton);
+  border-color: var(--sig-boton);
   color: #fff;
 }
 
@@ -165,7 +165,7 @@
   margin: 18px 0 0;
   padding: 12px 14px;
   border-radius: 12px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
   font-size: 0.86rem;
 }
@@ -310,7 +310,7 @@
   height: 46px;
   border-radius: 12px;
   border: 1px solid var(--sig-line-strong);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   font-size: 0.94rem;
   padding: 0 12px;
@@ -411,7 +411,7 @@ select.form-control {
 
 .btn-ghost.is-danger:hover {
   border-color: var(--sig-danger);
-  background: #fdf0ef;
+  background: var(--sig-mal-fondo);
   color: var(--sig-danger);
 }
 
@@ -461,7 +461,7 @@ select.form-control {
   padding: 6px 40px 6px 12px;
   border-radius: 12px;
   border: 1px solid var(--sig-line-strong);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   display: flex;
   align-items: center;
@@ -488,7 +488,7 @@ select.form-control {
 }
 
 .pick-btn:disabled {
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   cursor: not-allowed;
 }
 
@@ -513,7 +513,7 @@ select.form-control {
   padding: 6px;
   list-style: none;
   border-radius: 14px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
   box-shadow: 0 18px 40px rgba(10, 17, 35, 0.16);
 }
@@ -530,11 +530,11 @@ select.form-control {
 
 .pick-list li.is-focused,
 .pick-list li[role="option"]:hover {
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
 }
 
 .pick-list li[aria-selected="true"] {
-  background: #eeeff8;
+  background: var(--sig-surface-3);
   box-shadow: inset 3px 0 0 var(--sig-accent);
 }
 
@@ -562,7 +562,7 @@ select.form-control {
   flex: 0 0 auto;
   border-radius: 10px;
   object-fit: cover;
-  background: #eceef6;
+  background: var(--sig-surface-3);
   border: 1px solid var(--sig-line);
   display: grid;
   place-items: center;
@@ -603,7 +603,7 @@ select.form-control {
   height: 20px;
   padding: 0 6px;
   border-radius: 999px;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
   color: var(--sig-navy);
   display: inline-grid;
   place-items: center;
@@ -616,7 +616,7 @@ select.form-control {
   margin-top: 16px;
   padding: 16px;
   border-radius: 16px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
   animation: aparecer 0.18s ease;
 }
@@ -642,7 +642,7 @@ select.form-control {
   min-height: 46px;
   padding: 8px 12px;
   border-radius: 12px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
 }
 
@@ -659,8 +659,8 @@ select.form-control {
 }
 
 .calc-box.is-total {
-  background: var(--sig-navy);
-  border-color: var(--sig-navy);
+  background: var(--sig-boton);
+  border-color: var(--sig-boton);
 }
 
 .calc-box.is-total span {
@@ -699,7 +699,7 @@ select.form-control {
   height: 40px;
   border-radius: 10px;
   border: 1px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-muted-2);
   display: grid;
   place-items: center;
@@ -736,7 +736,7 @@ select.form-control {
   gap: 14px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
 }
 
@@ -771,7 +771,7 @@ select.form-control {
 .desc-grupo {
   padding: 14px;
   border-radius: 16px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
 }
 
@@ -791,7 +791,7 @@ select.form-control {
   height: 32px;
   border-radius: 50%;
   background: var(--sig-highlight);
-  color: var(--sig-navy);
+  color: var(--sig-tinta-fija);
   display: grid;
   place-items: center;
   font-size: 0.84rem;
@@ -838,15 +838,15 @@ select.form-control {
   padding: 10px 14px;
   border-radius: 12px;
   background: var(--sig-highlight-soft);
-  border: 1px solid #efd9a0;
-  color: #6b4e00;
+  border: 1px solid var(--sig-line-strong);
+  color: var(--sig-aviso-texto);
   font-size: 0.88rem;
   font-weight: 600;
 }
 
 .borrador-aviso .link-btn {
   margin: 0;
-  color: #6b4e00;
+  color: var(--sig-aviso-texto);
 }
 
 /* ---------- Valor de la prenda ---------- */
@@ -923,7 +923,7 @@ select.form-control {
   margin: 0;
   padding: 12px;
   border-radius: 16px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
 }
 
@@ -980,7 +980,7 @@ select.form-control {
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
   overflow: hidden;
   transition: box-shadow 0.15s ease, transform 0.15s ease;
@@ -996,7 +996,7 @@ select.form-control {
   border: 0;
   padding: 0;
   aspect-ratio: 4 / 5;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   overflow: hidden;
 }
 
@@ -1043,7 +1043,7 @@ select.form-control {
 .ref-chips span {
   padding: 3px 8px;
   border-radius: 999px;
-  background: #eeeff8;
+  background: var(--sig-surface-3);
   color: var(--sig-muted-2);
   font-size: 0.72rem;
   font-weight: 650;
@@ -1096,7 +1096,7 @@ select.form-control {
   padding: 0;
   border: 0;
   border-radius: 20px;
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   box-shadow: 0 24px 60px rgba(10, 17, 35, 0.3);
 }
@@ -1159,7 +1159,7 @@ select.form-control {
   width: 100%;
   border-radius: 12px;
   border: 1px solid var(--sig-line);
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
 }
 
 .det-foot {
@@ -1169,7 +1169,7 @@ select.form-control {
   gap: 10px;
   padding: 14px 22px;
   border-top: 1px solid var(--sig-line);
-  background: #fbfbfe;
+  background: var(--sig-surface);
 }
 
 #det-eliminar {
@@ -1182,7 +1182,7 @@ select.form-control {
   padding: 0;
   border: 0;
   border-radius: 18px;
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   box-shadow: 0 24px 60px rgba(10, 17, 35, 0.3);
 }
@@ -1195,7 +1195,7 @@ select.form-control {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #fdf0ef;
+  background: var(--sig-mal-fondo);
   color: var(--sig-danger);
   display: grid;
   place-items: center;
@@ -1220,7 +1220,7 @@ select.form-control {
   padding: 10px 12px;
   border-radius: 10px;
   background: var(--sig-highlight-soft);
-  color: #6b4e00;
+  color: var(--sig-aviso-texto);
   font-size: 0.82rem;
 }
 

@@ -11,7 +11,7 @@ body {
 }
 
 html {
-  background: #d6d9ea;
+  background: var(--sig-surface-3);
 }
 
 /* Fondo: degradé suave de Ube y Cadet Grey, visible pero sin cansar la vista */
@@ -19,8 +19,8 @@ body {
   background:
     radial-gradient(900px 520px at 95% -5%, rgba(131, 135, 195, 0.55), transparent 65%),
     radial-gradient(800px 500px at 10% 105%, rgba(58, 62, 108, 0.22), transparent 65%),
-    radial-gradient(700px 420px at 55% 45%, rgba(255, 255, 255, 0.55), transparent 70%),
-    linear-gradient(135deg, #f3f4fb 0%, #dfe1f1 35%, #c4c7e5 70%, #aeb2da 100%);
+    radial-gradient(700px 420px at 55% 45%, var(--sig-glass), transparent 70%),
+    linear-gradient(135deg, var(--sig-surface-2) 0%, #dfe1f1 35%, #c4c7e5 70%, #aeb2da 100%);
   background-attachment: fixed;
 }
 
@@ -229,7 +229,7 @@ body {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.78);
+  background: var(--sig-glass);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--sig-line);
 }
@@ -260,7 +260,7 @@ body {
 .chip {
   appearance: none;
   border: 1px solid var(--sig-line);
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
   border-radius: 999px;
   height: 34px;
@@ -272,7 +272,7 @@ body {
 .user-chip {
   appearance: none;
   border: 1px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   border-radius: 999px;
   height: 42px;
   padding: 0 10px 0 6px;
@@ -286,7 +286,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
   color: var(--sig-accent);
   display: grid;
   place-items: center;
@@ -341,7 +341,7 @@ body {
 .btn-primary {
   appearance: none;
   border: 0;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   box-shadow: 0 6px 18px rgba(10, 17, 35, 0.22);
   transition: background 0.15s ease, transform 0.15s ease;
@@ -425,7 +425,7 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 10px;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
   color: var(--sig-accent);
   display: grid;
   place-items: center;
@@ -525,7 +525,7 @@ body {
 .bar {
   height: 8px;
   border-radius: 999px;
-  background: #e4e5f0;
+  background: var(--sig-surface-3);
   overflow: hidden;
 }
 
@@ -661,7 +661,7 @@ body {
 }
 
 .data-table tr.is-highlight {
-  background: #eeeff8;
+  background: var(--sig-surface-3);
 }
 
 .data-table tr.is-highlight td:first-child {
@@ -676,8 +676,8 @@ body {
   margin-top: 14px;
   padding: 12px 14px;
   border-radius: 12px;
-  background: #e9eaf5;
-  color: #3a3e6c;
+  background: var(--sig-surface-3);
+  color: var(--sig-accent);
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -692,7 +692,7 @@ body {
 .notice-banner p {
   margin: 0;
   font-size: 0.8rem;
-  color: #575b80;
+  color: var(--sig-muted);
 }
 
 .page-foot {
@@ -708,7 +708,7 @@ body {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   padding: 12px 16px;
   border-radius: 12px;
@@ -846,7 +846,7 @@ body {
   margin: 0 0 16px;
   padding: 12px 14px;
   border-radius: 12px;
-  background: #fde8e6;
+  background: var(--sig-mal-fondo);
   color: var(--dash-bajo);
   font-weight: 650;
 }
@@ -873,7 +873,7 @@ body {
 }
 
 .g-rejilla {
-  stroke: #eceef5;
+  stroke: var(--sig-line);
   stroke-width: 1;
 }
 
@@ -931,7 +931,7 @@ body {
   min-width: 150px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   font-size: 0.8rem;
   pointer-events: none;
@@ -972,7 +972,7 @@ body {
   border-radius: 12px;
   object-fit: cover;
   object-position: top;
-  background: #fff;
+  background: var(--sig-surface);
 }
 
 /* Materiales */
@@ -1003,7 +1003,7 @@ body {
 .agenda-chip {
   padding: 4px 10px;
   border-radius: 999px;
-  background: #eeeff8;
+  background: var(--sig-surface-3);
   color: var(--sig-muted-2);
   font-size: 0.76rem;
   font-weight: 700;
@@ -1011,12 +1011,12 @@ body {
 }
 
 .agenda-chip.is-mal {
-  background: #fde8e6;
+  background: var(--sig-mal-fondo);
   color: var(--dash-bajo);
 }
 
 .agenda-chip.is-aviso {
-  background: #fff3cf;
+  background: var(--sig-aviso-fondo);
   color: var(--dash-aviso);
 }
 
@@ -1040,7 +1040,7 @@ body {
 }
 
 .agenda-item:hover {
-  background: #f8f9fd;
+  background: var(--sig-surface-2);
 }
 
 .agenda-item:focus-visible {
@@ -1085,7 +1085,7 @@ body {
   margin-left: auto;
   padding: 3px 8px;
   border-radius: 999px;
-  background: #fde8e6;
+  background: var(--sig-mal-fondo);
   color: var(--dash-bajo);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1106,7 +1106,7 @@ body {
   border-radius: 8px;
   object-fit: cover;
   object-position: top;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
 }
 
 @media (max-width: 1100px) {

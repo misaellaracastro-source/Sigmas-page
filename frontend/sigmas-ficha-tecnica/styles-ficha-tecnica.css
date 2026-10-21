@@ -18,7 +18,7 @@
   border-radius: 8px;
   object-fit: cover;
   object-position: top;
-  background: #e4e5f3;
+  background: var(--sig-surface-3);
 }
 
 /* ---------- Tallas y procesos ---------- */
@@ -49,7 +49,7 @@
   align-items: start;
   padding: 12px;
   border-radius: 14px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
 }
 
@@ -62,7 +62,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   display: grid;
   place-items: center;
@@ -100,7 +100,7 @@
   margin: 10px 0 12px;
   padding: 10px;
   border-radius: 14px;
-  background: #f3f4fa;
+  background: var(--sig-surface-2);
   border: 1px solid var(--sig-line);
 }
 

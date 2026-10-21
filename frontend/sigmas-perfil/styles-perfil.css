@@ -81,7 +81,7 @@
   gap: 6px;
   padding: 4px 10px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-navy);
   font-size: 0.76rem;
   font-weight: 700;
@@ -123,7 +123,7 @@
   margin-bottom: 16px;
   padding: 14px 16px;
   border-radius: 14px;
-  background: #e3f3ea;
+  background: var(--sig-ok-fondo);
   border: 1px solid #b9dfc9;
   color: #165a39;
   font-size: 0.9rem;
@@ -164,7 +164,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: var(--sig-highlight);
   display: grid;
   place-items: center;
@@ -207,7 +207,7 @@
   height: 46px;
   border-radius: 12px;
   border: 1px solid var(--sig-line-strong);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   font-size: 0.94rem;
   padding: 0 12px;
@@ -231,11 +231,11 @@
 
 .form-control.is-missing {
   border-color: var(--sig-highlight);
-  background: #fffdf5;
+  background: var(--sig-surface);
 }
 
 .form-control:read-only {
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
   cursor: not-allowed;
 }
@@ -273,7 +273,7 @@
   padding: 0 10px;
   border: 0;
   border-radius: 8px;
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-accent);
   font-size: 0.78rem;
   font-weight: 700;
@@ -308,7 +308,7 @@
   flex: 0 0 auto;
   border-radius: 16px;
   border: 2px dashed var(--sig-line-strong);
-  background: #f8f8fc;
+  background: var(--sig-surface);
   color: var(--sig-muted);
   display: grid;
   place-items: center;
@@ -324,12 +324,12 @@
 
 .upload:hover {
   border-color: var(--sig-accent);
-  background: #eeeff8;
+  background: var(--sig-surface-3);
 }
 
 .upload.has-image {
   border-style: solid;
-  background: #fff;
+  background: var(--sig-surface);
 }
 
 .upload img {

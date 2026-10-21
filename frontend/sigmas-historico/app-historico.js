@@ -331,6 +331,8 @@ $("est-grafica").addEventListener("keydown", (event) => {
   }
 });
 new ResizeObserver(() => filas.length && estadistica.periodos.length && pintarEstadistica()).observe($("est-grafica"));
+// Al cambiar entre modo claro y oscuro, la gráfica toma los colores del modo nuevo
+window.addEventListener("sigmas:modo", () => filas.length && estadistica.periodos.length && pintarEstadistica());
 
 // Filas de la estadística para Excel y PDF
 const filasEstadistica = () =>

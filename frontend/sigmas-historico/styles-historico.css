@@ -35,12 +35,12 @@
 }
 
 .file-badge.is-excel {
-  background: #e3f5ea;
-  color: #1b7a43;
+  background: var(--sig-ok-fondo);
+  color: var(--sig-ok-texto);
 }
 
 .file-badge.is-pdf {
-  background: #fde8e6;
+  background: var(--sig-mal-fondo);
   color: #b42318;
 }
 
@@ -58,7 +58,7 @@
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-muted-2);
   font: inherit;
   font-size: 0.82rem;
@@ -67,8 +67,8 @@
 }
 
 .hi-rapido[aria-pressed="true"] {
-  background: var(--sig-navy);
-  border-color: var(--sig-navy);
+  background: var(--sig-boton);
+  border-color: var(--sig-boton);
   color: #fff;
 }
 
@@ -117,7 +117,7 @@
   padding: 0 12px;
   border-radius: 10px;
   border: 1.5px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-muted);
   font-size: 0.84rem;
   font-weight: 650;
@@ -134,7 +134,7 @@
 
 .hi-chip input:checked + span {
   border-color: var(--color-sec);
-  background: color-mix(in srgb, var(--color-sec) 9%, #fff);
+  background: color-mix(in srgb, var(--color-sec) 9%, var(--sig-surface));
   color: var(--sig-navy);
 }
 
@@ -159,7 +159,7 @@
 .hi-tarjeta {
   padding: 14px 16px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--sig-surface);
   border: 1px solid var(--sig-line);
   border-top: 4px solid var(--color-sec);
   box-shadow: var(--sig-shadow);
@@ -233,7 +233,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   box-shadow: 0 0 0 3px #fff;
 }
 
@@ -251,13 +251,13 @@
   border-radius: 12px;
   border: 1px solid var(--sig-line);
   border-left: 4px solid var(--color-sec);
-  background: #fff;
+  background: var(--sig-surface);
   color: inherit;
   text-decoration: none;
 }
 
 .hi-item:hover {
-  background: #f8f9fd;
+  background: var(--sig-surface-2);
 }
 
 .hi-item:focus-visible {
@@ -311,7 +311,7 @@
 .hi-estado {
   padding: 3px 10px;
   border-radius: 999px;
-  background: #eeeff8;
+  background: var(--sig-surface-3);
   color: var(--sig-muted-2);
   font-size: 0.74rem;
   font-weight: 700;
@@ -319,17 +319,17 @@
 }
 
 .hi-estado.is-bien {
-  background: #e3f5ea;
-  color: #1b7a43;
+  background: var(--sig-ok-fondo);
+  color: var(--sig-ok-texto);
 }
 
 .hi-estado.is-proceso {
-  background: #fff3cf;
-  color: #8a6100;
+  background: var(--sig-aviso-fondo);
+  color: var(--sig-aviso-texto);
 }
 
 .hi-estado.is-mal {
-  background: #fde8e6;
+  background: var(--sig-mal-fondo);
   color: #b42318;
 }
 
@@ -380,7 +380,7 @@
 }
 
 .est-rejilla {
-  stroke: #eceef5;
+  stroke: var(--sig-line);
   stroke-width: 1;
 }
 
@@ -427,7 +427,7 @@
   min-width: 170px;
   padding: 9px 12px;
   border-radius: 10px;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   font-size: 0.8rem;
   pointer-events: none;
@@ -502,4 +502,9 @@
 
 .hi-estadistica[hidden] {
   display: none;
+}
+
+/* Modo oscuro: el morado de Referencias un paso más claro (contraste ≥ 3:1 sobre el fondo oscuro, validado) */
+:root[data-theme="oscuro"] {
+  --sec-referencia: #6366f1;
 }

@@ -60,7 +60,7 @@
   padding: 0 14px;
   border-radius: 12px;
   border: 1.5px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-muted-2);
   font-size: 0.88rem;
   font-weight: 650;
@@ -149,7 +149,7 @@
   padding: 14px 16px;
   border-radius: 16px;
   border: 1.5px solid var(--sig-line);
-  background: #fff;
+  background: var(--sig-surface);
   cursor: pointer;
 }
 
@@ -189,7 +189,7 @@
   padding: 22px 16px;
   border-radius: 16px;
   border: 1.5px dashed var(--sig-line-strong);
-  background: #f8f9fd;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
   text-align: center;
   cursor: pointer;
@@ -197,8 +197,8 @@
 
 .archivo-drop:hover,
 .archivo-drop.is-over {
-  border-color: var(--sig-navy);
-  background: #f0f1fa;
+  border-color: var(--sig-boton);
+  background: var(--sig-surface-2);
 }
 
 .archivo-drop.is-bad {
@@ -308,7 +308,7 @@
     padding: 6px 14px;
     border: 1px solid var(--sig-line);
     border-radius: 14px;
-    background: #fff;
+    background: var(--sig-surface);
   }
 
   .fa-tabla td {
@@ -345,4 +345,14 @@
     justify-content: center;
     margin: 0;
   }
+}
+
+/* Modo oscuro: los colores de estado con fondos oscuros y texto claro (mismo verde, amarillo y rojo) */
+:root[data-theme="oscuro"] {
+  --estado-pagada: var(--sig-ok-texto);
+  --estado-pagada-fondo: var(--sig-ok-fondo);
+  --estado-proceso: var(--sig-aviso-texto);
+  --estado-proceso-fondo: var(--sig-aviso-fondo);
+  --estado-vencida: var(--sig-mal-texto);
+  --estado-vencida-fondo: var(--sig-mal-fondo);
 }

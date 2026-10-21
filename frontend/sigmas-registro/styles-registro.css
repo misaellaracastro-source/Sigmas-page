@@ -14,7 +14,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -130,7 +130,7 @@
   max-width: 560px;
   padding: 28px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--sig-glass);
   border: 1px solid var(--sig-line);
   box-shadow: 0 20px 50px rgba(58, 62, 108, 0.14);
 }
@@ -172,7 +172,7 @@
 }
 
 .auth-tab.is-active::after {
-  background: var(--sig-navy);
+  background: var(--sig-boton);
 }
 
 .notice {
@@ -180,13 +180,13 @@
   padding: 12px 14px;
   border-radius: 12px;
   background: var(--sig-highlight-soft);
-  color: #6b4e00;
+  color: var(--sig-aviso-texto);
   font-size: 0.88rem;
   line-height: 1.45;
 }
 
 .notice.is-error {
-  background: #fdf0ef;
+  background: var(--sig-mal-fondo);
   color: var(--sig-danger);
 }
 
@@ -207,7 +207,7 @@
   height: 46px;
   border-radius: 12px;
   border: 1px solid var(--sig-line-strong);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-navy);
   display: inline-flex;
   align-items: center;
@@ -274,7 +274,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--sig-navy);
+  background: var(--sig-boton);
   color: var(--sig-highlight);
   display: grid;
   place-items: center;
@@ -313,7 +313,7 @@
   height: 46px;
   border-radius: 12px;
   border: 1px solid var(--sig-line-strong);
-  background: #fff;
+  background: var(--sig-surface);
   color: var(--sig-ink);
   font-size: 0.94rem;
   padding: 0 12px;
@@ -336,7 +336,7 @@
 }
 
 .form-control:read-only {
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-muted-2);
 }
 
@@ -373,7 +373,7 @@
   padding: 0 10px;
   border: 0;
   border-radius: 8px;
-  background: #f1f2f8;
+  background: var(--sig-surface-2);
   color: var(--sig-accent);
   font-size: 0.78rem;
   font-weight: 700;
@@ -402,7 +402,7 @@
   flex: 0 0 auto;
   border-radius: 16px;
   border: 2px dashed var(--sig-line-strong);
-  background: #f8f8fc;
+  background: var(--sig-surface);
   color: var(--sig-muted);
   display: grid;
   place-items: center;
@@ -418,12 +418,12 @@
 
 .upload:hover {
   border-color: var(--sig-accent);
-  background: #eeeff8;
+  background: var(--sig-surface-3);
 }
 
 .upload.has-image {
   border-style: solid;
-  background: #fff;
+  background: var(--sig-surface);
 }
 
 .upload img {
@@ -442,7 +442,7 @@
   height: 6px;
   margin-top: 14px;
   border-radius: 999px;
-  background: #e4e5f0;
+  background: var(--sig-surface-3);
   overflow: hidden;
 }
 
@@ -598,4 +598,10 @@
   .span-2 {
     grid-column: auto;
   }
+}
+
+/* El botón de Google es un iframe: con la página en modo oscuro el navegador lo pintaría con fondo blanco.
+   Con el esquema claro se mantiene transparente. */
+.google-btn iframe {
+  color-scheme: light;
 }
