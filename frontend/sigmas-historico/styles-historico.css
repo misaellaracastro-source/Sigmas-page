@@ -6,7 +6,7 @@
 
 :root {
   --sec-referencia: #4f46e5;
-  --sec-cotizacion: #0f766e;
+  --sec-cotizacion: #0d9488; /* validado: croma y separación para daltonismo */
   --sec-ficha: #9333ea;
   --sec-factura: #d97706;
   --sec-pendiente: #2563eb;
@@ -333,6 +333,130 @@
   color: #b42318;
 }
 
+/* ---------- Estadística: movimientos en el tiempo ---------- */
+.hi-estadistica .hi-cabecera {
+  align-items: flex-start;
+}
+
+.hi-estadistica .panel-sub {
+  margin: 4px 0 0;
+}
+
+.est-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.est-leyenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sig-muted-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* La muestra de color va junto al texto; el texto nunca lleva el color de la serie */
+.est-muestra {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--color-sec);
+}
+
+.est-grafica {
+  position: relative;
+  margin-top: 8px;
+}
+
+.est-grafica svg {
+  display: block;
+  max-width: none;
+}
+
+.est-rejilla {
+  stroke: #eceef5;
+  stroke-width: 1;
+}
+
+.est-base {
+  stroke: var(--sig-line-strong);
+  stroke-width: 1;
+}
+
+.est-eje {
+  fill: var(--sig-muted);
+  font-size: 11px;
+  font-family: var(--sig-font);
+}
+
+.est-valor {
+  fill: var(--sig-navy);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--sig-font);
+}
+
+.est-zona {
+  fill: transparent;
+}
+
+.est-col {
+  outline: none;
+}
+
+.est-col.is-activa .est-zona {
+  fill: rgba(58, 62, 108, 0.06);
+}
+
+.est-col:focus-visible .est-zona {
+  stroke: var(--sig-highlight);
+  stroke-width: 2;
+}
+
+.est-tooltip {
+  position: absolute;
+  top: 0;
+  display: grid;
+  gap: 3px;
+  min-width: 170px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--sig-navy);
+  color: #fff;
+  font-size: 0.8rem;
+  pointer-events: none;
+  box-shadow: 0 10px 24px rgba(10, 17, 35, 0.25);
+  z-index: 2;
+}
+
+.est-tooltip span {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.est-tooltip small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #dfe1f2;
+}
+
+.est-tooltip .est-muestra {
+  box-shadow: 0 0 0 1.5px #fff;
+}
+
+@media (max-width: 720px) {
+  .hi-estadistica .hi-cabecera {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 1100px) {
   .hi-resumen {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -374,4 +498,8 @@
   .hi-dia::before {
     left: 4px;
   }
+}
+
+.hi-estadistica[hidden] {
+  display: none;
 }

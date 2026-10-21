@@ -250,12 +250,25 @@ router.post('/imagen-ia', async (req, res) => {
         let materias = [];
         if (ids.length) {
             const [filas] = await connection.query(
-                'SELECT id_materia, nombre, color, composicion FROM materia_prima WHERE nit_usuario = ? AND id_materia IN (?)',
+                'SELECT id_materia, nombre, color, composicion, tipo_tejido FROM materia_prima WHERE nit_usuario = ? AND id_materia IN (?)',
                 [nitEmpresa(req), ids],
             );
             materias = ids.map((id) => filas.find((f) => f.id_materia === id)).filter(Boolean);
         }
-        const insumos = (Array.isArray(body.insumos) ? body.insumos : []).map((i) => ({ nombre: texto(i?.nombre) })).filter((i) => i.nombre);
+        // Insumos con su cantidad por prenda; la categoría se toma del inventario ("Botones", "Cremalleras"…)
+        const listaInsumos = (Array.isArray(body.insumos) ? body.insumos : []).slice(0, 12);
+        const idsInsumos = listaInsumos.map((i) => texto(i?.id_insumo)).filter(Boolean);
+        const [categorias] = idsInsumos.length
+            ? await connection.query('SELECT id_insumo, categoria FROM insumo WHERE nit_usuario = ? AND id_insumo IN (?)', [nitEmpresa(req), idsInsumos])
+            : [[]];
+        const insumos = listaInsumos
+            .map((i) => ({
+                nombre: texto(i?.nombre),
+                categoria: categorias.find((c) => c.id_insumo === texto(i?.id_insumo))?.categoria || '',
+                cantidad: Number(i?.cantidad) || 0,
+                unidad: texto(i?.unidad),
+            }))
+            .filter((i) => i.nombre);
         const descripciones = (Array.isArray(body.descripciones) ? body.descripciones : [])
             .map((d) => ({ nombre: texto(d?.nombre), descripcion: texto(d?.descripcion) }))
             .filter((d) => d.nombre || d.descripcion);

@@ -143,15 +143,24 @@ function inventarioSeleccionado() {
   return form.querySelector('input[name="tipo_inventario"]:checked')?.value || "";
 }
 
+// Proveedor: actividad obligatoria y tipo de inventario. Tercero: actividad opcional. Cliente: ninguno.
+function mostrarCamposTipo(tipo) {
+  const esProveedor = tipo === "Proveedor";
+  const esTercero = tipo === "Tercero";
+  providerBox.hidden = !esProveedor && !esTercero;
+  document.getElementById("provider-title").textContent = esTercero ? "Datos del tercero" : "Datos del proveedor";
+  document.getElementById("actividad-req").hidden = esTercero;
+  document.getElementById("actividad-hint").hidden = !esTercero;
+  document.getElementById("actividad").placeholder = esTercero ? "Ej: Taller de confección satélite" : "Ej: Fabricación de hilos y cintas";
+  document.getElementById("inventario-campo").hidden = !esProveedor;
+  if (!esProveedor) setError("tipo_inventario", "");
+  if (!esProveedor && !esTercero) setError("actividad", "");
+}
+
 form.querySelectorAll('input[name="tipo"]').forEach((radio) => {
   radio.addEventListener("change", () => {
     setError("tipo", "");
-    const esProveedor = tipoSeleccionado() === "Proveedor";
-    providerBox.hidden = !esProveedor;
-    if (!esProveedor) {
-      setError("actividad", "");
-      setError("tipo_inventario", "");
-    }
+    mostrarCamposTipo(tipoSeleccionado());
   });
 });
 
@@ -252,10 +261,9 @@ form.addEventListener("submit", async (event) => {
     mostrarErrores(errores);
     return;
   }
-  if (datos.tipo !== "Proveedor") {
-    datos.actividad = "";
-    datos.tipo_inventario = "";
-  }
+  // La actividad se guarda para proveedores y terceros; el tipo de inventario, solo para proveedores
+  if (datos.tipo !== "Proveedor") datos.tipo_inventario = "";
+  if (datos.tipo !== "Proveedor" && datos.tipo !== "Tercero") datos.actividad = "";
 
   const esEdicion = Boolean(editando);
   guardarBtn.disabled = true;
@@ -294,7 +302,7 @@ function reiniciarFormulario() {
   form.reset();
   limpiarErrores();
   identificacionInput.classList.remove("is-ok");
-  providerBox.hidden = true;
+  mostrarCamposTipo("");
   actualizarAyudaIdentificacion();
   identificacionInput.focus();
 }
@@ -320,7 +328,7 @@ function iniciarEdicion(vinculado) {
     document.getElementById(campo).value = vinculado[campo] || "";
   });
   form.querySelector(`input[name="tipo"][value="${vinculado.tipo}"]`).checked = true;
-  providerBox.hidden = vinculado.tipo !== "Proveedor";
+  mostrarCamposTipo(vinculado.tipo);
   document.getElementById("actividad").value = vinculado.actividad || "";
   const inventario = form.querySelector(`input[name="tipo_inventario"][value="${vinculado.tipo_inventario}"]`);
   if (inventario) inventario.checked = true;
@@ -495,7 +503,9 @@ function renderTabla() {
           <td data-label="Actividad">${
             v.tipo === "Proveedor"
               ? `${escapeHtml(v.actividad)}<span class="inv-tag">${escapeHtml(v.tipo_inventario)}</span>`
-              : '<span class="cell-muted">—</span>'
+              : v.actividad
+                ? escapeHtml(v.actividad)
+                : '<span class="cell-muted">—</span>'
           }</td>
           <td class="cell-actions" data-label="Acciones">
             <div class="row-actions">

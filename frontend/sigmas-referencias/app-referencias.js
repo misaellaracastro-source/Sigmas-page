@@ -661,13 +661,13 @@ async function pedirFotoIA() {
       body: JSON.stringify({
         tipo: datosImagen.tipo,
         materias: nueva.materias.map(({ id_materia }) => ({ id_materia })),
-        insumos: nueva.insumos.map(({ nombre }) => ({ nombre })),
+        insumos: nueva.insumos.map(({ id_insumo, nombre, cantidad, unidad }) => ({ id_insumo, nombre, cantidad, unidad })),
         descripciones: datosImagen.descripciones,
       }),
     });
     fotoIA = imagen;
     firmaFotoIA = firmaPrenda();
-    $("imagen-origen").textContent = "Foto creada con IA (FLUX) a partir del tipo, las telas, los insumos y las descripciones.";
+    $("imagen-origen").textContent = "Foto creada con IA (FLUX.2) a partir del tipo, las telas, los insumos y las descripciones.";
   } catch (error) {
     fotoIA = "";
     firmaFotoIA = "";

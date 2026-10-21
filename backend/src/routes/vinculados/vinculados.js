@@ -54,10 +54,14 @@ function validarVinculado(body) {
     if (!datos.ciudad || datos.ciudad.length > 60) errores.ciudad = 'Escribe la ciudad (máximo 60 caracteres).';
     if (!TIPOS.includes(datos.tipo)) errores.tipo = 'Elige proveedor, cliente o tercero.';
 
-    // Actividad y tipo de inventario solo aplican a proveedores
+    // Proveedor: actividad obligatoria y tipo de inventario. Tercero: actividad opcional. Cliente: ninguno.
     if (datos.tipo === 'Proveedor') {
         if (!datos.actividad || datos.actividad.length > 100) errores.actividad = 'Escribe la actividad del proveedor (máximo 100 caracteres).';
         if (!TIPOS_INVENTARIO.includes(datos.tipo_inventario)) errores.tipo_inventario = 'Elige insumo o materia prima.';
+    } else if (datos.tipo === 'Tercero') {
+        if (datos.actividad.length > 100) errores.actividad = 'La actividad admite máximo 100 caracteres.';
+        datos.actividad = datos.actividad || null;
+        datos.tipo_inventario = null;
     } else {
         datos.actividad = null;
         datos.tipo_inventario = null;

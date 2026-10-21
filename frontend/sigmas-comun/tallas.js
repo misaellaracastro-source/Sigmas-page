@@ -1,7 +1,12 @@
 // Tallas: lista con las tallas comunes y las que la empresa ya usó,
 // más "Otra talla…" para escribir una que no esté en la lista.
 // La usan la talla de la marquilla (Inventario) y las tallas de la tela (Referencias).
-const TALLAS_BASE = ["XS", "S", "M", "L", "XL", "XXL", "Única", "2", "4", "6", "8", "10", "12", "14", "16"];
+// Letras (adulto), números de pantalón/jean (28 a 48) y números de niño (6 a 22), en ese orden
+const TALLAS_BASE = [
+  "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL",
+  "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48",
+  "6", "8", "10", "12", "14", "16", "18", "20", "22",
+];
 const OTRA = "__otra__";
 
 let usadas = [];
