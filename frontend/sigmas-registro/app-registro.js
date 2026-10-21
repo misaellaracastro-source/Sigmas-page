@@ -77,11 +77,19 @@ async function api(ruta, datos) {
   return respuesta;
 }
 
-// Guarda la sesión y abre el dashboard. Si faltan datos de la empresa (cuenta nueva con Google),
-// el dashboard muestra el aviso "Completa el perfil de tu empresa"; no se obliga a llenarlo.
+// Página a la que se quería ir antes de iniciar sesión (por ejemplo, el enlace de un correo de alerta).
+// Solo se aceptan páginas de este mismo sitio ("/sigmas-…"), nunca otra dirección.
+function paginaDestino() {
+  const siguiente = new URLSearchParams(location.search).get("siguiente") || "";
+  const valida = /^\/(?!\/)(?:[^\\:?#]*\/)?sigmas-[a-z-]+\/[a-z-]+\.html([?#].*)?$/i.test(siguiente) && !siguiente.includes("/sigmas-registro/");
+  return valida ? siguiente : DASHBOARD;
+}
+
+// Guarda la sesión y abre la página pendiente o el dashboard. Si faltan datos de la empresa (cuenta nueva con Google),
+// cada página muestra el aviso "Completa el perfil de tu empresa"; no se obliga a llenarlo.
 function entrar({ token, usuario }) {
   localStorage.setItem(CLAVE_SESION, JSON.stringify({ token, usuario }));
-  window.location.replace(DASHBOARD);
+  window.location.replace(paginaDestino());
 }
 
 async function conBoton(boton, texto, tarea) {
@@ -392,9 +400,9 @@ async function iniciarGoogle() {
 
 /* ---------- Inicio ---------- */
 
-// Si ya hay sesión, va directo al dashboard
+// Si ya hay sesión, va directo a la página pendiente o al dashboard
 try {
-  if (JSON.parse(localStorage.getItem(CLAVE_SESION) || "null")?.token) window.location.replace(DASHBOARD);
+  if (JSON.parse(localStorage.getItem(CLAVE_SESION) || "null")?.token) window.location.replace(paginaDestino());
 } catch {
   localStorage.removeItem(CLAVE_SESION);
 }

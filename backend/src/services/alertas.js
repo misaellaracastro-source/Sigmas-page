@@ -9,7 +9,10 @@ function escapar(texto) {
     return String(texto ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 }
 
-const urlApp = (ruta) => `${process.env.APP_URL || `http://localhost:${process.env.PORT || 7000}`}${ruta}`;
+// Dirección pública para los enlaces de los correos: APP_URL; en Render, si falta, la que Render pone sola
+// (RENDER_EXTERNAL_URL); en el computador, localhost. Sin "/" al final para no duplicarla.
+const urlApp = (ruta) =>
+    `${(process.env.APP_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${process.env.PORT || 7000}`).replace(/\/+$/, '')}${ruta}`;
 
 // Sin el punto final de "a. m." para que la frase no termine en ".."
 function fechaTexto(fecha, conHora = false) {

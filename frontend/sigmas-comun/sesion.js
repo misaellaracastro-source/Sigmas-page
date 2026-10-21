@@ -16,17 +16,22 @@
     sesion = null;
   }
 
-  function salir(motivo = "") {
+  // volver: recuerda la página actual (por ejemplo, la de un enlace de un correo) para abrirla después de iniciar sesión.
+  // Al cerrar sesión a propósito no se recuerda.
+  function salir(motivo = "", { volver = false } = {}) {
     try {
       localStorage.removeItem(CLAVE);
     } catch {
       // sin acceso al almacenamiento: igual se va al inicio de sesión
     }
-    window.location.replace(LOGIN + (motivo ? `?motivo=${motivo}` : ""));
+    const parametros = new URLSearchParams();
+    if (motivo) parametros.set("motivo", motivo);
+    if (volver) parametros.set("siguiente", window.location.pathname + window.location.search + window.location.hash);
+    window.location.replace(LOGIN + (parametros.size ? `?${parametros}` : ""));
   }
 
   if (!sesion?.token) {
-    salir();
+    salir("", { volver: true });
     return;
   }
 
@@ -41,7 +46,7 @@
       ...opciones,
       headers: { ...(opciones.headers || {}), Authorization: `Bearer ${sesion.token}` },
     });
-    if (res.status === 401) salir("expirada");
+    if (res.status === 401) salir("expirada", { volver: true });
     return res;
   }
 
