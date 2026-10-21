@@ -1,7 +1,6 @@
 // Inicio de sesión, registro de la empresa y acceso con Google
 const CLAVE_SESION = "sigmas-sesion";
 const DASHBOARD = "../sigmas-dashboard/dashboard.html";
-const PERFIL = "../sigmas-perfil/perfil.html";
 // La página y el API están en el mismo servidor (localhost:7000 o Render): se usa la misma dirección.
 // Solo al abrir el front con Live Server (localhost en otro puerto) se apunta al backend local.
 const enOtroPuertoLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname) && window.location.port !== "7000";
@@ -78,11 +77,11 @@ async function api(ruta, datos) {
   return respuesta;
 }
 
-// Guarda la sesión y abre el dashboard
-function entrar({ token, usuario, nuevo }) {
+// Guarda la sesión y abre el dashboard. Si faltan datos de la empresa (cuenta nueva con Google),
+// el dashboard muestra el aviso "Completa el perfil de tu empresa"; no se obliga a llenarlo.
+function entrar({ token, usuario }) {
   localStorage.setItem(CLAVE_SESION, JSON.stringify({ token, usuario }));
-  if (usuario.perfil_completo) window.location.replace(DASHBOARD);
-  else window.location.replace(`${PERFIL}${nuevo ? "?nuevo=1" : ""}`);
+  window.location.replace(DASHBOARD);
 }
 
 async function conBoton(boton, texto, tarea) {
