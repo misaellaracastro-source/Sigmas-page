@@ -2,8 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Carpeta backend/uploads, servida en /uploads por el servidor
-export const CARPETA_UPLOADS = fileURLToPath(new URL('../../uploads', import.meta.url));
+// Carpeta backend/uploads, servida en /uploads por el servidor.
+// En Render se usa CARPETA_DATOS (el disco persistente) para que las fotos no se borren en cada despliegue.
+export const CARPETA_UPLOADS = process.env.CARPETA_DATOS
+    ? path.join(process.env.CARPETA_DATOS, 'uploads')
+    : fileURLToPath(new URL('../../uploads', import.meta.url));
 
 const TAMANO_MAXIMO = 3 * 1024 * 1024; // 3 MB
 

@@ -8,7 +8,8 @@
     "dev": "nodemon app.js",
     "exportar-bd": "node database/exportar.mjs",
     "importar-bd": "node database/importar.mjs",
-    "subir-archivos": "node database/subir_archivos.mjs"
+    "subir-archivos": "node database/subir_archivos.mjs",
+    "esquema": "node database/exportar-esquema.mjs"
   },
   "keywords": [],
   "author": "",

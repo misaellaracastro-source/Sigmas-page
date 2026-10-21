@@ -4,8 +4,10 @@
   const CLAVE = "sigmas-sesion";
   const LOGIN = "../sigmas-registro/registro.html";
   const PERFIL = "../sigmas-perfil/perfil.html";
-  // Si la página se abre desde el backend usa la misma dirección; si no (Live Server), apunta al puerto 7000
-  const ORIGEN = window.location.port === "7000" ? "" : "http://localhost:7000";
+  // La página y el API están en el mismo servidor (localhost:7000 o Render): se usa la misma dirección.
+  // Solo al abrir el front con Live Server (localhost en otro puerto) se apunta al backend local.
+  const enOtroPuertoLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname) && window.location.port !== "7000";
+  const ORIGEN = window.location.protocol === "file:" || enOtroPuertoLocal ? "http://localhost:7000" : "";
 
   let sesion = null;
   try {

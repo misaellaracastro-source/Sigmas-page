@@ -1,0 +1,88 @@
+# Despliegue de SigmaS en Render (https://render.com) — Blueprint.
+# Un solo servicio web: el backend (Node/Express) también sirve el frontend.
+#
+# Render NO ofrece MySQL: la base de datos va en un MySQL en la nube (por ejemplo Aiven, Railway o TiDB Cloud).
+# Antes del primer despliegue, crea la base y ejecuta backend/database/esquema.sql en ella.
+#
+# Los valores marcados con "sync: false" los pide Render al crear el Blueprint (no se guardan en el repositorio).
+services:
+  - type: web
+    name: sigmas
+    runtime: node
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: npm ci
+    startCommand: npm start
+    # Página pública que responde sin sesión: Render la usa para saber si el servicio está vivo
+    healthCheckPath: /sigmas-registro/registro.html
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Hora de Colombia para las fechas de las alertas y los correos
+      - key: TZ
+        value: America/Bogota
+
+      # ---------- Base de datos MySQL en la nube ----------
+      - key: MYSQL_HOST
+        sync: false
+      - key: MYSQL_PORT
+        sync: false
+      - key: MYSQL_DATABASE
+        sync: false
+      - key: MYSQL_USER
+        sync: false
+      - key: MYSQL_PASSWORD
+        sync: false
+      # Las bases en la nube piden conexión segura
+      - key: MYSQL_SSL
+        value: "true"
+      # Opcional: contenido del certificado CA del proveedor (los saltos de línea como \n)
+      - key: MYSQL_SSL_CA
+        sync: false
+      - key: MYSQL_ZONA_HORARIA
+        value: "-05:00"
+
+      # ---------- Sesiones ----------
+      # Render genera una clave aleatoria segura (mínimo 32 caracteres)
+      - key: SESSION_SECRET
+        generateValue: true
+
+      # Dirección pública del servicio, para los enlaces de los correos. Ej: https://sigmas.onrender.com
+      - key: APP_URL
+        sync: false
+
+      # ---------- Inicio de sesión con Google ----------
+      # En Google Cloud, agrega la dirección de Render a los "Orígenes de JavaScript autorizados"
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+
+      # ---------- Correo para las alertas (Gmail: contraseña de aplicación) ----------
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+
+      # ---------- Fotos con IA (Cloudflare Workers AI) ----------
+      - key: CLOUDFLARE_ACCOUNT_ID
+        sync: false
+      - key: CLOUDFLARE_API_TOKEN
+        sync: false
+
+      # ---------- Fotos y facturas subidas ----------
+      # En Render el disco del servicio se borra en cada despliegue o reinicio. Para conservar las fotos
+      # y los archivos de facturas hace falta un disco persistente (solo en planes pagos, desde "starter").
+      # Para activarlo: cambia "plan: free" por "plan: starter" y quita el "#" de las 5 líneas de abajo.
+      # - key: CARPETA_DATOS
+      #   value: /var/data
+    # disk:
+    #   name: datos-sigmas
+    #   mountPath: /var/data
+    #   sizeGB: 1

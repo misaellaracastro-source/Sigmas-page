@@ -3,7 +3,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Carpeta backend/archivos: NO se sirve en público. Los archivos solo se entregan por rutas con sesión.
-export const CARPETA_ARCHIVOS = fileURLToPath(new URL('../../archivos', import.meta.url));
+// En Render se usa CARPETA_DATOS (el disco persistente) para que las facturas no se borren en cada despliegue.
+export const CARPETA_ARCHIVOS = process.env.CARPETA_DATOS
+    ? path.join(process.env.CARPETA_DATOS, 'archivos')
+    : fileURLToPath(new URL('../../archivos', import.meta.url));
 
 const TAMANO_MAXIMO = 5 * 1024 * 1024; // 5 MB
 const TIPOS = { 'application/pdf': 'pdf', 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
