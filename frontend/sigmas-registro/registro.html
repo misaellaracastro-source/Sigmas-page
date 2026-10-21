@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ingresar — Systex Administration</title>
+    <meta name="description" content="Inicia sesión o registra tu empresa de confección en Systex." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../sigmas-comun/modo.js"></script>
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <link rel="stylesheet" href="styles-registro.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <!-- Marca -->
+      <section class="brand-panel" aria-label="Systex">
+        <div class="mark">
+          <span class="mark-badge" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4" stroke="#fff" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="mark-word">
+            <span class="mark-name">Systex</span>
+            <span class="mark-sub">Administration</span>
+          </span>
+        </div>
+
+        <div class="brand-copy">
+          <p class="kicker">Gestión textil, con criterio.</p>
+          <h1 class="headline">
+            Cada material cuenta.<br />
+            Cada decisión<br />
+            también.
+          </h1>
+          <p class="subcopy">
+            Del inventario a la cotización, conecta los materiales de tu empresa en un solo lugar.
+          </p>
+        </div>
+        <div class="atelier-wrap">
+          <img
+            src="confeccion.svg"
+            alt="Ilustración de un taller de confección: máquina de coser, rollos de tela, carretes de hilo, tijeras y cinta métrica."
+          />
+        </div>
+        <div class="brand-foot">
+          <p class="brand-note">Hecho para empresas textiles colombianas.</p>
+        </div>
+      </section>
+
+      <!-- Acceso -->
+      <section class="auth-panel">
+        <div class="auth-card">
+          <div class="auth-tabs" role="tablist" aria-label="Acceso">
+            <button type="button" class="auth-tab is-active" role="tab" id="tab-login" aria-controls="panel-login" aria-selected="true">Iniciar sesión</button>
+            <button type="button" class="auth-tab" role="tab" id="tab-registro" aria-controls="panel-registro" aria-selected="false" tabindex="-1">Crear cuenta</button>
+          </div>
+
+          <p class="notice" id="notice" role="status" hidden></p>
+
+          <!-- Google (sirve para entrar y para crear cuenta) -->
+          <div class="google-zone">
+            <div id="google-btn" class="google-btn"></div>
+            <button type="button" class="google-fallback" id="google-fallback" hidden>
+              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z" />
+                <path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.1 5.3-4.6 7l7.1 5.5c4.2-3.9 6.6-9.6 6.6-16.9z" />
+                <path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z" />
+                <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.1-5.5c-2 1.4-4.6 2.2-8.8 2.2-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z" />
+              </svg>
+              Continuar con Google
+            </button>
+            <p class="hint google-hint" id="google-hint" hidden></p>
+          </div>
+          <p class="divider"><span id="divider-text">o con el NIT de tu empresa</span></p>
+
+          <!-- ============ INICIAR SESIÓN ============ -->
+          <form id="panel-login" class="auth-form" role="tabpanel" aria-labelledby="tab-login" novalidate>
+            <div class="field">
+              <label class="form-label" for="login-nit">NIT de la empresa</label>
+              <input id="login-nit" class="form-control" inputmode="numeric" autocomplete="username" placeholder="900123456-7" required />
+              <p class="field-error" id="login-nit-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="login-clave">Contraseña</label>
+              <div class="password-wrap">
+                <input id="login-clave" class="form-control" type="password" autocomplete="current-password" required />
+                <button type="button" class="eye" data-ver="login-clave" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+              </div>
+              <p class="field-error" id="login-clave-error" hidden></p>
+            </div>
+            <button type="submit" class="btn-primary btn-block" id="btn-login">Iniciar sesión</button>
+            <p class="switch-text">¿Tu empresa aún no tiene cuenta? <button type="button" class="link-btn" data-ir="registro">Crea una cuenta</button></p>
+          </form>
+
+          <!-- ============ CREAR CUENTA ============ -->
+          <form id="panel-registro" class="auth-form" role="tabpanel" aria-labelledby="tab-registro" novalidate hidden>
+            <fieldset class="form-section">
+              <legend class="section-title"><span>1</span> Empresa</legend>
+              <div class="upload-row">
+                <button type="button" class="upload" id="logo-btn" aria-describedby="logo-ayuda">
+                  <img id="logo-preview" alt="" hidden />
+                  <span class="upload-empty" id="logo-empty">Logo</span>
+                </button>
+                <div>
+                  <p class="form-label">Logo de la empresa</p>
+                  <p class="hint" id="logo-ayuda">PNG, JPG o WEBP. Opcional.</p>
+                  <p class="field-error" id="logo-error" hidden></p>
+                </div>
+                <input type="file" id="logo" accept="image/png,image/jpeg,image/webp" hidden />
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="form-label" for="reg-nit">NIT <span class="req">*</span></label>
+                  <input id="reg-nit" class="form-control" inputmode="numeric" autocomplete="off" placeholder="900123456-7" required />
+                  <p class="hint">Con guion y dígito de verificación.</p>
+                  <p class="field-error" id="reg-nit-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="reg-empresa">Nombre de la empresa <span class="req">*</span></label>
+                  <input id="reg-empresa" class="form-control" maxlength="100" autocomplete="organization" placeholder="Ej: Confecciones Andina S.A.S." required />
+                  <p class="field-error" id="reg-empresa-error" hidden></p>
+                </div>
+                <div class="field span-2">
+                  <label class="form-label" for="reg-direccion">Dirección de la empresa <span class="req">*</span></label>
+                  <input id="reg-direccion" class="form-control" maxlength="150" autocomplete="street-address" placeholder="Ej: Cra 52 # 14-30, Medellín" required />
+                  <p class="field-error" id="reg-direccion-error" hidden></p>
+                </div>
+                <div class="field span-2">
+                  <label class="form-label" for="reg-red">Red social</label>
+                  <input id="reg-red" class="form-control" maxlength="150" placeholder="Ej: instagram.com/miempresa o @miempresa" />
+                  <p class="field-error" id="reg-red-error" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend class="section-title"><span>2</span> Dueño</legend>
+              <div class="upload-row">
+                <button type="button" class="upload is-round" id="foto-btn" aria-describedby="foto-ayuda">
+                  <img id="foto-preview" alt="" hidden referrerpolicy="no-referrer" />
+                  <span class="upload-empty" id="foto-empty">Foto</span>
+                </button>
+                <div>
+                  <p class="form-label">Foto del dueño</p>
+                  <p class="hint" id="foto-ayuda">Se verá en la barra superior. Opcional.</p>
+                  <p class="field-error" id="foto-error" hidden></p>
+                </div>
+                <input type="file" id="foto" accept="image/png,image/jpeg,image/webp" hidden />
+              </div>
+              <div class="form-grid">
+                <div class="field span-2">
+                  <label class="form-label" for="reg-dueno">Nombre del dueño <span class="req">*</span></label>
+                  <input id="reg-dueno" class="form-control" maxlength="100" autocomplete="name" placeholder="Nombre y apellido" required />
+                  <p class="field-error" id="reg-dueno-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="reg-correo">Correo electrónico <span class="req">*</span></label>
+                  <input id="reg-correo" class="form-control" type="email" maxlength="120" autocomplete="email" placeholder="tu@empresa.com" required />
+                  <p class="hint">Aquí te llegarán las alertas de stock.</p>
+                  <p class="field-error" id="reg-correo-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="reg-telefono">Teléfono</label>
+                  <input id="reg-telefono" class="form-control" type="tel" maxlength="20" autocomplete="tel" placeholder="300 123 4567" />
+                  <p class="field-error" id="reg-telefono-error" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend class="section-title"><span>3</span> Seguridad</legend>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="form-label" for="reg-clave">Contraseña <span class="req">*</span></label>
+                  <div class="password-wrap">
+                    <input id="reg-clave" class="form-control" type="password" maxlength="72" autocomplete="new-password" aria-describedby="reglas-clave" />
+                    <button type="button" class="eye" data-ver="reg-clave" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+                  </div>
+                  <p class="field-error" id="reg-clave-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="reg-confirmacion">Confirmar contraseña <span class="req">*</span></label>
+                  <div class="password-wrap">
+                    <input id="reg-confirmacion" class="form-control" type="password" maxlength="72" autocomplete="new-password" />
+                    <button type="button" class="eye" data-ver="reg-confirmacion" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+                  </div>
+                  <p class="field-error" id="reg-confirmacion-error" hidden></p>
+                </div>
+              </div>
+              <div class="strength" aria-hidden="true"><span id="strength-bar"></span></div>
+              <ul class="rules" id="reglas-clave" aria-live="polite">
+                <li data-regla="largo">Mínimo 8 caracteres</li>
+                <li data-regla="letra">Una letra</li>
+                <li data-regla="numero">Un número</li>
+                <li data-regla="especial">Un carácter especial (!@#$%…)</li>
+              </ul>
+            </fieldset>
+
+            <button type="submit" class="btn-primary btn-block" id="btn-registro">Crear cuenta y entrar</button>
+            <p class="switch-text">¿Ya tienes cuenta? <button type="button" class="link-btn" data-ir="login">Inicia sesión</button></p>
+          </form>
+        </div>
+        <p class="auth-legal">© 2026 Systex Administration · Colombia</p>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="app-registro.js" defer></script>
+  </body>
+</html>

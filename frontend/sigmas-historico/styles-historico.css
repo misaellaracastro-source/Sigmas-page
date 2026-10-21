@@ -1,0 +1,510 @@
+/*
+ * Histórico.
+ * Usa los controles de ../sigmas-referencias/styles-referencias.css (campos, botones, estados vacíos)
+ * y la estructura de ../sigmas-comun/tema.css. Aquí van los filtros, el resumen y la línea de tiempo.
+ */
+
+:root {
+  --sec-referencia: #4f46e5;
+  --sec-cotizacion: #0d9488; /* validado: croma y separación para daltonismo */
+  --sec-ficha: #9333ea;
+  --sec-factura: #d97706;
+  --sec-pendiente: #2563eb;
+}
+
+.s-referencia { --color-sec: var(--sec-referencia); }
+.s-cotizacion { --color-sec: var(--sec-cotizacion); }
+.s-ficha { --color-sec: var(--sec-ficha); }
+.s-factura { --color-sec: var(--sec-factura); }
+.s-pendiente { --color-sec: var(--sec-pendiente); }
+
+.hi-exportar {
+  display: flex;
+  gap: 8px;
+}
+
+.file-badge {
+  display: inline-grid;
+  place-items: center;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 5px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.file-badge.is-excel {
+  background: var(--sig-ok-fondo);
+  color: var(--sig-ok-texto);
+}
+
+.file-badge.is-pdf {
+  background: var(--sig-mal-fondo);
+  color: #b42318;
+}
+
+/* ---------- Filtros ---------- */
+.hi-rapidos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hi-rapido {
+  appearance: none;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--sig-line);
+  background: var(--sig-surface);
+  color: var(--sig-muted-2);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.hi-rapido[aria-pressed="true"] {
+  background: var(--sig-boton);
+  border-color: var(--sig-boton);
+  color: #fff;
+}
+
+.hi-campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hi-campos .field {
+  flex: 1 1 160px;
+}
+
+.hi-campos .grow {
+  flex: 3 1 240px;
+}
+
+.hi-secciones {
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.hi-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hi-chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.hi-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hi-chip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--sig-line);
+  background: var(--sig-surface);
+  color: var(--sig-muted);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.hi-chip span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--color-sec);
+  opacity: 0.35;
+}
+
+.hi-chip input:checked + span {
+  border-color: var(--color-sec);
+  background: color-mix(in srgb, var(--color-sec) 9%, var(--sig-surface));
+  color: var(--sig-navy);
+}
+
+.hi-chip input:checked + span::before {
+  opacity: 1;
+}
+
+.hi-chip input:focus-visible + span,
+.hi-rapido:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+/* ---------- Resumen ---------- */
+.hi-resumen {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.hi-tarjeta {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--sig-surface);
+  border: 1px solid var(--sig-line);
+  border-top: 4px solid var(--color-sec);
+  box-shadow: var(--sig-shadow);
+}
+
+.hi-tarjeta p {
+  margin: 0;
+  color: var(--sig-muted);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.hi-tarjeta strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--sig-navy);
+  font-size: 1.6rem;
+}
+
+.hi-tarjeta small {
+  color: var(--sig-muted-2);
+  font-size: 0.76rem;
+}
+
+/* ---------- Línea de tiempo ---------- */
+.hi-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.hi-cabecera .showing {
+  margin: 0;
+}
+
+.hi-dia {
+  position: relative;
+  padding-left: 22px;
+  margin-top: 18px;
+}
+
+.hi-dia::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 26px;
+  bottom: -18px;
+  width: 2px;
+  background: var(--sig-line);
+}
+
+.hi-dia:last-child::before {
+  bottom: 0;
+}
+
+.hi-fecha {
+  position: relative;
+  margin: 0 0 10px;
+  color: var(--sig-navy);
+  font-size: 0.92rem;
+}
+
+.hi-fecha::before {
+  content: "";
+  position: absolute;
+  left: -21px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sig-boton);
+  box-shadow: 0 0 0 3px #fff;
+}
+
+.hi-items {
+  display: grid;
+  gap: 8px;
+}
+
+.hi-item {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--sig-line);
+  border-left: 4px solid var(--color-sec);
+  background: var(--sig-surface);
+  color: inherit;
+  text-decoration: none;
+}
+
+.hi-item:hover {
+  background: var(--sig-surface-2);
+}
+
+.hi-item:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+.hi-seccion {
+  display: grid;
+  gap: 2px;
+}
+
+.hi-seccion small {
+  color: var(--color-sec);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hi-seccion strong {
+  color: var(--sig-navy);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.hi-texto {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hi-texto span {
+  color: var(--sig-ink);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.hi-texto small {
+  color: var(--sig-muted-2);
+  font-size: 0.8rem;
+}
+
+.hi-valor {
+  color: var(--sig-navy);
+  font-weight: 800;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.hi-estado {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--sig-surface-3);
+  color: var(--sig-muted-2);
+  font-size: 0.74rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hi-estado.is-bien {
+  background: var(--sig-ok-fondo);
+  color: var(--sig-ok-texto);
+}
+
+.hi-estado.is-proceso {
+  background: var(--sig-aviso-fondo);
+  color: var(--sig-aviso-texto);
+}
+
+.hi-estado.is-mal {
+  background: var(--sig-mal-fondo);
+  color: #b42318;
+}
+
+/* ---------- Estadística: movimientos en el tiempo ---------- */
+.hi-estadistica .hi-cabecera {
+  align-items: flex-start;
+}
+
+.hi-estadistica .panel-sub {
+  margin: 4px 0 0;
+}
+
+.est-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.est-leyenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sig-muted-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* La muestra de color va junto al texto; el texto nunca lleva el color de la serie */
+.est-muestra {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--color-sec);
+}
+
+.est-grafica {
+  position: relative;
+  margin-top: 8px;
+}
+
+.est-grafica svg {
+  display: block;
+  max-width: none;
+}
+
+.est-rejilla {
+  stroke: var(--sig-line);
+  stroke-width: 1;
+}
+
+.est-base {
+  stroke: var(--sig-line-strong);
+  stroke-width: 1;
+}
+
+.est-eje {
+  fill: var(--sig-muted);
+  font-size: 11px;
+  font-family: var(--sig-font);
+}
+
+.est-valor {
+  fill: var(--sig-navy);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--sig-font);
+}
+
+.est-zona {
+  fill: transparent;
+}
+
+.est-col {
+  outline: none;
+}
+
+.est-col.is-activa .est-zona {
+  fill: rgba(58, 62, 108, 0.06);
+}
+
+.est-col:focus-visible .est-zona {
+  stroke: var(--sig-highlight);
+  stroke-width: 2;
+}
+
+.est-tooltip {
+  position: absolute;
+  top: 0;
+  display: grid;
+  gap: 3px;
+  min-width: 170px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--sig-boton);
+  color: #fff;
+  font-size: 0.8rem;
+  pointer-events: none;
+  box-shadow: 0 10px 24px rgba(10, 17, 35, 0.25);
+  z-index: 2;
+}
+
+.est-tooltip span {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.est-tooltip small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #dfe1f2;
+}
+
+.est-tooltip .est-muestra {
+  box-shadow: 0 0 0 1.5px #fff;
+}
+
+@media (max-width: 720px) {
+  .hi-estadistica .hi-cabecera {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hi-resumen {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .hi-exportar {
+    width: 100%;
+  }
+
+  .hi-exportar button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .hi-resumen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hi-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 10px;
+  }
+
+  .hi-texto {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .hi-dia {
+    padding-left: 18px;
+  }
+
+  .hi-fecha::before {
+    left: -17px;
+  }
+
+  .hi-dia::before {
+    left: 4px;
+  }
+}
+
+.hi-estadistica[hidden] {
+  display: none;
+}
+
+/* Modo oscuro: el morado de Referencias un paso más claro (contraste ≥ 3:1 sobre el fondo oscuro, validado) */
+:root[data-theme="oscuro"] {
+  --sec-referencia: #6366f1;
+}

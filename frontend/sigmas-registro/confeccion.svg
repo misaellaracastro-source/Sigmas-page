@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Taller de confección</title>
+  <desc id="desc">Máquina de coser con hilo, rollos de tela, carretes de hilo, tijeras y una cinta métrica.</desc>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A3E6C" />
+      <stop offset="1" stop-color="#22264A" />
+    </linearGradient>
+    <linearGradient id="cuerpo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4F5FB" />
+      <stop offset="1" stop-color="#C9CCE6" />
+    </linearGradient>
+    <linearGradient id="tela" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9A9ED3" />
+      <stop offset="1" stop-color="#6E72AE" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="480" height="340" rx="22" fill="url(#fondo)" />
+  <circle cx="400" cy="70" r="90" fill="#8387C3" opacity="0.18" />
+  <circle cx="60" cy="300" r="110" fill="#959BB5" opacity="0.12" />
+  <!-- Mesa -->
+  <rect x="0" y="262" width="480" height="78" fill="#0A1123" opacity="0.55" />
+  <rect x="0" y="258" width="480" height="6" fill="#0A1123" opacity="0.35" />
+
+  <!-- Rollos de tela (izquierda) -->
+  <g>
+    <rect x="22" y="222" width="132" height="40" rx="20" fill="url(#tela)" />
+    <ellipse cx="154" cy="242" rx="12" ry="20" fill="#B4B7DC" />
+    <ellipse cx="154" cy="242" rx="4" ry="7" fill="#3A3E6C" />
+    <path d="M40 228 C70 236 110 236 140 228" stroke="#C9CCE6" stroke-width="1.5" fill="none" opacity="0.6" />
+
+    <rect x="34" y="186" width="118" height="36" rx="18" fill="#959BB5" />
+    <ellipse cx="152" cy="204" rx="11" ry="18" fill="#D5D7EC" />
+    <ellipse cx="152" cy="204" rx="4" ry="6" fill="#3A3E6C" />
+    <path d="M50 192 C80 199 112 199 140 192" stroke="#EEF0F8" stroke-width="1.5" fill="none" opacity="0.6" />
+
+    <rect x="48" y="152" width="100" height="34" rx="17" fill="#F0C75E" />
+    <ellipse cx="148" cy="169" rx="10" ry="17" fill="#FBEFCB" />
+    <ellipse cx="148" cy="169" rx="3.5" ry="6" fill="#6B4E00" />
+    <path d="M62 158 C88 164 114 164 136 158" stroke="#FFF7DC" stroke-width="1.5" fill="none" opacity="0.7" />
+  </g>
+
+  <!-- Máquina de coser -->
+  <g>
+    <!-- Base -->
+    <rect x="176" y="242" width="226" height="20" rx="6" fill="#0A1123" />
+    <rect x="186" y="236" width="206" height="8" rx="3" fill="#2A2D52" />
+    <!-- Tela bajo la aguja -->
+    <path d="M190 236 L300 236 L306 230 L196 230 Z" fill="#F0C75E" opacity="0.9" />
+    <!-- Cuerpo: brazo superior y columna derecha -->
+    <path d="M330 238 V160 H226 Q210 160 210 146 V122 Q210 100 232 100 H356 Q378 100 378 122 V238 Z" fill="url(#cuerpo)" />
+    <path d="M232 100 H356 Q378 100 378 122 V128 H210 V122 Q210 100 232 100 Z" fill="#FFFFFF" opacity="0.55" />
+    <!-- Franja dorada -->
+    <rect x="222" y="134" width="144" height="5" rx="2.5" fill="#F0C75E" />
+    <!-- Volante -->
+    <circle cx="384" cy="132" r="22" fill="#2A2D52" />
+    <circle cx="384" cy="132" r="14" fill="#3A3E6C" stroke="#F0C75E" stroke-width="3" />
+    <circle cx="384" cy="132" r="4" fill="#F0C75E" />
+    <!-- Perilla de puntada -->
+    <circle cx="354" cy="196" r="10" fill="#3A3E6C" />
+    <path d="M354 189 V196" stroke="#F0C75E" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Barra de la aguja y prensatelas -->
+    <rect x="222" y="160" width="10" height="44" rx="3" fill="#959BB5" />
+    <path d="M227 204 V224" stroke="#D5D7EC" stroke-width="2" stroke-linecap="round" />
+    <rect x="214" y="222" width="26" height="6" rx="2" fill="#575B80" />
+    <!-- Carrete arriba y recorrido del hilo -->
+    <rect x="292" y="74" width="20" height="26" rx="3" fill="#8387C3" />
+    <rect x="288" y="70" width="28" height="6" rx="2" fill="#F4F5FB" />
+    <rect x="288" y="98" width="28" height="5" rx="2" fill="#F4F5FB" />
+    <path d="M300 86 C262 78 236 96 238 118 C240 138 228 150 228 162" stroke="#F0C75E" stroke-width="2" fill="none" stroke-linecap="round" />
+    <!-- Logo en el brazo -->
+    <path d="M262 112 H250 L256 120 L250 128 H262" stroke="#3A3E6C" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -3)" />
+  </g>
+
+  <!-- Carretes de hilo (derecha) -->
+  <g>
+    <rect x="414" y="214" width="22" height="34" rx="3" fill="#F0C75E" />
+    <rect x="410" y="210" width="30" height="6" rx="2" fill="#F4F5FB" />
+    <rect x="410" y="246" width="30" height="6" rx="2" fill="#F4F5FB" />
+    <path d="M414 222 H436 M414 230 H436 M414 238 H436" stroke="#C9A23F" stroke-width="1.2" />
+
+    <rect x="444" y="222" width="18" height="28" rx="3" fill="#B4B7DC" />
+    <rect x="440" y="218" width="26" height="5" rx="2" fill="#F4F5FB" />
+    <rect x="440" y="249" width="26" height="5" rx="2" fill="#F4F5FB" />
+  </g>
+
+  <!-- Tijeras -->
+  <g transform="translate(300 286) rotate(-14)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#F0C75E" stroke-width="4" />
+    <circle cx="0" cy="24" r="9" fill="none" stroke="#F0C75E" stroke-width="4" />
+    <path d="M8 4 L70 18 L10 20 Z" fill="#D5D7EC" />
+    <path d="M8 20 L70 6 L10 4 Z" fill="#F4F5FB" />
+    <circle cx="16" cy="12" r="2.5" fill="#3A3E6C" />
+  </g>
+
+  <!-- Cinta métrica -->
+  <g>
+    <path d="M24 300 C90 284 160 316 236 300" stroke="#FBEFCB" stroke-width="16" fill="none" stroke-linecap="round" />
+    <path d="M24 300 C90 284 160 316 236 300" stroke="#6B4E00" stroke-width="16" fill="none" stroke-dasharray="1.5 8" opacity="0.55" />
+    <circle cx="24" cy="300" r="13" fill="#F0C75E" />
+    <circle cx="24" cy="300" r="5" fill="#0A1123" />
+  </g>
+
+  <!-- Puntadas decorativas -->
+  <path d="M30 40 H170" stroke="#F0C75E" stroke-width="2.5" stroke-dasharray="10 8" stroke-linecap="round" opacity="0.8" />
+  <path d="M30 54 H120" stroke="#8387C3" stroke-width="2.5" stroke-dasharray="10 8" stroke-linecap="round" opacity="0.8" />
+</svg>

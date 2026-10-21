@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi perfil — Systex Administration</title>
+    <meta name="description" content="Datos de la empresa y del dueño en Systex." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles-perfil.css" />
+    <script src="../sigmas-comun/modo.js"></script>
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">Systex</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">Systex · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Cuenta</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Mi perfil</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
+              <span class="user-meta">
+                <span class="user-name"></span>
+                <span class="user-role"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <!-- Resumen de la cuenta -->
+          <section class="profile-hero">
+            <div class="hero-photo" id="hero-foto" aria-hidden="true"></div>
+            <div class="hero-copy">
+              <p class="hero-kicker" id="hero-kicker">Mi perfil</p>
+              <h1 class="page-title" id="hero-nombre"></h1>
+              <p class="hero-meta">
+                <span id="hero-correo"></span>
+                <span class="google-badge" id="hero-google" hidden>
+                  <svg width="14" height="14" viewBox="0 0 48 48" aria-hidden="true">
+                    <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z" />
+                    <path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.1 5.3-4.6 7l7.1 5.5c4.2-3.9 6.6-9.6 6.6-16.9z" />
+                    <path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z" />
+                    <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.1-5.5c-2 1.4-4.6 2.2-8.8 2.2-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z" />
+                  </svg>
+                  Cuenta de Google
+                </span>
+              </p>
+            </div>
+            <div class="hero-progress">
+              <p><strong id="progreso-texto">0%</strong> completo</p>
+              <div class="progress-bar" role="progressbar" aria-labelledby="progreso-texto" aria-valuemin="0" aria-valuemax="100" id="progreso">
+                <span id="progreso-barra"></span>
+              </div>
+            </div>
+          </section>
+
+          <div class="profile-welcome" id="bienvenida" role="status" hidden>
+            <strong>¡Tu cuenta quedó creada con Google!</strong>
+            Ya tomamos tu nombre, correo y foto. Completa los datos de tu empresa para empezar.
+          </div>
+
+          <!-- Datos -->
+          <form class="panel profile-form" id="form-perfil" novalidate>
+            <fieldset class="form-section">
+              <legend class="section-title"><span>1</span> Empresa</legend>
+              <div class="upload-row">
+                <button type="button" class="upload" id="logo-btn" aria-describedby="logo-ayuda">
+                  <img id="logo-preview" alt="" hidden />
+                  <span class="upload-empty" id="logo-empty">Logo</span>
+                </button>
+                <div>
+                  <p class="form-label">Logo de la empresa</p>
+                  <p class="hint" id="logo-ayuda">PNG, JPG o WEBP. Se verá en la barra lateral.</p>
+                  <div class="upload-actions">
+                    <button type="button" class="link-btn" id="logo-elegir">Elegir logo</button>
+                    <button type="button" class="link-btn is-danger" id="logo-quitar" hidden>Quitar</button>
+                  </div>
+                  <p class="field-error" id="logo-error" hidden></p>
+                </div>
+                <input type="file" id="logo" accept="image/png,image/jpeg,image/webp" hidden />
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label class="form-label" for="nit">NIT <span class="req">*</span></label>
+                  <input id="nit" class="form-control" inputmode="numeric" autocomplete="off" placeholder="900123456-7" />
+                  <p class="hint" id="nit-hint">Con guion y dígito de verificación.</p>
+                  <p class="field-error" id="nit-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="nombre_empresa">Nombre de la empresa <span class="req">*</span></label>
+                  <input id="nombre_empresa" class="form-control" maxlength="100" autocomplete="organization" placeholder="Ej: Confecciones Andina S.A.S." />
+                  <p class="field-error" id="nombre_empresa-error" hidden></p>
+                </div>
+                <div class="field span-2">
+                  <label class="form-label" for="direccion_empresa">Dirección de la empresa <span class="req">*</span></label>
+                  <input id="direccion_empresa" class="form-control" maxlength="150" autocomplete="street-address" placeholder="Ej: Cra 52 # 14-30, Medellín" />
+                  <p class="field-error" id="direccion_empresa-error" hidden></p>
+                </div>
+                <div class="field span-2">
+                  <label class="form-label" for="red_social">Red social</label>
+                  <input id="red_social" class="form-control" maxlength="150" placeholder="Ej: instagram.com/miempresa o @miempresa" />
+                  <p class="field-error" id="red_social-error" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend class="section-title"><span>2</span> Dueño</legend>
+              <div class="upload-row">
+                <button type="button" class="upload is-round" id="foto-btn" aria-describedby="foto-ayuda">
+                  <img id="foto-preview" alt="" hidden referrerpolicy="no-referrer" />
+                  <span class="upload-empty" id="foto-empty">Foto</span>
+                </button>
+                <div>
+                  <p class="form-label">Foto del dueño</p>
+                  <p class="hint" id="foto-ayuda">Se verá en la barra superior.</p>
+                  <div class="upload-actions">
+                    <button type="button" class="link-btn" id="foto-elegir">Elegir foto</button>
+                    <button type="button" class="link-btn is-danger" id="foto-quitar" hidden>Quitar</button>
+                  </div>
+                  <p class="field-error" id="foto-error" hidden></p>
+                </div>
+                <input type="file" id="foto" accept="image/png,image/jpeg,image/webp" hidden />
+              </div>
+              <div class="form-grid">
+                <div class="field span-2">
+                  <label class="form-label" for="nombre_dueno">Nombre del dueño <span class="req">*</span></label>
+                  <input id="nombre_dueno" class="form-control" maxlength="100" autocomplete="name" />
+                  <p class="field-error" id="nombre_dueno-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="correo">Correo electrónico <span class="req">*</span></label>
+                  <input id="correo" class="form-control" type="email" maxlength="120" autocomplete="email" />
+                  <p class="hint" id="correo-hint">Aquí te llegan las alertas de stock.</p>
+                  <p class="field-error" id="correo-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="telefono_contacto">Teléfono</label>
+                  <input id="telefono_contacto" class="form-control" type="tel" maxlength="20" autocomplete="tel" placeholder="300 123 4567" />
+                  <p class="field-error" id="telefono_contacto-error" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="form-actions">
+              <p class="form-note">Los campos con <span class="req">*</span> son obligatorios.</p>
+              <button type="submit" class="btn-primary" id="btn-guardar">Guardar cambios</button>
+            </div>
+          </form>
+
+          <!-- Contraseña -->
+          <form class="panel profile-form" id="form-clave" novalidate>
+            <fieldset class="form-section is-last">
+              <legend class="section-title"><span>3</span> <span id="clave-titulo">Contraseña</span></legend>
+              <p class="hint section-hint" id="clave-ayuda"></p>
+              <div class="form-grid">
+                <div class="field span-2" id="actual-field">
+                  <label class="form-label" for="actual">Contraseña actual</label>
+                  <div class="password-wrap">
+                    <input id="actual" class="form-control" type="password" autocomplete="current-password" />
+                    <button type="button" class="eye" data-ver="actual" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+                  </div>
+                  <p class="field-error" id="actual-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="nueva">Nueva contraseña</label>
+                  <div class="password-wrap">
+                    <input id="nueva" class="form-control" type="password" maxlength="72" autocomplete="new-password" aria-describedby="reglas-clave" />
+                    <button type="button" class="eye" data-ver="nueva" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+                  </div>
+                  <p class="field-error" id="nueva-error" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="form-label" for="confirmacion">Confirmar contraseña</label>
+                  <div class="password-wrap">
+                    <input id="confirmacion" class="form-control" type="password" maxlength="72" autocomplete="new-password" />
+                    <button type="button" class="eye" data-ver="confirmacion" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+                  </div>
+                  <p class="field-error" id="confirmacion-error" hidden></p>
+                </div>
+              </div>
+              <ul class="rules" id="reglas-clave" aria-live="polite">
+                <li data-regla="largo">Mínimo 8 caracteres</li>
+                <li data-regla="letra">Una letra</li>
+                <li data-regla="numero">Un número</li>
+                <li data-regla="especial">Un carácter especial (!@#$%…)</li>
+              </ul>
+            </fieldset>
+            <div class="form-actions">
+              <button type="submit" class="btn-ghost" id="btn-clave">Guardar contraseña</button>
+            </div>
+          </form>
+
+          <footer class="page-foot">
+            <p></p>
+            <p>Mi perfil</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script src="app-perfil.js" defer></script>
+  </body>
+</html>

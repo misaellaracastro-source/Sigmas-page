@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Referencias — Systex Administration</title>
+    <meta name="description" content="Referencias de prendas con sus insumos, telas, descripciones y valor." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles-referencias.css" />
+    <script src="../sigmas-comun/modo.js"></script>
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">Systex</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item is-active" href="../sigmas-referencias/referencias.html" aria-current="page">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">Systex · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Referencias</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
+              <span class="user-meta">
+                <span class="user-name"></span>
+                <span class="user-role"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Referencias</h1>
+              <p class="page-lede">Arma cada prenda con sus insumos, telas y detalles, y calcula cuánto cuesta en materiales.</p>
+            </div>
+          </div>
+
+          <div class="tabs-bar" role="tablist" aria-label="Referencias">
+            <button type="button" class="tab-btn is-active" role="tab" id="tab-nueva" aria-controls="panel-nueva" aria-selected="true">Nueva referencia</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-lista" aria-controls="panel-lista" aria-selected="false" tabindex="-1">
+              Referencias creadas <span class="tab-count" id="tab-count">0</span>
+            </button>
+          </div>
+
+          <!-- ================= NUEVA REFERENCIA ================= -->
+          <section id="panel-nueva" role="tabpanel" aria-labelledby="tab-nueva">
+            <ol class="stepper" id="stepper" aria-label="Pasos">
+              <li><button type="button" data-ir="0"><span>1</span> Datos</button></li>
+              <li><button type="button" data-ir="1"><span>2</span> Insumos</button></li>
+              <li><button type="button" data-ir="2"><span>3</span> Materia prima</button></li>
+              <li><button type="button" data-ir="3"><span>4</span> Descripción</button></li>
+              <li><button type="button" data-ir="4"><span>5</span> Valor de la prenda</button></li>
+            </ol>
+
+            <div class="borrador-aviso" id="editando-aviso" role="status" hidden>
+              <span id="editando-texto"></span>
+              <button type="button" class="link-btn" id="editando-cancelar">Cancelar edición</button>
+            </div>
+
+            <div class="borrador-aviso" id="borrador-aviso" role="status" hidden>
+              <span>Recuperamos la referencia que estabas creando.</span>
+              <button type="button" class="link-btn" id="borrador-descartar">Descartar y empezar de nuevo</button>
+            </div>
+
+            <div class="wizard">
+              <div class="panel wizard-main">
+                <!-- Paso 1: datos -->
+                <section class="paso" data-paso="0" aria-labelledby="paso0-titulo">
+                  <h2 class="paso-title" id="paso0-titulo">Datos de la referencia</h2>
+                  <p class="paso-sub">El número de referencia es único y no se puede repetir.</p>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label class="form-label" for="ref-id">Número de referencia <span class="req">*</span></label>
+                      <input id="ref-id" class="form-control code-input" maxlength="30" autocomplete="off" placeholder="Ej: REF-001" />
+                      <p class="hint">Letras, números y guiones.</p>
+                      <p class="field-error" id="ref-id-error" hidden></p>
+                    </div>
+                    <div class="field">
+                      <label class="form-label" for="ref-tipo">Tipo de prenda <span class="req">*</span></label>
+                      <input id="ref-tipo" class="form-control" maxlength="60" list="tipos-prenda" placeholder="Ej: Vestido de baño" />
+                      <datalist id="tipos-prenda">
+                        <option value="Vestido de baño"></option><option value="Bikini"></option><option value="Camiseta"></option>
+                        <option value="Blusa"></option><option value="Camisa"></option><option value="Pantalón"></option>
+                        <option value="Jean"></option><option value="Short"></option><option value="Falda"></option>
+                        <option value="Vestido"></option><option value="Chaqueta"></option><option value="Buzo"></option>
+                        <option value="Sudadera"></option><option value="Leggings"></option><option value="Pijama"></option>
+                      </datalist>
+                      <p class="hint">Define la silueta de la imagen de la referencia.</p>
+                      <p class="field-error" id="ref-tipo-error" hidden></p>
+                    </div>
+                  </div>
+                  <p class="fecha-note">Se guardará con la fecha de hoy: <strong id="fecha-hoy"></strong></p>
+                </section>
+
+                <!-- Paso 2: insumos -->
+                <section class="paso" data-paso="1" aria-labelledby="paso1-titulo" hidden>
+                  <h2 class="paso-title" id="paso1-titulo">Insumos</h2>
+                  <p class="paso-sub">Elige la categoría, luego el insumo, el precio y la cantidad que lleva una prenda.</p>
+                  <div class="form-grid">
+                    <div class="field">
+                      <span class="form-label" id="cat-label">Categoría</span>
+                      <div class="pick" id="cat-pick">
+                        <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cat-label" data-placeholder="Elige una categoría">
+                          <span class="pick-value"></span>
+                        </button>
+                        <ul class="pick-list" id="cat-list" role="listbox" tabindex="-1" aria-labelledby="cat-label" hidden></ul>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <span class="form-label" id="ins-label">Insumo</span>
+                      <div class="pick" id="ins-pick">
+                        <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ins-label" data-placeholder="Primero elige la categoría" disabled>
+                          <span class="pick-value"></span>
+                        </button>
+                        <ul class="pick-list pick-list-wide" id="ins-list" role="listbox" tabindex="-1" aria-labelledby="ins-label" hidden></ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="item-config" id="ins-config" hidden>
+                    <div class="calc-grid">
+                      <div class="field">
+                        <label class="form-label" for="ins-unidad">Precio por</label>
+                        <div class="select-wrap"><select id="ins-unidad" class="form-control"></select></div>
+                      </div>
+                      <div class="calc-box">
+                        <span>Valor unitario</span>
+                        <strong id="ins-valor">$0</strong>
+                      </div>
+                      <div class="field">
+                        <label class="form-label" for="ins-cantidad">Cantidad</label>
+                        <input id="ins-cantidad" class="form-control" inputmode="decimal" placeholder="0" />
+                      </div>
+                      <div class="calc-box is-total">
+                        <span>Valor total</span>
+                        <strong id="ins-total">$0</strong>
+                      </div>
+                    </div>
+                    <p class="field-error" id="ins-error" hidden></p>
+                    <div class="config-actions">
+                      <button type="button" class="btn-primary" id="ins-agregar">＋ Agregar insumo</button>
+                    </div>
+                  </div>
+
+                  <h3 class="list-title">Insumos seleccionados <span class="count-pill" id="ins-count">0</span></h3>
+                  <div class="sel-list" id="ins-seleccionados"></div>
+                </section>
+
+                <!-- Paso 3: materia prima -->
+                <section class="paso" data-paso="2" aria-labelledby="paso2-titulo" hidden>
+                  <h2 class="paso-title" id="paso2-titulo">Materia prima</h2>
+                  <p class="paso-sub">Elige la tela y escribe cuánto lleva cada talla. El consumo es el promedio de las tallas.</p>
+                  <div class="field">
+                    <span class="form-label" id="tela-label">Tela</span>
+                    <div class="pick" id="tela-pick">
+                      <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="tela-label" data-placeholder="Elige una tela">
+                        <span class="pick-value"></span>
+                      </button>
+                      <ul class="pick-list pick-list-wide" id="tela-list" role="listbox" tabindex="-1" aria-labelledby="tela-label" hidden></ul>
+                    </div>
+                  </div>
+
+                  <div class="item-config" id="mat-config" hidden>
+                    <p class="form-label">Cantidad por talla</p>
+                    <div class="tallas" id="tallas"></div>
+                    <button type="button" class="link-btn" id="talla-agregar">＋ Agregar talla</button>
+                    <p class="hint">¿No está la talla? Elige “Otra talla…” y escríbela.</p>
+                    <div class="calc-grid">
+                      <div class="calc-box">
+                        <span>Promedio</span>
+                        <strong id="mat-promedio">0</strong>
+                      </div>
+                      <div class="field">
+                        <label class="form-label" for="mat-unidad">Unidad</label>
+                        <div class="select-wrap"><select id="mat-unidad" class="form-control"></select></div>
+                      </div>
+                      <div class="calc-box">
+                        <span>Valor de la unidad</span>
+                        <strong id="mat-valor">$0</strong>
+                      </div>
+                      <div class="calc-box is-total">
+                        <span>Valor total</span>
+                        <strong id="mat-total">$0</strong>
+                      </div>
+                    </div>
+                    <p class="field-error" id="mat-error" hidden></p>
+                    <div class="config-actions">
+                      <button type="button" class="btn-primary" id="mat-agregar">＋ Agregar materia prima</button>
+                    </div>
+                  </div>
+
+                  <h3 class="list-title">Materia prima seleccionada <span class="count-pill" id="mat-count">0</span></h3>
+                  <div class="sel-list" id="mat-seleccionadas"></div>
+                </section>
+
+                <!-- Paso 4: descripción -->
+                <section class="paso" data-paso="3" aria-labelledby="paso3-titulo" hidden>
+                  <h2 class="paso-title" id="paso3-titulo">Descripción</h2>
+                  <p class="paso-sub">Escribe un título (ej: Escote) y sus descripciones. Con “Más descripciones” agregas otra al mismo título; con “Agregar nueva descripción”, otro título.</p>
+                  <div class="descripciones" id="descripciones"></div>
+                  <button type="button" class="btn-ghost desc-agregar" id="desc-agregar">＋ Agregar nueva descripción</button>
+                  <p class="field-error" id="desc-error" hidden></p>
+                </section>
+
+                <!-- Paso 5: valor de la prenda -->
+                <section class="paso" data-paso="4" aria-labelledby="paso4-titulo" hidden>
+                  <h2 class="paso-title" id="paso4-titulo">Valor de la prenda</h2>
+                  <p class="paso-sub">Suma del valor total de cada insumo y de cada materia prima, con los precios de tu inventario.</p>
+                  <div class="valor-grid">
+                    <div>
+                      <div class="valor-card">
+                        <span>Valor de la prenda en materiales</span>
+                        <strong id="valor-prenda">$0</strong>
+                      </div>
+                      <div id="resumen-detalle"></div>
+                    </div>
+                    <figure class="imagen-box">
+                      <div class="imagen-cargando" id="imagen-cargando">Generando imagen…</div>
+                      <img id="imagen-preview" alt="Imagen generada de la referencia" hidden />
+                      <figcaption>
+                        <span id="imagen-origen">Imagen generada con el tipo, las telas, los insumos y las descripciones.</span>
+                        <span class="imagen-acciones">
+                          <button type="button" class="btn-ghost btn-small" id="imagen-regenerar">Generar foto con IA</button>
+                          <button type="button" class="btn-ghost btn-small" id="imagen-subir">Subir una foto</button>
+                        </span>
+                        <input type="file" id="imagen-archivo" accept="image/jpeg,image/png,image/webp" hidden />
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <p class="field-error" id="guardar-error" hidden></p>
+                </section>
+
+                <div class="wizard-nav">
+                  <button type="button" class="btn-ghost" id="btn-atras">← Atrás</button>
+                  <span class="paso-indicador" id="paso-indicador">Paso 1 de 5</span>
+                  <button type="button" class="btn-primary" id="btn-siguiente">Continuar →</button>
+                  <button type="button" class="btn-primary" id="btn-guardar" hidden>Guardar referencia</button>
+                </div>
+              </div>
+
+              <aside class="panel wizard-aside" aria-label="Lo que llevas de la referencia">
+                <p class="aside-kicker">Tu referencia</p>
+                <p class="aside-id" id="aside-id">Sin número</p>
+                <p class="aside-tipo" id="aside-tipo">Sin tipo</p>
+                <h3 class="aside-title">Insumos <span class="count-pill" id="aside-ins-count">0</span></h3>
+                <ul class="aside-list" id="aside-insumos"></ul>
+                <h3 class="aside-title">Materia prima <span class="count-pill" id="aside-mat-count">0</span></h3>
+                <ul class="aside-list" id="aside-materias"></ul>
+                <div class="aside-total">
+                  <span>Valor de la prenda</span>
+                  <strong id="aside-total">$0</strong>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ================= REFERENCIAS CREADAS ================= -->
+          <section id="panel-lista" role="tabpanel" aria-labelledby="tab-lista" hidden>
+            <div class="panel list-panel">
+              <div class="list-toolbar">
+                <div class="field grow">
+                  <label class="form-label" for="lista-buscar">Buscar</label>
+                  <input id="lista-buscar" class="form-control search-input" type="search" placeholder="Número de referencia o tipo de prenda…" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-desde">Desde</label>
+                  <input id="lista-desde" class="form-control" type="date" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-hasta">Hasta</label>
+                  <input id="lista-hasta" class="form-control" type="date" />
+                </div>
+                <button type="button" class="btn-ghost" id="lista-limpiar">Limpiar</button>
+              </div>
+              <div class="ref-grid" id="ref-grid"></div>
+              <div class="empty-state" id="lista-vacia" hidden>
+                <p class="empty-title"></p>
+                <p class="empty-text"></p>
+              </div>
+              <p class="showing" id="lista-mostrando"></p>
+            </div>
+          </section>
+
+          <footer class="page-foot">
+            <p></p>
+            <p>Referencias de prendas</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- ================= DETALLE ================= -->
+    <dialog class="ref-dialog" id="ref-dialog" aria-labelledby="det-id">
+      <div class="det-head">
+        <div>
+          <p class="det-kicker" id="det-fecha"></p>
+          <h2 class="det-id" id="det-id"></h2>
+          <p class="det-tipo" id="det-tipo"></p>
+        </div>
+        <button type="button" class="icon-btn" id="det-cerrar" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="det-body">
+        <img class="det-imagen" id="det-imagen" alt="" />
+        <div class="det-info" id="det-info"></div>
+      </div>
+      <div class="det-foot">
+        <button type="button" class="btn-primary" data-exportar="ficha">Ficha en PDF</button>
+        <button type="button" class="btn-ghost btn-small" id="det-editar">Editar</button>
+        <button type="button" class="btn-ghost btn-small is-danger" id="det-eliminar">Eliminar</button>
+      </div>
+    </dialog>
+
+    <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-referencias.js"></script>
+  </body>
+</html>

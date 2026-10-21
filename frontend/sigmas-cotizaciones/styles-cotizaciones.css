@@ -1,0 +1,331 @@
+/*
+ * Cotizaciones.
+ * Usa los controles de ../sigmas-referencias/styles-referencias.css (pestañas, desplegables, tablas, detalle)
+ * y la estructura de ../sigmas-comun/tema.css. Aquí solo va lo propio de la cotización.
+ */
+
+.span-2 {
+  grid-column: 1 / -1;
+}
+
+.cot-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+.cot-main .panel:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Referencia elegida ---------- */
+.ref-elegida {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--sig-surface-2);
+  border: 1px solid var(--sig-line);
+}
+
+.ref-elegida img,
+.ref-sin-foto {
+  flex: none;
+  width: 96px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: top;
+  background: var(--sig-surface-3);
+}
+
+.ref-elegida-valor {
+  margin: 8px 0 0;
+  color: var(--sig-muted-2);
+  font-size: 0.86rem;
+}
+
+.ref-elegida-valor strong {
+  display: block;
+  color: var(--sig-navy);
+  font-size: 1.3rem;
+}
+
+.opt-foto {
+  flex: none;
+  width: 40px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: top;
+  background: var(--sig-surface-3);
+}
+
+.cot-entradas {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+
+/* ---------- Resumen del cálculo ---------- */
+.cot-resumen {
+  position: sticky;
+  top: 16px;
+}
+
+.cot-total {
+  margin: 4px 0 16px;
+  color: var(--sig-navy);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.cot-pasos {
+  margin: 0 0 16px;
+  display: grid;
+  gap: 2px;
+}
+
+.cot-pasos div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--sig-line);
+  font-size: 0.86rem;
+}
+
+.cot-pasos dt {
+  color: var(--sig-muted-2);
+}
+
+.cot-pasos dd {
+  margin: 0;
+  color: var(--sig-navy);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cot-pasos .is-sub dt,
+.cot-pasos .is-sub dd {
+  color: var(--sig-navy);
+  font-weight: 750;
+}
+
+.cot-pasos .is-total {
+  border-bottom: 0;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--sig-boton);
+}
+
+.cot-pasos .is-total dt {
+  color: #c3c6e4;
+}
+
+.cot-pasos .is-total dd {
+  color: var(--sig-highlight);
+  font-weight: 800;
+}
+
+.cot-guardar {
+  width: 100%;
+  justify-content: center;
+}
+
+.cot-guardar + .cot-guardar {
+  margin-top: 8px;
+}
+
+/* ---------- Materiales ---------- */
+.mat-cantidad {
+  color: var(--sig-navy);
+  font-weight: 800;
+}
+
+.falta {
+  color: var(--sig-danger);
+  font-weight: 700;
+}
+
+.inv-resumen {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--sig-surface-2);
+  border: 1px solid var(--sig-line);
+  font-size: 0.86rem;
+}
+
+.inv-resumen strong {
+  color: var(--sig-navy);
+}
+
+.inv-resumen ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+}
+
+.inv-resumen p {
+  margin: 8px 0 0;
+  color: var(--sig-danger);
+  font-weight: 650;
+}
+
+/* ---------- Lista ---------- */
+.cot-filtros {
+  flex-wrap: wrap;
+}
+
+.cot-filtros .grow {
+  flex-basis: 260px;
+}
+
+.cot-tabla-wrap {
+  overflow-x: auto;
+}
+
+.cot-tabla {
+  margin-top: 0;
+  min-width: 1020px;
+}
+
+.cot-acciones {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.cot-acciones .btn-small + .btn-small {
+  margin-left: 6px;
+}
+
+.cot-tabla tbody tr {
+  cursor: pointer;
+}
+
+.cot-tabla tbody tr:hover {
+  background: var(--sig-surface-2);
+}
+
+.cot-ref {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cot-ref img,
+.cot-ref .ref-sin-foto {
+  width: 36px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.cot-link {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--sig-navy);
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cot-link:focus-visible {
+  outline: 3px solid var(--sig-highlight);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1180px) {
+  .cot-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cot-resumen {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .cot-entradas {
+    grid-template-columns: 1fr;
+  }
+
+  .ref-elegida img,
+  .ref-sin-foto {
+    width: 72px;
+    height: 90px;
+  }
+}
+
+/* ---------- Celular: cada fila de la tabla se ve como una tarjeta ---------- */
+@media (max-width: 720px) {
+  .cot-tabla {
+    min-width: 0;
+  }
+
+  .cot-tabla thead {
+    display: none;
+  }
+
+  .cot-tabla,
+  .cot-tabla tbody,
+  .cot-tabla tr,
+  .cot-tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .cot-tabla tr {
+    margin-bottom: 10px;
+    padding: 6px 14px;
+    border: 1px solid var(--sig-line);
+    border-radius: 14px;
+    background: var(--sig-surface);
+  }
+
+  .cot-tabla td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    text-align: right;
+  }
+
+  .cot-tabla td::before {
+    content: attr(data-label);
+    flex: none;
+    color: var(--sig-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .cot-tabla td:last-child {
+    border-bottom: 0;
+  }
+
+  /* Los botones de la fila ocupan todo el ancho */
+  .cot-tabla td[data-label="Acciones"]::before {
+    display: none;
+  }
+
+  .cot-tabla td[data-label="Acciones"] .btn-small {
+    flex: 1;
+    justify-content: center;
+    margin: 0;
+  }
+}

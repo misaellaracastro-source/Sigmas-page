@@ -1,0 +1,189 @@
+/*
+ * Ficha técnica.
+ * Usa los controles de ../sigmas-referencias/styles-referencias.css (pestañas, desplegables, tallas, tablas, detalle)
+ * y la estructura de ../sigmas-comun/tema.css. Aquí solo va lo propio de la ficha.
+ */
+
+.ft-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+.opt-foto {
+  flex: none;
+  width: 40px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: top;
+  background: var(--sig-surface-3);
+}
+
+/* ---------- Tallas y procesos ---------- */
+.talla-row {
+  grid-template-columns: 160px minmax(0, 200px) 40px;
+}
+
+.ft-total {
+  margin: 4px 0 0;
+  color: var(--sig-muted-2);
+  font-size: 0.9rem;
+}
+
+.ft-total strong {
+  color: var(--sig-navy);
+  font-size: 1.05rem;
+}
+
+.procesos {
+  display: grid;
+  gap: 10px;
+}
+
+.proceso {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 40px;
+  gap: 10px;
+  align-items: start;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--sig-surface-2);
+  border: 1px solid var(--sig-line);
+}
+
+.proceso-campos {
+  display: grid;
+  gap: 8px;
+}
+
+.proceso-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sig-boton);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.proceso-orden {
+  display: grid;
+  gap: 4px;
+}
+
+.proceso-orden .icon-btn {
+  width: 40px;
+  height: 32px;
+}
+
+.proceso-orden .icon-btn:hover {
+  color: var(--sig-navy);
+  border-color: var(--sig-line-strong);
+}
+
+.proceso-orden .icon-btn[data-quitar]:hover {
+  color: var(--sig-danger);
+  border-color: var(--sig-danger);
+}
+
+/* ---------- Resumen ---------- */
+.ft-resumen {
+  position: sticky;
+  top: 16px;
+}
+
+.ft-foto {
+  margin: 10px 0 12px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--sig-surface-2);
+  border: 1px solid var(--sig-line);
+}
+
+.ft-foto img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.ft-foto figcaption {
+  color: var(--sig-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.ft-foto img:not([hidden]) + figcaption {
+  display: none;
+}
+
+.ft-datos {
+  margin: 14px 0 16px;
+  display: grid;
+}
+
+.ft-datos div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--sig-line);
+  font-size: 0.86rem;
+}
+
+.ft-datos dt {
+  color: var(--sig-muted-2);
+}
+
+.ft-datos dd {
+  margin: 0;
+  color: var(--sig-navy);
+  font-weight: 700;
+  text-align: right;
+}
+
+.ft-boton {
+  width: 100%;
+  justify-content: center;
+}
+
+.ft-boton + .ft-boton {
+  margin-top: 8px;
+}
+
+.ft-procesos-lista {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.ft-procesos-lista p {
+  margin: 2px 0 0;
+  color: var(--sig-muted-2);
+}
+
+@media (max-width: 1180px) {
+  .ft-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ft-resumen {
+    position: static;
+    order: -1;
+  }
+
+  .ft-foto img {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .talla-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 40px;
+  }
+}

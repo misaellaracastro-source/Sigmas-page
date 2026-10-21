@@ -1,0 +1,10 @@
+{
+  "name": "systex",
+  "private": true,
+  "description": "Atajos para ejecutar el backend desde la carpeta principal del proyecto",
+  "scripts": {
+    "dev": "npm --prefix backend run dev",
+    "start": "npm --prefix backend start",
+    "install-backend": "npm --prefix backend install"
+  }
+}

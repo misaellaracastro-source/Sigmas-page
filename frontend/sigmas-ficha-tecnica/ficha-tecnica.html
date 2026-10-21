@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ficha técnica — Systex Administration</title>
+    <meta name="description" content="Fichas técnicas: referencia, descripciones, tallas, cantidades y procesos." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../sigmas-referencias/styles-referencias.css" />
+    <link rel="stylesheet" href="styles-ficha-tecnica.css" />
+    <script src="../sigmas-comun/modo.js"></script>
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">Systex</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item" href="../sigmas-inventario/inventario.html">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item is-active" href="../sigmas-ficha-tecnica/ficha-tecnica.html" aria-current="page">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">Systex · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Ficha técnica</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true"></span>
+              <span class="user-meta">
+                <span class="user-name"></span>
+                <span class="user-role"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Fichas técnicas</h1>
+              <p class="page-lede">Elige la referencia, escribe las tallas con sus cantidades y los procesos para producirla.</p>
+            </div>
+          </div>
+
+          <div class="tabs-bar" role="tablist" aria-label="Fichas técnicas">
+            <button type="button" class="tab-btn is-active" role="tab" id="tab-nueva" aria-controls="panel-nueva" aria-selected="true">Nueva ficha técnica</button>
+            <button type="button" class="tab-btn" role="tab" id="tab-lista" aria-controls="panel-lista" aria-selected="false" tabindex="-1">
+              Fichas técnicas <span class="tab-count" id="tab-count">0</span>
+            </button>
+          </div>
+
+          <!-- ================= NUEVA FICHA ================= -->
+          <section id="panel-nueva" role="tabpanel" aria-labelledby="tab-nueva">
+            <div class="borrador-aviso" id="editando-aviso" role="status" hidden>
+              <span id="editando-texto"></span>
+              <button type="button" class="link-btn" id="editando-cancelar">Cancelar edición</button>
+            </div>
+
+            <div class="ft-layout">
+              <div class="ft-main">
+                <section class="panel" aria-labelledby="ref-titulo">
+                  <h2 class="paso-title" id="ref-titulo">Referencia</h2>
+                  <p class="paso-sub">Elige la referencia: se anexan su foto y sus descripciones.</p>
+                  <div class="field">
+                    <span class="form-label" id="ref-label">Referencia <span class="req">*</span></span>
+                    <div class="pick" id="ref-pick">
+                      <button type="button" class="pick-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ref-label" data-placeholder="Elige una referencia">
+                        <span class="pick-value"></span>
+                      </button>
+                      <ul class="pick-list pick-list-wide" id="ref-list" role="listbox" tabindex="-1" aria-labelledby="ref-label" hidden></ul>
+                    </div>
+                    <p class="field-error" id="ref-error" hidden></p>
+                  </div>
+                  <div id="ref-descripciones"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="tallas-titulo">
+                  <h2 class="paso-title" id="tallas-titulo">Tallas y cantidades</h2>
+                  <p class="paso-sub">Escribe cuántas prendas se hacen de cada talla. ¿No está la talla? Elige “Otra talla…”.</p>
+                  <div class="tallas" id="tallas"></div>
+                  <button type="button" class="link-btn" id="talla-agregar">＋ Agregar talla</button>
+                  <p class="ft-total">Total de prendas: <strong id="total-prendas">0</strong></p>
+                  <p class="field-error" id="tallas-error" hidden></p>
+                </section>
+
+                <section class="panel" aria-labelledby="procesos-titulo">
+                  <h2 class="paso-title" id="procesos-titulo">Procesos</h2>
+                  <p class="paso-sub">En el orden en que se hacen: corte, confección, estampado, terminación…</p>
+                  <div class="procesos" id="procesos"></div>
+                  <button type="button" class="btn-ghost desc-agregar" id="proceso-agregar">＋ Agregar proceso</button>
+                  <datalist id="lista-procesos">
+                    <option value="Corte"></option><option value="Confección"></option><option value="Estampado"></option>
+                    <option value="Sublimación"></option><option value="Bordado"></option><option value="Lavado"></option>
+                    <option value="Tintorería"></option><option value="Terminación"></option><option value="Planchado"></option>
+                    <option value="Control de calidad"></option><option value="Empaque"></option>
+                  </datalist>
+                  <p class="field-error" id="procesos-error" hidden></p>
+                </section>
+
+                <section class="panel" aria-labelledby="obs-titulo">
+                  <h2 class="paso-title" id="obs-titulo">Observaciones</h2>
+                  <label class="sr-only" for="observaciones">Observaciones</label>
+                  <textarea id="observaciones" class="form-control" maxlength="2000" rows="3" placeholder="Notas para producción (opcional)"></textarea>
+                  <p class="field-error" id="observaciones-error" hidden></p>
+                </section>
+              </div>
+
+              <aside class="panel ft-resumen" aria-label="Resumen de la ficha técnica">
+                <p class="aside-kicker">Tu ficha técnica</p>
+                <figure class="ft-foto">
+                  <img id="ref-foto" alt="" hidden />
+                  <figcaption id="ref-foto-texto">Elige una referencia para ver su foto.</figcaption>
+                </figure>
+                <p class="aside-id" id="aside-ref">Sin referencia</p>
+                <p class="aside-tipo" id="aside-tipo"></p>
+                <dl class="ft-datos">
+                  <div><dt id="fecha-label">Fecha de creación</dt><dd id="ft-fecha"></dd></div>
+                  <div><dt>Tallas</dt><dd id="aside-tallas">0</dd></div>
+                  <div><dt>Prendas</dt><dd id="aside-prendas">0</dd></div>
+                  <div><dt>Procesos</dt><dd id="aside-procesos">0</dd></div>
+                </dl>
+                <p class="field-error" id="guardar-error" hidden></p>
+                <button type="button" class="btn-primary ft-boton" id="btn-guardar">Guardar ficha técnica</button>
+                <button type="button" class="btn-ghost ft-boton" id="btn-limpiar">Limpiar</button>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ================= FICHAS CREADAS ================= -->
+          <section id="panel-lista" role="tabpanel" aria-labelledby="tab-lista" hidden>
+            <div class="panel list-panel">
+              <div class="list-toolbar">
+                <div class="field grow">
+                  <label class="form-label" for="lista-buscar">Buscar</label>
+                  <input id="lista-buscar" class="form-control search-input" type="search" placeholder="Número de referencia o tipo de prenda…" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-desde">Desde</label>
+                  <input id="lista-desde" class="form-control" type="date" />
+                </div>
+                <div class="field">
+                  <label class="form-label" for="lista-hasta">Hasta</label>
+                  <input id="lista-hasta" class="form-control" type="date" />
+                </div>
+                <button type="button" class="btn-ghost" id="lista-limpiar">Limpiar</button>
+              </div>
+              <div class="ref-grid" id="ft-grid"></div>
+              <div class="empty-state" id="lista-vacia" hidden>
+                <p class="empty-title"></p>
+                <p class="empty-text"></p>
+              </div>
+              <p class="showing" id="lista-mostrando"></p>
+            </div>
+          </section>
+
+          <footer class="page-foot">
+            <p></p>
+            <p>Fichas técnicas de producción</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- ================= DETALLE ================= -->
+    <dialog class="ref-dialog" id="ft-dialog" aria-labelledby="det-id">
+      <div class="det-head">
+        <div>
+          <p class="det-kicker" id="det-fecha"></p>
+          <h2 class="det-id" id="det-id"></h2>
+          <p class="det-tipo" id="det-ref"></p>
+        </div>
+        <button type="button" class="icon-btn" id="det-cerrar" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="det-body">
+        <img class="det-imagen" id="det-imagen" alt="" />
+        <div class="det-info" id="det-info"></div>
+      </div>
+      <div class="det-foot">
+        <button type="button" class="btn-primary" id="det-pdf">Ficha en PDF</button>
+        <button type="button" class="btn-ghost btn-small" id="det-editar">Editar</button>
+        <button type="button" class="btn-ghost btn-small is-danger" id="det-eliminar">Eliminar</button>
+      </div>
+    </dialog>
+
+<dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-ficha-tecnica.js"></script>
+  </body>
+</html>

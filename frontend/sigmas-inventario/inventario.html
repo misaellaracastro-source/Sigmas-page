@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventario — Systex Administration</title>
+    <meta name="description" content="Inventario de insumos y materia prima de Textiles Andina S.A.S. en Systex." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles-inventario.css" />
+    <script src="../sigmas-comun/modo.js"></script>
+    <link rel="stylesheet" href="../sigmas-comun/tema.css" />
+    <script src="../sigmas-comun/sesion.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-brand">
+          <div class="mark">
+            <span class="mark-badge" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M17.4 5.1H8.05L12.85 12 8.05 18.9H17.4"
+                  stroke="#fff"
+                  stroke-width="2.15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="mark-word">
+              <span class="mark-name">Systex</span>
+              <span class="mark-sub">Administration</span>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" aria-expanded="false">
+          <span class="menu-toggle-icon" aria-hidden="true"></span>
+          Menú
+        </button>
+
+        <div class="company-card">
+          <p class="company-name">Textiles Andina S.A.S.</p>
+          <p class="company-meta">NIT 901.456.789-2</p>
+          <p class="company-meta">Medellín, Colombia</p>
+        </div>
+
+        <nav class="side-nav" aria-label="Administración">
+          <p class="nav-section">Administración</p>
+          <a class="nav-item" href="../sigmas-dashboard/dashboard.html">Dashboard</a>
+          <a class="nav-item is-active" href="../sigmas-inventario/inventario.html" aria-current="page">Inventario</a>
+          <a class="nav-item" href="../sigmas-referencias/referencias.html">Referencias</a>
+          <a class="nav-item" href="../sigmas-cotizaciones/cotizaciones.html">Cotizaciones</a>
+          <a class="nav-item" href="../sigmas-ficha-tecnica/ficha-tecnica.html">Ficha técnica</a>
+          <a class="nav-item" href="../sigmas-factura/factura.html">Factura</a>
+          <a class="nav-item" href="../sigmas-calendario/calendario.html">Calendario</a>
+          <a class="nav-item" href="../sigmas-historico/historico.html">Histórico</a>
+          <a class="nav-item" href="../sigmas-vinculados/vinculados.html">Vinculados</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <a class="help-link" href="#ayuda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" />
+              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+            </svg>
+            Centro de ayuda
+          </a>
+          <a class="logout-link" href="../sigmas-registro/registro.html">Cerrar sesión</a>
+          <p class="sidebar-tagline">Systex · Gestión textil simplificada</p>
+        </div>
+      </aside>
+
+
+      <div class="main-area">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Miga de pan">
+            <span>Administración</span>
+            <span class="sep" aria-hidden="true">›</span>
+            <strong>Inventario</strong>
+          </nav>
+          <div class="topbar-right">
+            <button type="button" class="chip">Espacio empresarial</button>
+            <button type="button" class="user-chip">
+              <span class="avatar" aria-hidden="true">MP</span>
+              <span class="user-meta">
+                <span class="user-name">María Pérez</span>
+                <span class="user-role">Administradora</span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1 class="page-title">Inventario</h1>
+              <p class="page-lede">Controla tus insumos y materias primas: existencias, precios y proveedores.</p>
+            </div>
+            <div class="head-actions">
+              <div class="export-menu">
+                <button type="button" class="btn-ghost" id="btn-exportar" aria-haspopup="menu" aria-expanded="false" aria-controls="export-list">
+                  Exportar
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div class="export-list" id="export-list" role="menu" hidden>
+                  <p class="export-caption" id="export-caption">Exporta lo que ves en la lista</p>
+                  <button type="button" role="menuitem" data-exportar="excel">
+                    <span class="file-badge is-excel" aria-hidden="true">XLS</span>
+                    <span><strong>Excel</strong><small>Para editar y hacer cuentas</small></span>
+                  </button>
+                  <button type="button" role="menuitem" data-exportar="pdf">
+                    <span class="file-badge is-pdf" aria-hidden="true">PDF</span>
+                    <span><strong>PDF</strong><small>Para imprimir o enviar</small></span>
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="btn-primary" id="btn-agregar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span id="btn-agregar-label">Agregar insumo</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="inv-tabs" role="tablist" aria-label="Tipo de inventario">
+            <button type="button" class="inv-tab is-active" role="tab" id="tab-insumos" aria-controls="panel-insumos" aria-selected="true">
+              Insumos <span class="inv-tab-count" id="count-insumos">0</span>
+            </button>
+            <button type="button" class="inv-tab" role="tab" id="tab-materias" aria-controls="panel-materias" aria-selected="false" tabindex="-1">
+              Materia prima <span class="inv-tab-count" id="count-materias">0</span>
+            </button>
+          </div>
+
+          <!-- ================= INSUMOS ================= -->
+          <section id="panel-insumos" role="tabpanel" aria-labelledby="tab-insumos">
+            <div class="stat-row">
+              <article class="stat-card">
+                <p class="stat-label">Insumos registrados</p>
+                <p class="stat-value" id="ins-stat-total">0</p>
+              </article>
+              <article class="stat-card is-alert">
+                <p class="stat-label">Bajo el stock mínimo</p>
+                <p class="stat-value" id="ins-stat-bajo">0</p>
+              </article>
+              <article class="stat-card">
+                <p class="stat-label">Categorías en uso</p>
+                <p class="stat-value" id="ins-stat-categorias">0</p>
+              </article>
+              <article class="stat-card">
+                <p class="stat-label">Proveedores</p>
+                <p class="stat-value" id="ins-stat-prov">0</p>
+              </article>
+            </div>
+
+            <div class="panel list-panel">
+              <div class="list-toolbar">
+                <div class="search-box">
+                  <label class="sr-only" for="ins-buscar">Buscar insumos</label>
+                  <input id="ins-buscar" class="form-control search-input" type="search" placeholder="Buscar por nombre, código, categoría o proveedor…" autocomplete="off" />
+                </div>
+                <div class="dropdown" id="ins-cat">
+                  <button type="button" class="dropdown-btn" id="ins-cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="ins-cat-list">
+                    <span class="dropdown-caption">Categoría</span>
+                    <strong id="ins-cat-label">Todas</strong>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <ul class="dropdown-list" id="ins-cat-list" role="listbox" aria-label="Filtrar por categoría" tabindex="-1" hidden></ul>
+                </div>
+                <label class="toggle-low">
+                  <input type="checkbox" id="ins-solo-bajo" />
+                  <span>Solo bajo stock</span>
+                </label>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table inv-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Insumo</th>
+                      <th scope="col">Categoría</th>
+                      <th scope="col">Talla</th>
+                      <th scope="col">Proveedor</th>
+                      <th scope="col" class="num">Cantidad</th>
+                      <th scope="col" class="num">Precios</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col" class="col-actions">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ins-body"></tbody>
+                </table>
+                <div class="empty-state" id="ins-empty" hidden>
+                  <p class="empty-title"></p>
+                  <p class="empty-text"></p>
+                </div>
+              </div>
+              <p class="showing" id="ins-showing"></p>
+            </div>
+
+            <details class="panel providers" id="ins-proveedores">
+              <summary>
+                <span>
+                  <strong>Proveedores de insumos</strong>
+                  <small>Registrados en Vinculados con tipo de inventario “Insumo”</small>
+                </span>
+                <span class="providers-count" id="ins-prov-count">0</span>
+              </summary>
+              <div class="providers-grid" id="ins-prov-grid"></div>
+            </details>
+          </section>
+
+          <!-- ================= MATERIA PRIMA ================= -->
+          <section id="panel-materias" role="tabpanel" aria-labelledby="tab-materias" hidden>
+            <div class="stat-row">
+              <article class="stat-card">
+                <p class="stat-label">Telas registradas</p>
+                <p class="stat-value" id="mat-stat-total">0</p>
+              </article>
+              <article class="stat-card is-alert">
+                <p class="stat-label">Bajo el stock mínimo</p>
+                <p class="stat-value" id="mat-stat-bajo">0</p>
+              </article>
+              <article class="stat-card">
+                <p class="stat-label">Colores distintos</p>
+                <p class="stat-value" id="mat-stat-colores">0</p>
+              </article>
+              <article class="stat-card">
+                <p class="stat-label">Proveedores</p>
+                <p class="stat-value" id="mat-stat-prov">0</p>
+              </article>
+            </div>
+
+            <div class="panel list-panel">
+              <div class="list-toolbar">
+                <div class="search-box">
+                  <label class="sr-only" for="mat-buscar">Buscar materia prima</label>
+                  <input id="mat-buscar" class="form-control search-input" type="search" placeholder="Buscar por nombre, código, composición, tejido o proveedor…" autocomplete="off" />
+                </div>
+                <label class="toggle-low">
+                  <input type="checkbox" id="mat-solo-bajo" />
+                  <span>Solo bajo stock</span>
+                </label>
+              </div>
+
+              <div class="table-wrap">
+                <table class="data-table inv-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tela</th>
+                      <th scope="col">Proveedor</th>
+                      <th scope="col">Composición · tejido</th>
+                      <th scope="col" class="num">Cantidad</th>
+                      <th scope="col" class="num">Precios</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col" class="col-actions">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="mat-body"></tbody>
+                </table>
+                <div class="empty-state" id="mat-empty" hidden>
+                  <p class="empty-title"></p>
+                  <p class="empty-text"></p>
+                </div>
+              </div>
+              <p class="showing" id="mat-showing"></p>
+            </div>
+
+            <details class="panel providers" id="mat-proveedores">
+              <summary>
+                <span>
+                  <strong>Proveedores de materia prima</strong>
+                  <small>Registrados en Vinculados con tipo de inventario “Materia prima”</small>
+                </span>
+                <span class="providers-count" id="mat-prov-count">0</span>
+              </summary>
+              <div class="providers-grid" id="mat-prov-grid"></div>
+            </details>
+          </section>
+
+          <footer class="page-foot">
+            <p>Textiles Andina S.A.S. · Medellín</p>
+            <p>Moneda: COP</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- ================= PANEL: INSUMO ================= -->
+    <dialog class="drawer" id="drawer-insumo" aria-labelledby="ins-drawer-title">
+      <form class="drawer-form" id="form-insumo" novalidate>
+        <header class="drawer-head">
+          <div>
+            <p class="drawer-kicker">Insumos</p>
+            <h2 class="drawer-title" id="ins-drawer-title">Nuevo insumo</h2>
+          </div>
+          <button type="button" class="icon-btn" data-cerrar aria-label="Cerrar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          </button>
+        </header>
+
+        <div class="drawer-body">
+          <div class="photo-field">
+            <div class="photo-drop" id="ins-foto-drop" tabindex="0" role="button" aria-label="Agregar foto del insumo">
+              <img id="ins-foto-preview" alt="" hidden />
+              <span class="photo-empty" id="ins-foto-empty">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6" />
+                  <circle cx="9" cy="10" r="1.8" stroke="currentColor" stroke-width="1.6" />
+                  <path d="M4 17l5-4.5 4 3.5 3-2.5 4 3.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <div class="photo-copy">
+              <p class="form-label">Foto del insumo</p>
+              <p class="hint">Arrastra una imagen aquí o haz clic. JPG, PNG o WEBP.</p>
+              <div class="photo-actions">
+                <button type="button" class="link-btn" id="ins-foto-elegir">Elegir foto</button>
+                <button type="button" class="link-btn is-danger" id="ins-foto-quitar" hidden>Quitar</button>
+              </div>
+              <p class="field-error" id="ins-foto-error" hidden></p>
+            </div>
+            <input type="file" id="ins-foto" accept="image/jpeg,image/png,image/webp" hidden />
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label class="form-label" for="ins-categoria">Categoría <span class="req">*</span></label>
+              <div class="select-wrap">
+                <select id="ins-categoria" class="form-control" required></select>
+              </div>
+              <p class="field-error" id="ins-categoria-error" hidden></p>
+            </div>
+            <div class="field" id="ins-nueva-cat-field" hidden>
+              <label class="form-label" for="ins-nueva-categoria">Nueva categoría <span class="req">*</span></label>
+              <input id="ins-nueva-categoria" class="form-control" maxlength="60" placeholder="Ej: Hebillas" />
+              <p class="field-error" id="ins-nueva-categoria-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ins-id">ID del insumo <span class="req">*</span></label>
+              <input id="ins-id" class="form-control code-input" maxlength="30" autocomplete="off" placeholder="Ej: INS-001" required />
+              <p class="hint" id="ins-id-hint">Código único. Letras, números y guiones.</p>
+              <p class="field-error" id="ins-id-error" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label class="form-label" for="ins-nombre">Nombre <span class="req">*</span></label>
+              <input id="ins-nombre" class="form-control" maxlength="100" placeholder="Ej: Botón de pasta 12 mm" required />
+              <p class="field-error" id="ins-nombre-error" hidden></p>
+            </div>
+            <div class="field span-2" id="ins-talla-field" hidden>
+              <label class="form-label" for="ins-talla-lista">Talla de la marquilla</label>
+              <input id="ins-talla" class="form-control" maxlength="20" />
+              <p class="hint">¿No está la talla? Elige “Otra talla…” y escríbela.</p>
+              <p class="field-error" id="ins-talla-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ins-cantidad">Cantidad <span class="req">*</span></label>
+              <input id="ins-cantidad" class="form-control" inputmode="decimal" placeholder="0" required />
+              <p class="field-error" id="ins-cantidad-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="ins-stock">Stock mínimo <span class="req">*</span></label>
+              <input id="ins-stock" class="form-control" inputmode="decimal" placeholder="0" required />
+              <p class="field-error" id="ins-stock-error" hidden></p>
+            </div>
+            <p class="hint span-2 stock-hint">Cuando la cantidad llegue al stock mínimo verás una alerta en la campana y te llegará un correo.</p>
+
+            <div class="field span-2">
+              <label class="form-label" for="ins-proveedor">Proveedor de insumos</label>
+              <div class="select-wrap">
+                <select id="ins-proveedor" class="form-control"></select>
+              </div>
+              <p class="hint" id="ins-proveedor-hint">Proveedores de insumos registrados en Vinculados.</p>
+              <p class="field-error" id="ins-proveedor-error" hidden></p>
+            </div>
+
+            <fieldset class="field span-2 price-field">
+              <legend class="form-label">Precios <span class="req">*</span></legend>
+              <p class="hint price-hint">Agrega un precio por cada forma en que lo compras: por metro, por rollo, por docena…</p>
+              <div class="price-list" id="ins-precios"></div>
+              <button type="button" class="link-btn price-add" id="ins-precio-agregar">＋ Agregar otro precio</button>
+              <p class="field-error" id="ins-precios-error" hidden></p>
+            </fieldset>
+          </div>
+        </div>
+
+        <footer class="drawer-foot">
+          <button type="button" class="btn-ghost" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn-primary" id="ins-guardar">Guardar insumo</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- ================= PANEL: MATERIA PRIMA ================= -->
+    <dialog class="drawer" id="drawer-materia" aria-labelledby="mat-drawer-title">
+      <form class="drawer-form" id="form-materia" novalidate>
+        <header class="drawer-head">
+          <div>
+            <p class="drawer-kicker">Materia prima</p>
+            <h2 class="drawer-title" id="mat-drawer-title">Nueva materia prima</h2>
+          </div>
+          <button type="button" class="icon-btn" data-cerrar aria-label="Cerrar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          </button>
+        </header>
+
+        <div class="drawer-body">
+          <div class="form-grid">
+            <div class="field">
+              <label class="form-label" for="mat-id">ID de la materia prima <span class="req">*</span></label>
+              <input id="mat-id" class="form-control code-input" maxlength="30" autocomplete="off" placeholder="Ej: TEL-001" required />
+              <p class="hint" id="mat-id-hint">Código único. Letras, números y guiones.</p>
+              <p class="field-error" id="mat-id-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="mat-nombre">Nombre <span class="req">*</span></label>
+              <input id="mat-nombre" class="form-control" maxlength="100" placeholder="Ej: Algodón jersey" required />
+              <p class="field-error" id="mat-nombre-error" hidden></p>
+            </div>
+
+            <div class="field span-2">
+              <span class="form-label" id="mat-color-label">Color <span class="req">*</span></span>
+              <div class="color-field">
+                <button type="button" class="color-trigger" id="mat-color-btn" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="mat-color-label mat-color-text">
+                  <span class="color-dot" id="mat-color-dot"></span>
+                  <span class="color-text" id="mat-color-text">Elegir color</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
+                <input type="hidden" id="mat-color" />
+                <div class="color-popover" id="mat-color-popover" role="dialog" aria-label="Paleta de colores" hidden>
+                  <div class="sv-area" id="mat-sv" tabindex="0" aria-label="Saturación y brillo. Usa las flechas para ajustar.">
+                    <span class="sv-handle" id="mat-sv-handle"></span>
+                  </div>
+                  <div class="hue-bar" id="mat-hue" tabindex="0" aria-label="Tono. Usa las flechas para ajustar.">
+                    <span class="hue-handle" id="mat-hue-handle"></span>
+                  </div>
+                  <p class="swatch-caption">Colores frecuentes en textiles</p>
+                  <div class="swatches" id="mat-swatches"></div>
+                  <div class="color-hex-row">
+                    <span class="color-preview" id="mat-color-preview"></span>
+                    <label class="sr-only" for="mat-color-hex">Código del color</label>
+                    <input id="mat-color-hex" class="form-control hex-input" maxlength="7" placeholder="#FFFFFF" autocomplete="off" />
+                    <button type="button" class="btn-primary btn-small" id="mat-color-ok">Listo</button>
+                  </div>
+                </div>
+              </div>
+              <p class="field-error" id="mat-color-error" hidden></p>
+            </div>
+
+            <div class="field span-2">
+              <label class="form-label" for="mat-proveedor">Proveedor de materia prima</label>
+              <div class="select-wrap">
+                <select id="mat-proveedor" class="form-control"></select>
+              </div>
+              <p class="hint" id="mat-proveedor-hint">Proveedores de materia prima registrados en Vinculados.</p>
+              <p class="field-error" id="mat-proveedor-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label class="form-label" for="mat-cantidad">Cantidad <span class="req">*</span></label>
+              <input id="mat-cantidad" class="form-control" inputmode="decimal" placeholder="0" required />
+              <p class="field-error" id="mat-cantidad-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="mat-unidad">Unidad de medida <span class="req">*</span></label>
+              <div class="select-wrap">
+                <select id="mat-unidad" class="form-control" required>
+                  <option value="metro">Metro (m)</option>
+                  <option value="metro cuadrado">Metro cuadrado (m²)</option>
+                  <option value="kilogramo">Kilogramo (kg)</option>
+                  <option value="rollo">Rollo</option>
+                  <option value="pieza">Pieza</option>
+                </select>
+              </div>
+              <p class="field-error" id="mat-unidad-error" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label class="form-label" for="mat-stock">Stock mínimo <span class="req">*</span></label>
+              <input id="mat-stock" class="form-control" inputmode="decimal" placeholder="0" required />
+              <p class="hint">Cuando la cantidad llegue al stock mínimo verás una alerta en la campana y te llegará un correo.</p>
+              <p class="field-error" id="mat-stock-error" hidden></p>
+            </div>
+
+            <fieldset class="field span-2 price-field">
+              <legend class="form-label">Precios <span class="req">*</span></legend>
+              <p class="hint price-hint">Agrega un precio por cada forma en que lo compras: por metro, por rollo, por kilo…</p>
+              <div class="price-list" id="mat-precios"></div>
+              <button type="button" class="link-btn price-add" id="mat-precio-agregar">＋ Agregar otro precio</button>
+              <p class="field-error" id="mat-precios-error" hidden></p>
+            </fieldset>
+
+            <div class="field">
+              <label class="form-label" for="mat-composicion">Composición</label>
+              <input id="mat-composicion" class="form-control" maxlength="150" placeholder="Ej: 95% algodón, 5% elastano" />
+              <p class="field-error" id="mat-composicion-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="form-label" for="mat-tejido">Tipo de tejido</label>
+              <input id="mat-tejido" class="form-control" maxlength="60" list="tejidos" placeholder="Ej: Jersey" />
+              <datalist id="tejidos">
+                <option value="Plano"></option><option value="Punto"></option><option value="Jersey"></option>
+                <option value="Rib"></option><option value="Interlock"></option><option value="French terry"></option>
+                <option value="Denim"></option><option value="Drill"></option><option value="Gabardina"></option>
+                <option value="Popelina"></option><option value="Lino"></option><option value="Satín"></option>
+                <option value="Tafetán"></option><option value="Chifón"></option><option value="Licra"></option>
+              </datalist>
+              <p class="field-error" id="mat-tejido-error" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label class="form-label" for="mat-descripcion">Descripción</label>
+              <textarea id="mat-descripcion" class="form-control textarea" maxlength="1000" rows="3" placeholder="Peso, ancho, uso recomendado…"></textarea>
+              <p class="field-error" id="mat-descripcion-error" hidden></p>
+            </div>
+          </div>
+        </div>
+
+        <footer class="drawer-foot">
+          <button type="button" class="btn-ghost" data-cerrar>Cancelar</button>
+          <button type="submit" class="btn-primary" id="mat-guardar">Guardar materia prima</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- ================= CONFIRMAR ELIMINAR ================= -->
+    <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <form method="dialog">
+        <span class="confirm-icon" aria-hidden="true">!</span>
+        <h2 class="confirm-title" id="confirm-title"></h2>
+        <p class="confirm-text" id="confirm-text"></p>
+        <p class="confirm-warning" id="confirm-warning" hidden></p>
+        <div class="confirm-actions">
+          <button type="submit" class="btn-ghost" value="cancelar" autofocus>Cancelar</button>
+          <button type="submit" class="btn-danger" value="eliminar">Sí, eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="../sigmas-comun/menu.js" defer></script>
+    <script src="../sigmas-comun/alertas.js" defer></script>
+    <script type="module" src="app-inventario.js"></script>
+  </body>
+</html>
