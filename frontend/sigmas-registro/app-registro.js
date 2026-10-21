@@ -70,7 +70,7 @@ async function api(ruta, datos) {
       body: datos && JSON.stringify(datos),
     });
   } catch {
-    throw new Error("No hay conexión con el servidor. Verifica que el backend esté encendido (npm run dev).");
+    throw new Error("No hay conexión con el servidor. Revisa tu internet o espera unos segundos e intenta de nuevo (el servidor puede estar despertando).");
   }
   const respuesta = await res.json().catch(() => ({}));
   if (!res.ok) throw Object.assign(new Error(respuesta.message || "No se pudo completar la acción."), { status: res.status, datos: respuesta });

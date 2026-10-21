@@ -14,7 +14,7 @@ export async function api(ruta, opciones = {}) {
       headers: { "Content-Type": "application/json", ...(opciones.headers || {}) },
     });
   } catch {
-    throw new Error("No hay conexión con el servidor. Verifica que el backend esté encendido (npm run dev).");
+    throw new Error("No hay conexión con el servidor. Revisa tu internet o espera unos segundos e intenta de nuevo (el servidor puede estar despertando).");
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
