@@ -114,7 +114,7 @@ function piePdf(doc) {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(87, 91, 128);
-    doc.text(`Systex · Página ${i} de ${paginas}`, doc.internal.pageSize.getWidth() - 40, doc.internal.pageSize.getHeight() - 20, { align: "right" });
+    doc.text(`SYSTEX · Página ${i} de ${paginas}`, doc.internal.pageSize.getWidth() - 40, doc.internal.pageSize.getHeight() - 20, { align: "right" });
   }
 }
 

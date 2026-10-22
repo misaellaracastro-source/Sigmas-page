@@ -62,7 +62,7 @@ async function notificarPorCorreo({ nit, idAlerta, mensaje, asunto, etiqueta, en
         html: `
           <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#0a1123">
             <div style="background:#0a1123;color:#fff;padding:18px 22px;border-radius:12px 12px 0 0">
-              <strong style="font-size:18px">Systex</strong>
+              <strong style="font-size:18px">SYSTEX</strong>
               <span style="color:#f0c75e;font-size:12px;letter-spacing:2px;margin-left:6px">${escapar(etiqueta)}</span>
             </div>
             <div style="border:1px solid #dcdeea;border-top:0;padding:22px;border-radius:0 0 12px 12px">

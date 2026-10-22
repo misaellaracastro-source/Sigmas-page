@@ -28,7 +28,7 @@ export async function enviarCorreo({ para, asunto, html, texto }) {
     if (!smtp || !para) return false;
     try {
         await smtp.sendMail({
-            from: process.env.SMTP_FROM || `Systex <${process.env.SMTP_USER}>`,
+            from: process.env.SMTP_FROM || `SYSTEX <${process.env.SMTP_USER}>`,
             to: para,
             subject: asunto,
             text: texto,

@@ -138,7 +138,7 @@ function exportarPdf({ titulo, archivo, filas, columnas }) {
     didDrawPage: () => {
       doc.setFontSize(8);
       doc.setTextColor(87, 91, 128);
-      doc.text(`Systex · Página ${doc.internal.getNumberOfPages()}`, ancho - 40, doc.internal.pageSize.getHeight() - 20, { align: "right" });
+      doc.text(`SYSTEX · Página ${doc.internal.getNumberOfPages()}`, ancho - 40, doc.internal.pageSize.getHeight() - 20, { align: "right" });
     },
   });
   doc.save(`${archivo}-${fechaArchivo()}.pdf`);

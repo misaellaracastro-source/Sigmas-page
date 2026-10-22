@@ -1,4 +1,4 @@
-// Modo claro / oscuro de Systex.
+// Modo claro / oscuro de SYSTEX.
 // Se carga en el <head> (antes de pintar) para que la página no parpadee en blanco, y agrega el botón
 // de sol/luna en la barra superior. Si la persona nunca elige, se sigue el modo del sistema operativo.
 (() => {

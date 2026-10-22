@@ -1,4 +1,4 @@
-// Sesión de Systex: protege las páginas internas y pone los datos de la empresa en la barra y el encabezado.
+// Sesión de SYSTEX: protege las páginas internas y pone los datos de la empresa en la barra y el encabezado.
 // Se carga en el <head>, antes que los demás scripts, para que ninguna página se vea sin sesión.
 (() => {
   const CLAVE = "sigmas-sesion";
